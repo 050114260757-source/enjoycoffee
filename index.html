@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enjoy Coffee - Cà phê & Cacao Nguyên Bản Đà Lạt</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-dark: #2A1B17;
+            --primary-gold: #C69A5A;
+            --primary-gold-hover: #e0b26f;
+            --bg-cream: #FAF6EE;
+            --bg-card: #FFFFFF;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --border-color: #E8E2D5;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-gold);
+            margin: 10px auto 0;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background-color: var(--primary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: var(--primary-gold);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-link {
+            color: #FFFFFF;
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-gold);
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--primary-dark);
+            min-width: 180px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            display: none;
+            border-top: 2px solid var(--primary-gold);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 15px;
+            color: #FFF;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .dropdown-menu a:hover {
+            background-color: rgba(198, 154, 90, 0.2);
+            color: var(--primary-gold);
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .cart-icon-btn {
+            position: relative;
+            color: #FFF;
+            font-size: 1.3rem;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background-color: var(--primary-gold);
+            color: var(--primary-dark);
+            font-size: 0.75rem;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* HERO SLIDER */
+        .hero-slider {
+            position: relative;
+            height: 520px;
+            overflow: hidden;
+            background-color: #1a100d;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #FFF;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .slide-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        .slide-desc {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background-color: var(--primary-gold);
+            color: var(--primary-dark);
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border: 2px solid var(--primary-gold);
+            cursor: pointer;
+        }
+
+        .btn-gold:hover {
+            background-color: transparent;
+            color: var(--primary-gold);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: var(--primary-gold);
+            width: 25px;
+            border-radius: 10px;
+        }
+
+        /* ABOUT / STORY SECTION */
+        .story-section {
+            padding: 70px 0;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .story-locations {
+            background-color: #F2ECE1;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-gold);
+            margin-top: 20px;
+        }
+
+        .story-locations h4 {
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+
+        .story-locations ul li {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .story-locations ul li i {
+            color: var(--primary-gold);
+            margin-top: 3px;
+        }
+
+        .story-text p {
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: #444;
+            text-align: justify;
+        }
+
+        /* MENU SECTION */
+        .menu-section {
+            background-color: #F4ECE1;
+            padding: 70px 0;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .menu-item-card {
+            background: var(--bg-card);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item-card:hover {
+            border-color: var(--primary-gold);
+            transform: translateY(-3px);
+        }
+
+        .menu-item-title {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        .menu-item-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .menu-item-price {
+            font-weight: 700;
+            color: var(--primary-gold);
+            font-size: 1.05rem;
+            white-space: nowrap;
+        }
+
+        /* PRODUCTS SECTION */
+        .products-section {
+            padding: 70px 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--primary-gold);
+            color: #FFF;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .product-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 1.1rem;
+            color: #B83B26;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .btn-add-cart {
+            margin-top: auto;
+            width: 100%;
+            padding: 10px;
+            background-color: var(--primary-dark);
+            color: #FFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-add-cart:hover {
+            background-color: var(--primary-gold);
+            color: var(--primary-dark);
+        }
+
+        /* NEWS SECTION */
+        .news-section {
+            background-color: #F8F5F0;
+            padding: 70px 0;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .news-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .news-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-body {
+            padding: 20px;
+        }
+
+        .news-cat {
+            font-size: 0.75rem;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .news-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary-dark);
+            color: #AAA;
+            padding: 50px 0 20px;
+            font-size: 0.9rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--primary-gold);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-family: var(--font-heading);
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #FFF;
+            width: 35px;
+            height: 35px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-gold);
+            color: var(--primary-dark);
+        }
+
+        /* CART DRAWER */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100%;
+            background-color: #FFF;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-drawer.open {
+            right: 0;
+        }
+
+        .cart-header {
+            background-color: var(--primary-dark);
+            color: #FFF;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #EEE;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background-color: #FAF6EE;
+            border-top: 1px solid #E8E2D5;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .story-grid { grid-template-columns: 1fr; }
+            .slide-title { font-size: 2rem; }
+            .cart-drawer { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">
+                <i class="fa-solid fa-mug-hot" style="color: var(--primary-gold); font-size: 1.8rem;"></i>
+                <span class="logo-text">ENJOY COFFEE</span>
+            </a>
+
+            <nav class="nav-menu">
+                <a href="/" class="nav-link active">Trang chủ</a>
+                <div class="nav-dropdown">
+                    <a href="#san-pham" class="nav-link">Sản phẩm <i class="fa-solid fa-angle-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="#san-pham">Cà phê Nguyên Chất</a>
+                        <a href="#san-pham">Macca Cao Nguyên</a>
+                        <a href="#san-pham">Cacao - Socola</a>
+                        <a href="#san-pham">Set Quà Tặng</a>
+                    </div>
+                </div>
+                <a href="#cau-chuyen" class="nav-link">Giới thiệu</a>
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#tin-tuc" class="nav-link">Tin tức</a>
+                <a href="#lien-he" class="nav-link">Liên hệ</a>
+            </nav>
+
+            <div class="cart-icon-btn" onclick="toggleCart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SLIDER -->
+    <section class="hero-slider">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=1600');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h1 class="slide-title">HƯƠNG VỊ CÀ PHÊ ĐÀ LẠT NGUYÊN BẢN</h1>
+                <p class="slide-desc">Hành trình từ nông trại Lâm Đồng đến tách cà phê tinh khiết & đậm đà</p>
+                <a href="#san-pham" class="btn-gold">Khám Phá Sản Phẩm</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1600');">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <h1 class="slide-title">CHOCOLATE & CACAO THỦ CÔNG</h1>
+                <p class="slide-desc">Giữ trọn hương vị tự nhiên và năng lượng thuần khiết từ cao nguyên</p>
+                <a href="#san-pham" class="btn-gold">Xem Ngay</a>
+            </div>
+        </div>
+        <div class="slider-dots">
+            <div class="dot active" onclick="setSlide(0)"></div>
+            <div class="dot" onclick="setSlide(1)"></div>
+        </div>
+    </section>
+
+    <!-- STORY SECTION -->
+    <section class="story-section" id="cau-chuyen">
+        <div class="container">
+            <h2 class="section-title">Câu Chuyện Của Chúng Tôi</h2>
+            <div class="story-grid">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800" alt="Enjoy Coffee Story" style="border-radius: 8px;">
+                    <div class="story-locations">
+                        <h4><i class="fa-solid fa-location-dot"></i> Hệ thống cơ sở sản xuất:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Xưởng rang Coffee Roasting Factory: Gia Nghĩa, Lâm Đồng</li>
+                            <li><i class="fa-solid fa-check"></i> Enjoy Cake: Đường Tôn Đức Thắng, Gia Nghĩa, Lâm Đồng</li>
+                            <li><i class="fa-solid fa-check"></i> Xưởng Cacao EJ Farm: Số 02 Đường Sư Vạn Hạnh, Lâm Đồng</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="story-text">
+                    <p>Từ niềm đam mê với hương vị nguyên bản của đất trời cao nguyên, <strong>Enjoy Coffee</strong> ra đời như một hành trình lưu giữ và lan tỏa giá trị thật của hạt cà phê Đà Lạt. Chúng tôi tin rằng, mỗi tách cà phê ngon không chỉ bắt đầu từ hạt cà phê chín mọng mà còn từ bàn tay và tấm lòng của người trồng, người rang, người pha.</p>
+                    <p>Mỗi hạt cà phê, mỗi trái cacao tại EJ Farm được chọn lựa kỹ lưỡng, rang xay thủ công để giữ trọn hương vị và năng lượng thuần khiết nhất. Không chỉ là đồ uống, đó là sự kết nối chân thật giữa con người và thiên nhiên.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MENU TIÊU BIỂU -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Menu Tiêu Biểu</h2>
+            <div class="menu-grid">
+                <div class="menu-item-card">
+                    <div>
+                        <div class="menu-item-title">Berry Trifle Coffee</div>
+                        <div class="menu-item-desc">Rum, mâm xôi, pudding vanilla, cam tươi & hạnh nhân</div>
+                    </div>
+                    <div class="menu-item-price">50.000 đ</div>
+                </div>
+                <div class="menu-item-card">
+                    <div>
+                        <div class="menu-item-title">Espresso Đà Lạt Special</div>
+                        <div class="menu-item-desc">100% Arabica Cầu Đất rang vừa, hậu ngọt kéo dài</div>
+                    </div>
+                    <div class="menu-item-price">45.000 đ</div>
+                </div>
+                <div class="menu-item-card">
+                    <div>
+                        <div class="menu-item-title">Cacao Nóng EJ Farm</div>
+                        <div class="menu-item-desc">Cacao nguyên chất, sữa tươi nguyên kem & marshmallows</div>
+                    </div>
+                    <div class="menu-item-price">55.000 đ</div>
+                </div>
+                <div class="menu-item-card">
+                    <div>
+                        <div class="menu-item-title">Socola Bonbon Thủ Công</div>
+                        <div class="menu-item-desc">Hộp 4 viên Socola Bonbon cao cấp nhân hoa quả</div>
+                    </div>
+                    <div class="menu-item-price">65.000 đ</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PRODUCTS -->
+    <section class="products-section" id="san-pham">
+        <div class="container">
+            <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1587734195503-904fca47e0e9?q=80&w=600');">
+                        <span class="product-tag">Đặc sản Đà Lạt</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Hồng treo gió EJ Farm</div>
+                        <div class="product-price">250.000 đ</div>
+                        <button class="btn-add-cart" onclick="addToCart('Hồng treo gió EJ Farm', 250000)">
+                            <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1549007994-cb92caebd54b?q=80&w=600');">
+                        <span class="product-tag">Cacao - Socola</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Socola dừa Enjoy Chocolate</div>
+                        <div class="product-price">105.000 đ</div>
+                        <button class="btn-add-cart" onclick="addToCart('Socola dừa Enjoy Chocolate', 105000)">
+                            <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600');">
+                        <span class="product-tag">Set Quà Tặng</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Hộp Quà Tết Enjoy Coffee – Mã 1010</div>
+                        <div class="product-price">1.010.000 đ</div>
+                        <button class="btn-add-cart" onclick="addToCart('Hộp Quà Tết Enjoy Coffee - Mã 1010', 1010000)">
+                            <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=600');">
+                        <span class="product-tag">Cà Phê</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-title">Cà Phê Rang Mộc Arabica Cầu Đất (500g)</div>
+                        <div class="product-price">220.000 đ</div>
+                        <button class="btn-add-cart" onclick="addToCart('Cà Phê Rang Mộc Arabica 500g', 220000)">
+                            <i class="fa-solid fa-cart-plus"></i> Thêm vào giỏ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS SECTION -->
+    <section class="news-section" id="tin-tuc">
+        <div class="container">
+            <h2 class="section-title">Tin Tức & Góc Cà Phê</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=600');"></div>
+                    <div class="news-body">
+                        <span class="news-cat">Tin Tức</span>
+                        <h3 class="news-title">Vì sao hiểu nguồn gốc giúp bạn uống cà phê ngon hơn?</h3>
+                        <p class="news-excerpt">Khi một tách cà phê không chỉ là thức uống, mà là câu chuyện của vùng đất cao nguyên Đà Lạt...</p>
+                    </div>
+                </div>
+
+                <div class="news-card">
+                    <div class="news-img" style="background-image: url('https://images.unsplash.com/photo-1511381939415-e44015466834?q=80&w=600');"></div>
+                    <div class="news-body">
+                        <span class="news-cat">Ca Cao</span>
+                        <h3 class="news-title">Socola Bonbon Thủ Công – Món Quà Tinh Tế</h3>
+                        <p class="news-excerpt">Trải nghiệm dòng socola tươi thủ công đậm đà hương vị cacao Lâm Đồng nguyên chất...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="lien-he">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>ENJOY COFFEE</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.6;">Thương hiệu cà phê & cacao thủ công nguyên bản từ đất trời cao nguyên Lâm Đồng.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên Kết Nhanh</h4>
+                    <ul>
+                        <li><a href="#cau-chuyen">Giới thiệu</a></li>
+                        <li><a href="#san-pham">Sản phẩm</a></li>
+                        <li><a href="#tin-tuc">Tin tức</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên Hệ</h4>
+                    <p style="font-size: 0.85rem; margin-bottom: 5px;"><i class="fa-solid fa-phone"></i> Hotline: 0905.XXX.XXX</p>
+                    <p style="font-size: 0.85rem;"><i class="fa-solid fa-envelope"></i> Email: info@domain.id.vn</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© Bản quyền thuộc về tên miền của bạn (.id.vn)</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART DRAWER -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Giỏ Hàng Của Bạn</h3>
+            <i class="fa-solid fa-xmark" style="cursor: pointer; font-size: 1.2rem;" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: var(--text-muted); margin-top: 20px;">Giỏ hàng đang trống.</p>
+        </div>
+        <div class="cart-footer">
+            <div style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 15px;">
+                <span>Tổng tiền:</span>
+                <span id="cartTotal" style="color: #B83B26;">0 đ</span>
+            </div>
+            <button class="btn-gold" style="width: 100%; border: none;" onclick="checkout()">Tiến Hành Đặt Hàng</button>
+        </div>
+    </div>
+
+    <script>
+        // Hero Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function setSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = index;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        setInterval(() => {
+            let next = (currentSlide + 1) % slides.length;
+            setSlide(next);
+        }, 5000);
+
+        // Shopping Cart Logic
+        let cart = [];
+
+        function toggleCart() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+        }
+
+        function addToCart(title, price) {
+            cart.push({ title, price });
+            updateCartUI();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            document.getElementById('cartBadge').innerText = cart.length;
+            const cartItemsContainer = document.getElementById('cartItems');
+            
+            if(cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: var(--text-muted); margin-top: 20px;">Giỏ hàng đang trống.</p>';
+                document.getElementById('cartTotal').innerText = '0 đ';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <div style="font-weight: 600; font-size: 0.9rem;">${item.title}</div>
+                            <div style="color: #B83B26; font-size: 0.85rem;">${item.price.toLocaleString()} đ</div>
+                        </div>
+                        <i class="fa-solid fa-trash" style="color: #999; cursor: pointer;" onclick="removeFromCart(${index})"></i>
+                    </div>
+                `;
+            });
+
+            cartItemsContainer.innerHTML = html;
+            document.getElementById('cartTotal').innerText = total.toLocaleString() + ' đ';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkout() {
+            if(cart.length === 0) {
+                alert('Giỏ hàng của bạn đang trống!');
+                return;
+            }
+            alert('Cảm ơn bạn đã đặt hàng trên trang web tên miền .id.vn của bạn! Chúng tôi sẽ liên hệ lại sớm.');
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+    </script>
+</body>
+</html>
