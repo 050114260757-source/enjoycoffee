@@ -1,286 +1,2377 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Enjoy Coffee - Cà phê nguyên chất</title>
-  <!-- FontAwesome cho icon giỏ hàng, rác, đóng mở -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="theme-color" content="#281b16">
+  <meta name="description" content="Khám phá cà phê, cacao và chocolate mang hương vị cao nguyên cùng Enjoy Coffee.">
+  <title>Enjoy Coffee | Cà phê & Chocolate Đà Lạt</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
   <style>
     :root {
-      --primary-color: #6f4e37;
-      --secondary-color: #c8a27d;
-      --bg-color: #fdfbf7;
-      --text-color: #333;
+      --brown: #281b16;
+      --brown-light: #493128;
+      --gold: #c39a62;
+      --gold-light: #e4c99c;
+      --cream: #faf6ef;
+      --white: #fff;
+      --text: #302923;
+      --muted: #756b62;
+      --border: #e9dfd2;
+      --heading: "Playfair Display", Georgia, serif;
+      --body: "Montserrat", Arial, sans-serif;
+      --shadow: 0 12px 35px rgba(40, 27, 22, .09);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    body { background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
-    body.no-scroll { overflow: hidden; }
 
-    /* Header */
-    header { background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
-    .logo { font-size: 24px; font-weight: bold; color: var(--primary-color); text-decoration: none; }
-    .cart-btn { background: var(--primary-color); color: #fff; border: none; padding: 10px 18px; border-radius: 25px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 15px; transition: background 0.3s; }
-    .cart-btn:hover { background: #563b28; }
-    .cart-count { background: #e74c3c; color: white; border-radius: 50%; padding: 2px 7px; font-size: 12px; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    /* Hero Section */
-    .hero { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://enjoycoffee.vn/wp-content/uploads/2021/ethics-banner.jpg') center/cover no-repeat; color: white; text-align: center; padding: 100px 20px; }
-    .hero h1 { font-size: 40px; margin-bottom: 15px; }
-    .hero p { font-size: 18px; margin-bottom: 25px; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
-    /* Products Section */
-    .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-    .section-title { text-align: center; font-size: 30px; color: var(--primary-color); margin-bottom: 30px; }
-    .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
-    .product-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
-    .product-card:hover { transform: translateY(-5px); }
-    .product-card img { width: 100%; height: 220px; object-fit: cover; }
-    .product-info { padding: 20px; text-align: center; }
-    .product-info h3 { font-size: 18px; margin-bottom: 10px; color: #2c3e50; }
-    .product-price { color: #e74c3c; font-weight: bold; font-size: 18px; margin-bottom: 15px; }
-    .add-btn { background: var(--secondary-color); color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; transition: background 0.3s; }
-    .add-btn:hover { background: var(--primary-color); }
+    body {
+      font-family: var(--body);
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-    /* Cart Drawer */
-    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
-    .overlay.show { display: block; }
-    .cart-drawer { position: fixed; top: 0; right: -400px; width: 380px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); z-index: 1000; transition: right 0.3s ease; display: flex; flex-direction: column; }
-    .cart-drawer.open { right: 0; }
-    .cart-header { padding: 20px; background: var(--primary-color); color: white; display: flex; justify-content: space-between; align-items: center; }
-    .close-cart { background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
-    .cart-items { flex: 1; overflow-y: auto; padding: 20px; }
-    .cart-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-    .cart-item img { width: 60px; height: 60px; object-fit: cover; border-radius: 5px; margin-right: 10px; }
-    .cart-item-details { flex: 1; }
-    .cart-item-details h4 { font-size: 14px; margin-bottom: 5px; }
-    .remove-item { background: none; border: none; color: #e74c3c; cursor: pointer; font-size: 16px; }
-    .cart-footer { padding: 20px; border-top: 1px solid #eee; background: #fdfbf7; }
-    .total-price { font-size: 18px; font-weight: bold; margin-bottom: 15px; display: flex; justify-content: space-between; }
-    .checkout-btn { background: #27ae60; color: white; border: none; width: 100%; padding: 12px; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
-    .checkout-btn:hover { background: #219653; }
+    body.cart-open {
+      overflow: hidden;
+    }
 
-    /* Toast Notification */
-    #toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(100px); background: #333; color: white; padding: 12px 24px; border-radius: 5px; transition: transform 0.3s ease; z-index: 2000; }
-    #toast.show { transform: translateX(-50%) translateY(0); }
+    img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+    }
 
-    /* Footer */
-    footer { background: #2c3e50; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: block;
+      color: #9a7546;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--heading);
+      color: var(--brown);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 500;
+      line-height: 1.25;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 15px;
+      font-size: .94rem;
+    }
+
+    .gold-line {
+      width: 58px;
+      height: 2px;
+      background: var(--gold);
+      margin: 20px auto 0;
+    }
+
+    .btn {
+      min-height: 48px;
+      padding: 12px 25px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--gold);
+      border-radius: 3px;
+      background: var(--gold);
+      color: var(--brown);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--gold-light);
+    }
+
+    .btn-dark {
+      background: var(--brown);
+      border-color: var(--brown);
+      color: white;
+    }
+
+    .btn-dark:hover {
+      background: var(--gold);
+      color: var(--brown);
+      border-color: var(--gold);
+    }
+
+    /* TOP BAR */
+
+    .topbar {
+      background: #1d130f;
+      color: #e6d8c6;
+      padding: 8px 0;
+      font-size: .72rem;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .topbar p {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* HEADER */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(40, 27, 22, .98);
+      color: white;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .12);
+    }
+
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-icon {
+      width: 43px;
+      height: 43px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+    }
+
+    .brand-name {
+      font-family: var(--heading);
+      color: var(--gold-light);
+      font-size: 1.55rem;
+      line-height: 1.2;
+      letter-spacing: 1px;
+    }
+
+    .brand-caption {
+      display: block;
+      margin-top: 4px;
+      color: #d5c4b4;
+      font-size: .56rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: clamp(14px, 2.2vw, 30px);
+    }
+
+    .nav-link {
+      color: #f7eee5;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+
+    .nav-link:hover {
+      color: var(--gold-light);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+    }
+
+    .cart-trigger,
+    .menu-trigger {
+      position: relative;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 1.15rem;
+      padding: 9px;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: 0;
+      right: -2px;
+      min-width: 19px;
+      height: 19px;
+      padding: 0 5px;
+      display: grid;
+      place-items: center;
+      background: var(--gold);
+      color: var(--brown);
+      border-radius: 30px;
+      font-size: .67rem;
+      font-weight: 700;
+    }
+
+    .menu-trigger {
+      display: none;
+    }
+
+    /* HERO SLIDER */
+
+    .hero {
+      position: relative;
+      min-height: 620px;
+      height: min(72vh, 760px);
+      background: var(--brown);
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px 75px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .8s ease, visibility .8s ease;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hero-slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(25, 15, 11, .82),
+        rgba(25, 15, 11, .52) 52%,
+        rgba(25, 15, 11, .24)
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: min(900px, 100%);
+      text-align: center;
+    }
+
+    .hero-kicker {
+      color: var(--gold-light);
+      font-size: .78rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      max-width: 900px;
+      margin: 0 auto;
+      font-family: var(--heading);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.12;
+      font-weight: 500;
+      text-wrap: balance;
+    }
+
+    .hero-description {
+      max-width: 620px;
+      margin: 22px auto 30px;
+      color: #f3e8db;
+      font-size: clamp(.9rem, 1.5vw, 1.05rem);
+    }
+
+    .hero-controls {
+      position: absolute;
+      z-index: 5;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-dot {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .55);
+    }
+
+    .hero-dot.active {
+      width: 29px;
+      border-radius: 20px;
+      background: var(--gold);
+    }
+
+    .hero-arrow {
+      position: absolute;
+      z-index: 5;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 50%;
+      background: rgba(30, 20, 15, .25);
+      color: white;
+    }
+
+    .hero-arrow:hover {
+      background: var(--gold);
+      color: var(--brown);
+    }
+
+    .hero-arrow.prev {
+      left: 25px;
+    }
+
+    .hero-arrow.next {
+      right: 25px;
+    }
+
+    /* TRUST STRIP */
+
+    .trust-strip {
+      background: white;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .trust-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 13px;
+      padding: 24px 15px;
+      border-right: 1px solid var(--border);
+    }
+
+    .trust-item:last-child {
+      border-right: 0;
+    }
+
+    .trust-item i {
+      color: #a37a43;
+      font-size: 1.4rem;
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: .84rem;
+    }
+
+    .trust-item span {
+      color: var(--muted);
+      display: block;
+      font-size: .73rem;
+    }
+
+    /* STORY */
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: center;
+    }
+
+    .story-photo {
+      position: relative;
+      padding: 0 20px 20px 0;
+    }
+
+    .story-photo img {
+      width: 100%;
+      height: 510px;
+      object-fit: cover;
+      border-radius: 3px;
+      background: #e9dfd2;
+    }
+
+    .story-photo::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      right: 0;
+      bottom: 0;
+      width: 65%;
+      height: 65%;
+      border: 2px solid var(--gold);
+    }
+
+    .story-copy .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+    }
+
+    .story-copy .gold-line {
+      margin: 18px 0 25px;
+    }
+
+    .story-copy p {
+      margin-bottom: 17px;
+      color: var(--muted);
+      font-size: .91rem;
+    }
+
+    .story-note {
+      padding: 18px 20px;
+      margin: 25px 0;
+      border-left: 3px solid var(--gold);
+      background: #f0e8dc;
+      font-size: .84rem;
+    }
+
+    /* FEATURE CARDS */
+
+    .feature-section {
+      background: #f0e8dc;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .feature-card {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      background: var(--brown);
+      color: white;
+    }
+
+    .feature-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s ease;
+    }
+
+    .feature-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 20%, rgba(30, 18, 13, .88));
+    }
+
+    .feature-content {
+      position: absolute;
+      z-index: 1;
+      left: 25px;
+      right: 25px;
+      bottom: 27px;
+    }
+
+    .feature-content h3 {
+      font-family: var(--heading);
+      font-size: 1.65rem;
+      font-weight: 500;
+      margin-bottom: 7px;
+    }
+
+    .feature-content p {
+      color: #f0e4d7;
+      font-size: .82rem;
+    }
+
+    .feature-content a {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 16px;
+      color: var(--gold-light);
+      font-size: .77rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* PRODUCTS */
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .product-card {
+      min-width: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border: 1px solid #eee5da;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-image-wrap {
+      position: relative;
+      overflow: hidden;
+      background: #eee5da;
+    }
+
+    .product-image {
+      height: 265px;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.04);
+    }
+
+    .product-label {
+      position: absolute;
+      top: 13px;
+      left: 13px;
+      padding: 5px 9px;
+      background: var(--gold);
+      color: var(--brown);
+      font-size: .64rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .product-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    .product-category {
+      color: #9a7546;
+      font-size: .67rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .product-title {
+      margin: 8px 0;
+      color: var(--brown);
+      font-family: var(--heading);
+      font-size: 1.15rem;
+      line-height: 1.4;
+    }
+
+    .product-description {
+      margin-bottom: 15px;
+      color: var(--muted);
+      font-size: .78rem;
+    }
+
+    .product-bottom {
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .product-price {
+      margin-bottom: 14px;
+      color: #8c552c;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .product-price small {
+      font-size: .72rem;
+      font-weight: 400;
+    }
+
+    .add-cart {
+      width: 100%;
+      padding: 11px 10px;
+      border: 1px solid var(--brown);
+      background: var(--brown);
+      color: white;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: .2s;
+    }
+
+    .add-cart:hover {
+      border-color: var(--gold);
+      background: var(--gold);
+      color: var(--brown);
+    }
+
+    .text-center {
+      text-align: center;
+      margin-top: 38px;
+    }
+
+    /* CAFE MENU */
+
+    .menu-section {
+      background: #f0e8dc;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 45px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 20px 0;
+      border-bottom: 1px solid #d9cbb8;
+    }
+
+    .menu-item-icon {
+      width: 43px;
+      height: 43px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: white;
+      color: #9a7546;
+      border-radius: 50%;
+    }
+
+    .menu-item-content {
+      flex: 1;
+    }
+
+    .menu-item h3 {
+      color: var(--brown);
+      font-size: .93rem;
+      font-weight: 700;
+    }
+
+    .menu-item p {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .77rem;
+    }
+
+    .menu-price {
+      color: #8c552c;
+      font-size: .84rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* BANNER */
+
+    .quote-banner {
+      position: relative;
+      padding: 100px 20px;
+      text-align: center;
+      color: white;
+      background:
+        linear-gradient(rgba(33, 21, 16, .78), rgba(33, 21, 16, .78)),
+        url("images/enjoy-banner.jpg") center 55% / cover;
+    }
+
+    .quote-banner h2 {
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: var(--heading);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .quote-banner p {
+      margin-top: 18px;
+      color: #ead7bf;
+      font-size: .87rem;
+    }
+
+    /* JOURNAL */
+
+    .journal-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .journal-card {
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .journal-card img {
+      height: 220px;
+      object-fit: cover;
+      background: #e9dfd2;
+    }
+
+    .journal-body {
+      padding: 23px;
+    }
+
+    .journal-category {
+      color: #9a7546;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .journal-body h3 {
+      margin: 10px 0;
+      font-family: var(--heading);
+      font-size: 1.3rem;
+      line-height: 1.4;
+    }
+
+    .journal-body p {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    /* CONTACT */
+
+    .contact-section {
+      background: #f0e8dc;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .contact-copy h2 {
+      font-family: var(--heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.25;
+    }
+
+    .contact-copy > p {
+      margin: 18px 0 25px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      gap: 14px;
+      margin: 18px 0;
+      align-items: flex-start;
+    }
+
+    .contact-detail i {
+      width: 22px;
+      margin-top: 5px;
+      color: #9a7546;
+    }
+
+    .contact-detail strong {
+      display: block;
+      font-size: .85rem;
+    }
+
+    .contact-detail span {
+      display: block;
+      color: var(--muted);
+      font-size: .82rem;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-visual img {
+      height: 440px;
+      object-fit: cover;
+      background: #e9dfd2;
+    }
+
+    /* FOOTER */
+
+    .site-footer {
+      padding: 65px 0 22px;
+      background: var(--brown);
+      color: #d9cfc5;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 35px;
+      padding-bottom: 40px;
+    }
+
+    .footer-heading {
+      margin-bottom: 17px;
+      color: var(--gold-light);
+      font-family: var(--heading);
+      font-size: 1.2rem;
+    }
+
+    .footer-copy {
+      margin-top: 17px;
+      font-size: .8rem;
+      color: #c6b9ad;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+      font-size: .8rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .social-links a {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #665044;
+      border-radius: 50%;
+    }
+
+    .social-links a:hover {
+      background: var(--gold);
+      color: var(--brown);
+    }
+
+    .footer-bottom {
+      padding-top: 20px;
+      border-top: 1px solid #554137;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      flex-wrap: wrap;
+      color: #b5a79b;
+      font-size: .72rem;
+    }
+
+    /* CART DRAWER */
+
+    .cart-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1998;
+      background: rgba(20, 13, 10, .58);
+      opacity: 0;
+      visibility: hidden;
+      transition: .25s;
+    }
+
+    .cart-backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      z-index: 1999;
+      top: 0;
+      right: 0;
+      width: min(430px, 100%);
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      box-shadow: -10px 0 40px rgba(0,0,0,.15);
+      transform: translateX(105%);
+      transition: transform .3s ease;
+    }
+
+    .cart-drawer.open {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 21px;
+      background: var(--brown);
+      color: white;
+    }
+
+    .cart-header h2 {
+      font-family: var(--heading);
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    .cart-close {
+      width: 38px;
+      height: 38px;
+      border: 1px solid #766055;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .cart-empty {
+      padding: 50px 10px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .cart-empty i {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 2.3rem;
+      color: #c7b6a1;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item h3 {
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+
+    .cart-item-price {
+      margin-top: 5px;
+      color: #8c552c;
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    .cart-item-actions {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 10px;
+    }
+
+    .quantity-btn {
+      width: 29px;
+      height: 29px;
+      border: 1px solid var(--border);
+      background: white;
+    }
+
+    .quantity-value {
+      min-width: 20px;
+      text-align: center;
+      font-size: .8rem;
+    }
+
+    .remove-item {
+      border: 0;
+      background: transparent;
+      color: #a34738;
+      padding: 7px;
+    }
+
+    .cart-footer {
+      padding: 22px;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+
+    .cart-total {
+      color: #8c552c;
+    }
+
+    .cart-note {
+      margin-bottom: 15px;
+      color: var(--muted);
+      font-size: .72rem;
+    }
+
+    .checkout-btn {
+      width: 100%;
+    }
+
+    /* NOTIFICATION */
+
+    .toast {
+      position: fixed;
+      z-index: 3000;
+      right: 20px;
+      bottom: 20px;
+      max-width: calc(100% - 40px);
+      padding: 13px 18px;
+      border-radius: 3px;
+      background: var(--brown);
+      color: white;
+      box-shadow: var(--shadow);
+      font-size: .82rem;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: .25s;
+    }
+
+    .toast.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1020px) {
+      .nav-menu {
+        gap: 14px;
+      }
+
+      .nav-link {
+        font-size: .68rem;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .product-image {
+        height: 300px;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .story-grid {
+        gap: 35px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(100% - 30px, 600px);
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .topbar-inner {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .topbar-inner p:last-child {
+        display: none;
+      }
+
+      .header-inner {
+        min-height: 70px;
+      }
+
+      .brand-name {
+        font-size: 1.28rem;
+      }
+
+      .brand-icon {
+        width: 38px;
+        height: 38px;
+      }
+
+      .menu-trigger {
+        display: inline-block;
+      }
+
+      .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 20px 18px;
+        background: var(--brown);
+        border-top: 1px solid #554137;
+        box-shadow: 0 15px 20px rgba(0,0,0,.12);
+      }
+
+      .nav-menu.open {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .nav-link {
+        display: block;
+        padding: 12px 0;
+        border-bottom: 1px solid #49372d;
+        font-size: .78rem;
+      }
+
+      .hero {
+        min-height: 540px;
+        height: 76svh;
+        max-height: 720px;
+      }
+
+      .hero-slide {
+        padding-inline: 24px;
+        background-position: center;
+      }
+
+      .hero-title {
+        font-size: clamp(2.3rem, 10vw, 3.6rem);
+      }
+
+      .hero-kicker {
+        font-size: .65rem;
+        letter-spacing: 2px;
+      }
+
+      .hero-arrow {
+        width: 36px;
+        height: 36px;
+      }
+
+      .hero-arrow.prev {
+        left: 10px;
+      }
+
+      .hero-arrow.next {
+        right: 10px;
+      }
+
+      .trust-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .trust-item {
+        justify-content: flex-start;
+        padding: 17px 25px;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .trust-item:last-child {
+        border-bottom: 0;
+      }
+
+      .story-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .story-photo img {
+        height: 380px;
+      }
+
+      .story-copy {
+        order: -1;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .feature-card {
+        min-height: 340px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 13px;
+      }
+
+      .product-image {
+        height: 190px;
+      }
+
+      .product-info {
+        padding: 13px;
+      }
+
+      .product-title {
+        font-size: 1rem;
+      }
+
+      .product-description {
+        font-size: .73rem;
+      }
+
+      .product-label {
+        top: 8px;
+        left: 8px;
+        font-size: .57rem;
+      }
+
+      .add-cart {
+        padding: 10px 5px;
+        font-size: .64rem;
+      }
+
+      .menu-grid,
+      .journal-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .journal-card img {
+        height: 240px;
+      }
+
+      .quote-banner {
+        padding: 75px 20px;
+      }
+
+      .contact-visual img {
+        height: 330px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .container {
+        width: calc(100% - 24px);
+      }
+
+      .brand-name {
+        font-size: 1.12rem;
+      }
+
+      .brand-caption {
+        font-size: .48rem;
+      }
+
+      .header-actions {
+        gap: 5px;
+      }
+
+      .product-image {
+        height: 155px;
+      }
+
+      .product-info {
+        padding: 10px;
+      }
+
+      .product-title {
+        font-size: .92rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .menu-price {
+        font-size: .76rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
   </style>
 </head>
-<body>
 
-  <!-- Header -->
-  <header>
-    <a href="#" class="logo"><i class="fa-solid fa-mug-hot"></i> Enjoy Coffee</a>
-    <button class="cart-btn" id="openCart">
-      <i class="fa-solid fa-cart-shopping"></i> Giỏ hàng <span class="cart-count" id="cartCount">0</span>
-    </button>
+<body>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <p><i class="fa-solid fa-leaf"></i> Hương vị cao nguyên trong từng trải nghiệm</p>
+      <p><i class="fa-solid fa-location-dot"></i> Khám phá Enjoy Coffee</p>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#trang-chu" aria-label="Enjoy Coffee - Trang chủ">
+        <span class="brand-icon"><i class="fa-solid fa-mug-hot"></i></span>
+        <span>
+          <span class="brand-name">ENJOY COFFEE</span>
+          <span class="brand-caption">Coffee · Cacao · Chocolate</span>
+        </span>
+      </a>
+
+      <nav class="nav-menu" id="navMenu" aria-label="Điều hướng chính">
+        <a class="nav-link" href="#trang-chu">Trang chủ</a>
+        <a class="nav-link" href="#cau-chuyen">Câu chuyện</a>
+        <a class="nav-link" href="#danh-muc">Danh mục</a>
+        <a class="nav-link" href="#san-pham">Sản phẩm</a>
+        <a class="nav-link" href="#menu">Menu</a>
+        <a class="nav-link" href="#lien-he">Liên hệ</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-trigger" id="cartTrigger"
+          type="button" aria-label="Mở giỏ hàng" aria-expanded="false">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+
+        <button class="menu-trigger" id="menuTrigger"
+          type="button" aria-label="Mở menu" aria-expanded="false"
+          aria-controls="navMenu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <!-- Hero Banner -->
-  <section class="hero">
-    <h1>Hương Vị Cà Phê Đích Thực</h1>
-    <p>Khám phá các sản phẩm cà phê nguyên chất tuyệt hảo được chọn lọc kỹ càng.</p>
-  </section>
-
-  <!-- Sản phẩm thực tế từ enjoycoffee.vn -->
-  <div class="container">
-    <h2 class="section-title">Sản Phẩm Nổi Bật</h2>
-    <div class="products-grid">
-      
-      <!-- Sản phẩm 1 -->
-      <div class="product-card">
-        <img src="https://enjoycoffee.vn/wp-content/uploads/2021/ca-phe-robusta-honey-500g-300x300.jpg" alt="Cà phê Robusta Honey">
-        <div class="product-info">
-          <h3>Cà Phê Robusta Honey 500G</h3>
-          <div class="product-price">185.000 đ</div>
-          <button class="add-btn" data-id="1">Thêm vào giỏ</button>
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="trang-chu" aria-label="Giới thiệu Enjoy Coffee">
+      <div class="hero-slide active"
+        style="background-image:url('images/enjoy-hero-1.jpg')">
+        <div class="hero-content">
+          <p class="hero-kicker">Tinh hoa từ cao nguyên</p>
+          <h1 class="hero-title">Đánh thức giác quan, chạm vị nguyên bản</h1>
+          <p class="hero-description">
+            Khám phá thế giới cà phê, cacao và chocolate qua những trải nghiệm
+            mang cảm hứng từ vùng đất cao nguyên.
+          </p>
+          <a class="btn" href="#san-pham">
+            Khám phá sản phẩm <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
 
-      <!-- Sản phẩm 2 -->
-      <div class="product-card">
-        <img src="https://enjoycoffee.vn/wp-content/uploads/2021/ca-phe-nguyen-chat-rang-moc-enjoy-coffee-300x300.jpg" alt="Cà phê nguyên chất rang mộc">
-        <div class="product-info">
-          <h3>Cà Phê Nguyên Chất Rang Mộc</h3>
-          <div class="product-price">170.000 đ</div>
-          <button class="add-btn" data-id="2">Thêm vào giỏ</button>
+      <div class="hero-slide"
+        style="background-image:url('images/enjoy-hero-2.jpg')">
+        <div class="hero-content">
+          <p class="hero-kicker">Coffee · Cacao · Chocolate</p>
+          <h2 class="hero-title">Một chút tinh tế, trọn vẹn cảm xúc</h2>
+          <p class="hero-description">
+            Tìm thấy hương vị yêu thích và lựa chọn những món quà
+            mang đậm dấu ấn cao nguyên.
+          </p>
+          <a class="btn" href="#danh-muc">
+            Khám phá ngay <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
 
-      <!-- Sản phẩm 3 -->
-      <div class="product-card">
-        <img src="https://enjoycoffee.vn/wp-content/uploads/2021/Special-Enjoy-Coffee-300x300.jpg" alt="Cà phê Special Enjoy Coffee">
-        <div class="product-info">
-          <h3>Cà Phê Special Enjoy Coffee</h3>
-          <div class="product-price">222.000 đ</div>
-          <button class="add-btn" data-id="3">Thêm vào giỏ</button>
+      <div class="hero-slide"
+        style="background-image:url('images/enjoy-hero-3.jpg')">
+        <div class="hero-content">
+          <p class="hero-kicker">Khoảnh khắc Enjoy</p>
+          <h2 class="hero-title">Thưởng thức chậm, cảm nhận sâu</h2>
+          <p class="hero-description">
+            Dành thời gian cho một tách cà phê thơm,
+            một miếng chocolate và những câu chuyện thân quen.
+          </p>
+          <a class="btn" href="#cau-chuyen">
+            Về Enjoy Coffee <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
       </div>
 
-      <!-- Sản phẩm 4 -->
-      <div class="product-card">
-        <img src="https://enjoycoffee.vn/wp-content/uploads/2021/ca-phe-phin-giay-enjoy-coffee-300x300.jpg" alt="Cà phê phin giấy">
-        <div class="product-info">
-          <h3>Cà Phê Phin Giấy Tiện Lợi</h3>
-          <div class="product-price">120.000 đ</div>
-          <button class="add-btn" data-id="4">Thêm vào giỏ</button>
+      <button class="hero-arrow prev" id="prevSlide"
+        type="button" aria-label="Ảnh trước">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="hero-arrow next" id="nextSlide"
+        type="button" aria-label="Ảnh tiếp theo">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <div class="hero-controls" id="heroDots" aria-label="Chọn ảnh banner">
+        <button class="hero-dot active" type="button" aria-label="Ảnh 1"></button>
+        <button class="hero-dot" type="button" aria-label="Ảnh 2"></button>
+        <button class="hero-dot" type="button" aria-label="Ảnh 3"></button>
+      </div>
+    </section>
+
+    <!-- BRAND VALUES -->
+    <section class="trust-strip" aria-label="Giá trị thương hiệu">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <i class="fa-solid fa-seedling"></i>
+          <div>
+            <strong>Cảm hứng cao nguyên</strong>
+            <span>Gắn kết với hương vị vùng đất</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <i class="fa-solid fa-mug-hot"></i>
+          <div>
+            <strong>Đa dạng trải nghiệm</strong>
+            <span>Cà phê, cacao và chocolate</span>
+          </div>
+        </div>
+        <div class="trust-item">
+          <i class="fa-solid fa-gift"></i>
+          <div>
+            <strong>Lựa chọn quà tặng</strong>
+            <span>Cho những dịp đặc biệt</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="section" id="cau-chuyen">
+      <div class="container story-grid">
+        <div class="story-photo">
+          <img src="images/enjoy-story.jpg"
+            alt="Không gian cà phê Enjoy Coffee"
+            loading="lazy">
+        </div>
+
+        <div class="story-copy">
+          <span class="eyebrow">Câu chuyện thương hiệu</span>
+          <h2 class="section-title">Từ cảm hứng cao nguyên đến những khoảnh khắc Enjoy</h2>
+          <div class="gold-line"></div>
+
+          <p>
+            Cao nguyên mang đến cảm hứng cho những trải nghiệm cà phê
+            giàu hương vị, gần gũi với thiên nhiên và nhịp sống chậm.
+            Đó cũng là tinh thần mà Enjoy Coffee mong muốn truyền tải
+            qua từng sản phẩm và câu chuyện của mình.
+          </p>
+
+          <p>
+            Từ cà phê đến cacao và chocolate, mỗi lựa chọn mở ra
+            một cách thưởng thức khác nhau — dành cho những phút giây
+            thư giãn, những cuộc gặp gỡ hay một món quà đầy ý nghĩa.
+          </p>
+
+          <div class="story-note">
+            <i class="fa-solid fa-quote-left"></i>
+            <strong> Enjoy the moment.</strong>
+            Một khoảnh khắc nhỏ, một trải nghiệm đáng nhớ.
+          </div>
+
+          <a class="btn btn-dark" href="#danh-muc">
+            Tìm hiểu sản phẩm <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section feature-section" id="danh-muc">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Khám phá thế giới Enjoy</span>
+          <h2 class="section-title">Hương vị dành riêng cho bạn</h2>
+          <div class="gold-line"></div>
+          <p>
+            Từ tách cà phê mỗi sáng đến những hộp chocolate tinh tế,
+            lựa chọn trải nghiệm phù hợp với bạn.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <img src="images/enjoy-coffee.jpg"
+              alt="Cà phê Enjoy"
+              loading="lazy">
+            <div class="feature-content">
+              <h3>Cà phê</h3>
+              <p>Khám phá hương thơm và sắc thái của cà phê.</p>
+              <a href="#san-pham">Khám phá <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <img src="images/enjoy-cacao.jpg"
+              alt="Cacao và chocolate"
+              loading="lazy">
+            <div class="feature-content">
+              <h3>Cacao & Chocolate</h3>
+              <p>Những lựa chọn đậm đà cho phút giây ngọt ngào.</p>
+              <a href="#san-pham">Khám phá <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+
+          <article class="feature-card">
+            <img src="images/enjoy-gift.jpg"
+              alt="Hộp quà Enjoy"
+              loading="lazy">
+            <div class="feature-content">
+              <h3>Quà tặng</h3>
+              <p>Trao gửi lời chúc bằng những món quà tinh tế.</p>
+              <a href="#san-pham">Khám phá <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="section" id="san-pham">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Lựa chọn nổi bật</span>
+          <h2 class="section-title">Sản phẩm Enjoy Coffee</h2>
+          <div class="gold-line"></div>
+          <p>
+            Những gợi ý dành cho người yêu cà phê, cacao và các món quà
+            mang cảm hứng từ cao nguyên.
+          </p>
+        </div>
+
+        <div class="products-grid">
+          <article class="product-card">
+            <div class="product-image-wrap">
+              <img class="product-image"
+                src="images/product-coffee.jpg"
+                alt="Cà phê rang mộc"
+                loading="lazy">
+              <span class="product-label">Cà phê</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Coffee</span>
+              <h3 class="product-title">Cà phê rang mộc</h3>
+              <p class="product-description">
+                Lựa chọn dành cho người yêu hương vị cà phê.
+              </p>
+              <div class="product-bottom">
+                <p class="product-price">220.000 đ <small>/ sản phẩm mẫu</small></p>
+                <button class="add-cart" type="button"
+                  data-id="coffee-01"
+                  data-name="Cà phê rang mộc"
+                  data-price="220000">
+                  <i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image-wrap">
+              <img class="product-image"
+                src="images/product-chocolate.jpg"
+                alt="Chocolate Enjoy"
+                loading="lazy">
+              <span class="product-label">Chocolate</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Chocolate</span>
+              <h3 class="product-title">Chocolate Enjoy</h3>
+              <p class="product-description">
+                Món quà nhỏ dành cho những người yêu vị cacao.
+              </p>
+              <div class="product-bottom">
+                <p class="product-price">105.000 đ <small>/ sản phẩm mẫu</small></p>
+                <button class="add-cart" type="button"
+                  data-id="choco-01"
+                  data-name="Chocolate Enjoy"
+                  data-price="105000">
+                  <i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image-wrap">
+              <img class="product-image"
+                src="images/product-cacao.jpg"
+                alt="Cacao nguyên chất"
+                loading="lazy">
+              <span class="product-label">Cacao</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Cacao</span>
+              <h3 class="product-title">Cacao nguyên chất</h3>
+              <p class="product-description">
+                Gợi ý thưởng thức cacao tại nhà.
+              </p>
+              <div class="product-bottom">
+                <p class="product-price">150.000 đ <small>/ sản phẩm mẫu</small></p>
+                <button class="add-cart" type="button"
+                  data-id="cacao-01"
+                  data-name="Cacao nguyên chất"
+                  data-price="150000">
+                  <i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image-wrap">
+              <img class="product-image"
+                src="images/product-gift.jpg"
+                alt="Hộp quà Enjoy Coffee"
+                loading="lazy">
+              <span class="product-label">Quà tặng</span>
+            </div>
+            <div class="product-info">
+              <span class="product-category">Gift set</span>
+              <h3 class="product-title">Hộp quà Enjoy</h3>
+              <p class="product-description">
+                Gợi ý quà tặng cho dịp đặc biệt.
+              </p>
+              <div class="product-bottom">
+                <p class="product-price">350.000 đ <small>/ sản phẩm mẫu</small></p>
+                <button class="add-cart" type="button"
+                  data-id="gift-01"
+                  data-name="Hộp quà Enjoy"
+                  data-price="350000">
+                  <i class="fa-solid fa-bag-shopping"></i> Thêm vào giỏ
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p class="text-center">
+          <a class="btn btn-dark" href="#lien-he">
+            Tìm hiểu thêm <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- CAFE MENU -->
+    <section class="section menu-section" id="menu">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Gợi ý thưởng thức</span>
+          <h2 class="section-title">Menu tiêu biểu</h2>
+          <div class="gold-line"></div>
+          <p>Tham khảo một số lựa chọn cho những phút giây thư giãn.</p>
+        </div>
+
+        <div class="menu-grid">
+          <article class="menu-item">
+            <span class="menu-item-icon"><i class="fa-solid fa-mug-hot"></i></span>
+            <div class="menu-item-content">
+              <h3>Espresso</h3>
+              <p>Phong cách cà phê đậm đà, cô đọng.</p>
+            </div>
+            <span class="menu-price">45.000 đ</span>
+          </article>
+
+          <article class="menu-item">
+            <span class="menu-item-icon"><i class="fa-solid fa-glass-water"></i></span>
+            <div class="menu-item-content">
+              <h3>Cà phê sữa</h3>
+              <p>Sự kết hợp quen thuộc giữa cà phê và sữa.</p>
+            </div>
+            <span class="menu-price">45.000 đ</span>
+          </article>
+
+          <article class="menu-item">
+            <span class="menu-item-icon"><i class="fa-solid fa-heart"></i></span>
+            <div class="menu-item-content">
+              <h3>Cacao nóng</h3>
+              <p>Lựa chọn ấm áp cho ngày se lạnh.</p>
+            </div>
+            <span class="menu-price">55.000 đ</span>
+          </article>
+
+          <article class="menu-item">
+            <span class="menu-item-icon"><i class="fa-solid fa-cookie-bite"></i></span>
+            <div class="menu-item-content">
+              <h3>Chocolate</h3>
+              <p>Một chút ngọt ngào để thưởng thức.</p>
+            </div>
+            <span class="menu-price">65.000 đ</span>
+          </article>
+        </div>
+
+        <p class="text-center">
+          <small>* Giá minh họa, cần đối chiếu với menu thực tế của cửa hàng.</small>
+        </p>
+      </div>
+    </section>
+
+    <!-- BRAND BANNER -->
+    <section class="quote-banner">
+      <div class="container">
+        <span class="eyebrow">A moment to enjoy</span>
+        <h2>Đôi khi, điều tuyệt vời nhất chỉ là ngồi xuống và thưởng thức.</h2>
+        <p>Cà phê · Cacao · Những câu chuyện thân quen</p>
+      </div>
+    </section>
+
+    <!-- JOURNAL -->
+    <section class="section" id="tin-tuc">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Cảm hứng mỗi ngày</span>
+          <h2 class="section-title">Góc cà phê & phong cách sống</h2>
+          <div class="gold-line"></div>
+          <p>Những câu chuyện về hương vị, cách thưởng thức và quà tặng.</p>
+        </div>
+
+        <div class="journal-grid">
+          <article class="journal-card">
+            <img src="images/story-beans.jpg"
+              alt="Hạt cà phê và hành trình rang xay"
+              loading="lazy">
+            <div class="journal-body">
+              <span class="journal-category">Cà phê</span>
+              <h3>Khám phá thế giới hương vị cà phê</h3>
+              <p>Tìm hiểu những điều tạo nên trải nghiệm riêng trong mỗi tách cà phê.</p>
+            </div>
+          </article>
+
+          <article class="journal-card">
+            <img src="images/story-chocolate.jpg"
+              alt="Chocolate và cacao"
+              loading="lazy">
+            <div class="journal-body">
+              <span class="journal-category">Cacao & Chocolate</span>
+              <h3>Vị cacao trong những khoảnh khắc ngọt ngào</h3>
+              <p>Khám phá cách thưởng thức cacao và lựa chọn chocolate làm quà.</p>
+            </div>
+          </article>
+
+          <article class="journal-card">
+            <img src="images/story-gift.jpg"
+              alt="Gợi ý hộp quà cà phê"
+              loading="lazy">
+            <div class="journal-body">
+              <span class="journal-category">Quà tặng</span>
+              <h3>Một món quà, nhiều điều muốn nói</h3>
+              <p>Gợi ý lựa chọn món quà tinh tế cho bạn bè, gia đình và đồng nghiệp.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact-section" id="lien-he">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <span class="eyebrow">Kết nối cùng Enjoy</span>
+          <h2>Hẹn gặp bạn trong một khoảnh khắc thật Enjoy.</h2>
+          <p>
+            Theo dõi các kênh chính thức để cập nhật thông tin sản phẩm,
+            hoạt động và những câu chuyện mới.
+          </p>
+
+          <div class="contact-detail">
+            <i class="fa-brands fa-facebook-f"></i>
+            <div>
+              <strong>Facebook</strong>
+              <span>
+                <a href="https://www.facebook.com/enjoycoffee.vn"
+                  target="_blank" rel="noopener noreferrer">
+                  facebook.com/enjoycoffee.vn
+                </a>
+              </span>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <i class="fa-solid fa-globe"></i>
+            <div>
+              <strong>Website</strong>
+              <span>
+                <a href="https://enjoycoffee.vn/"
+                  target="_blank" rel="noopener noreferrer">
+                  enjoycoffee.vn
+                </a>
+              </span>
+            </div>
+          </div>
+
+          <div class="contact-detail">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>
+              <strong>Địa điểm</strong>
+              <span>Vui lòng xem địa chỉ cửa hàng trên kênh chính thức.</span>
+            </div>
+          </div>
+
+          <a class="btn btn-dark"
+            href="https://www.facebook.com/enjoycoffee.vn"
+            target="_blank" rel="noopener noreferrer">
+            Liên hệ Enjoy Coffee <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="contact-visual">
+          <img src="images/enjoy-store.jpg"
+            alt="Không gian Enjoy Coffee"
+            loading="lazy">
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a class="brand" href="#trang-chu">
+            <span class="brand-icon"><i class="fa-solid fa-mug-hot"></i></span>
+            <span>
+              <span class="brand-name">ENJOY COFFEE</span>
+              <span class="brand-caption">Coffee · Cacao · Chocolate</span>
+            </span>
+          </a>
+          <p class="footer-copy">
+            Cùng khám phá những trải nghiệm cà phê, cacao và chocolate
+            mang cảm hứng từ cao nguyên.
+          </p>
+          <div class="social-links">
+            <a href="https://www.facebook.com/enjoycoffee.vn"
+              aria-label="Facebook Enjoy Coffee"
+              target="_blank" rel="noopener noreferrer">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://enjoycoffee.vn/"
+              aria-label="Website Enjoy Coffee"
+              target="_blank" rel="noopener noreferrer">
+              <i class="fa-solid fa-globe"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Khám phá</h3>
+          <div class="footer-links">
+            <a href="#cau-chuyen">Câu chuyện</a>
+            <a href="#danh-muc">Danh mục sản phẩm</a>
+            <a href="#san-pham">Sản phẩm nổi bật</a>
+            <a href="#menu">Menu</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Thông tin</h3>
+          <div class="footer-links">
+            <a href="#tin-tuc">Góc cà phê</a>
+            <a href="#lien-he">Liên hệ</a>
+            <a href="https://enjoycoffee.vn/"
+              target="_blank" rel="noopener noreferrer">Website chính thức</a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="footer-heading">Kết nối</h3>
+          <div class="footer-links">
+            <a href="https://www.facebook.com/enjoycoffee.vn"
+              target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="#lien-he">Thông tin cửa hàng</a>
+          </div>
         </div>
       </div>
 
-    </div>
-  </div>
-
-  <!-- Giỏ hàng Sidebar Drawer -->
-  <div class="overlay" id="overlay"></div>
-  <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>Giỏ Hàng Của Bạn</h3>
-      <button class="close-cart" id="closeCart"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="cart-items" id="cartItems">
-      <!-- Danh sách sản phẩm trong giỏ sẽ render ở đây -->
-    </div>
-    <div class="cart-footer">
-      <div class="total-price">
-        <span>Tổng cộng:</span>
-        <span id="totalPrice">0 đ</span>
+      <div class="footer-bottom">
+        <p>© <span id="currentYear"></span> Enjoy Coffee. Giao diện giới thiệu thương hiệu.</p>
+        <p>Website giới thiệu và minh họa trải nghiệm sản phẩm.</p>
       </div>
-      <button class="checkout-btn" id="checkoutBtn">Tiến Hành Đặt Hàng</button>
     </div>
-  </div>
-
-  <!-- Toast Thông báo -->
-  <div id="toast">Thông báo</div>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Enjoy Coffee - Bản quyền thuộc về bạn qua tên miền enjoycoffee.id.vn</p>
   </footer>
 
-  <!-- JavaScript xử lý giỏ hàng -->
-  <script>
-    const products = {
-      "1": { name: "Cà Phê Robusta Honey 500G", price: 185000, img: "https://enjoycoffee.vn/wp-content/uploads/2021/ca-phe-robusta-honey-500g-300x300.jpg" },
-      "2": { name: "Cà Phê Nguyên Chất Rang Mộc", price: 170000, img: "https://enjoycoffee.vn/wp-content/uploads/2021/ca-phe-nguyen-chat-rang-moc-enjoy-coffee-300x300.jpg" },
-      "3": { name: "Cà Phê Special Enjoy Coffee", price: 222000, img: "https://enjoycoffee.vn/wp-content/uploads/2021/Special-Enjoy-Coffee-300x300.jpg" },
-      "4": { name: "Cà Phê Phin Giấy Tiện Lợi", price: 120000, img: "https://enjoycoffee.vn/wp-content/uploads/2021/ca-phe-phin-giay-enjoy-coffee-300x300.jpg" }
-    };
+  <!-- CART -->
+  <div class="cart-backdrop" id="cartBackdrop"></div>
 
-    let cart = {};
+  <aside class="cart-drawer" id="cartDrawer"
+    role="dialog" aria-modal="true"
+    aria-labelledby="cartTitle" aria-hidden="true">
+    <div class="cart-header">
+      <h2 id="cartTitle">Giỏ hàng của bạn</h2>
+      <button class="cart-close" id="cartClose"
+        type="button" aria-label="Đóng giỏ hàng">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="cart-items" id="cartItems" aria-live="polite">
+      <div class="cart-empty">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <p>Giỏ hàng của bạn đang trống.</p>
+      </div>
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Tổng cộng</span>
+        <span class="cart-total" id="cartTotal">0 đ</span>
+      </div>
+      <p class="cart-note">
+        Đây là giỏ hàng minh họa. Website chưa tích hợp thanh toán
+        hoặc hệ thống xác nhận đơn hàng thực tế.
+      </p>
+      <button class="btn checkout-btn" id="checkoutBtn" type="button">
+        <i class="fa-solid fa-message"></i> Gửi yêu cầu đặt hàng
+      </button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    // MENU DI ĐỘNG
+    const menuTrigger = document.getElementById("menuTrigger");
+    const navMenu = document.getElementById("navMenu");
+
+    function closeMobileMenu() {
+      navMenu.classList.remove("open");
+      menuTrigger.setAttribute("aria-expanded", "false");
+      menuTrigger.setAttribute("aria-label", "Mở menu");
+      menuTrigger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    }
+
+    menuTrigger.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("open");
+
+      menuTrigger.setAttribute("aria-expanded", String(isOpen));
+      menuTrigger.setAttribute("aria-label", isOpen ? "Đóng menu" : "Mở menu");
+      menuTrigger.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    navMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", closeMobileMenu);
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 760) closeMobileMenu();
+    });
+
+    // SLIDER: CHUYỂN ẢNH, TỰ ĐỘNG DỪNG KHI NGƯỜI DÙNG HOVER
+    const slides = [...document.querySelectorAll(".hero-slide")];
+    const dots = [...document.querySelectorAll(".hero-dot")];
+    const hero = document.querySelector(".hero");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let currentSlide = 0;
+    let sliderTimer = null;
+
+    function setSlide(index) {
+      currentSlide = (index + slides.length) % slides.length;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === currentSlide);
+        slide.setAttribute("aria-hidden", String(i !== currentSlide));
+      });
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentSlide);
+        dot.setAttribute("aria-pressed", String(i === currentSlide));
+      });
+    }
+
+    function stopSlider() {
+      if (sliderTimer !== null) {
+        clearInterval(sliderTimer);
+        sliderTimer = null;
+      }
+    }
+
+    function startSlider() {
+      stopSlider();
+
+      if (reduceMotion.matches || document.hidden) return;
+
+      sliderTimer = setInterval(() => {
+        setSlide(currentSlide + 1);
+      }, 5500);
+    }
+
+    document.getElementById("prevSlide").addEventListener("click", () => {
+      setSlide(currentSlide - 1);
+      startSlider();
+    });
+
+    document.getElementById("nextSlide").addEventListener("click", () => {
+      setSlide(currentSlide + 1);
+      startSlider();
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+        setSlide(index);
+        startSlider();
+      });
+    });
+
+    hero.addEventListener("mouseenter", stopSlider);
+    hero.addEventListener("mouseleave", startSlider);
+    hero.addEventListener("focusin", stopSlider);
+    hero.addEventListener("focusout", startSlider);
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stopSlider();
+      else startSlider();
+    });
+
+    setSlide(0);
+    startSlider();
+
+    // GIỎ HÀNG
+    // Giỏ hàng chỉ hoạt động trên trình duyệt hiện tại,
+    // chưa tạo đơn hàng hoặc thu tiền thực tế.
+    const cart = new Map();
 
     const cartDrawer = document.getElementById("cartDrawer");
-    const overlay = document.getElementById("overlay");
+    const cartBackdrop = document.getElementById("cartBackdrop");
+    const cartTrigger = document.getElementById("cartTrigger");
+    const cartClose = document.getElementById("cartClose");
     const cartItems = document.getElementById("cartItems");
-    const cartCount = document.getElementById("cartCount");
-    const totalPriceEl = document.getElementById("totalPrice");
+    const cartBadge = document.getElementById("cartBadge");
+    const cartTotal = document.getElementById("cartTotal");
+    const checkoutBtn = document.getElementById("checkoutBtn");
     const toast = document.getElementById("toast");
+
+    let lastFocusedElement = null;
+    let toastTimer = null;
+
+    function formatMoney(amount) {
+      return new Intl.NumberFormat("vi-VN").format(amount) + " đ";
+    }
 
     function showToast(message) {
       toast.textContent = message;
       toast.classList.add("show");
-      setTimeout(() => {
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
         toast.classList.remove("show");
-      }, 2500);
-    }
-
-    function addToCart(id) {
-      if (cart[id]) {
-        cart[id]++;
-      } else {
-        cart[id] = 1;
-      }
-      renderCart();
-      showToast("Đã thêm sản phẩm vào giỏ hàng!");
-    }
-
-    function removeFromCart(id) {
-      delete cart[id];
-      renderCart();
-    }
-
-    function renderCart() {
-      cartItems.innerHTML = "";
-      let totalCount = 0;
-      let totalPrice = 0;
-
-      const ids = Object.keys(cart);
-      if (ids.length === 0) {
-        cartItems.innerHTML = "<p style='text-align:center; color:#77f; margin-top:20px;'>Giỏ hàng đang trống.</p>";
-      } else {
-        ids.forEach(id => {
-          const product = products[id];
-          const quantity = cart[id];
-          totalCount += quantity;
-          totalPrice += product.price * quantity;
-
-          const item = document.createElement("div");
-          item.className = "cart-item";
-          
-          const img = document.createElement("img");
-          img.src = product.img;
-          img.alt = product.name;
-
-          const details = document.createElement("div");
-          details.className = "cart-item-details";
-          details.innerHTML = `<h4>${product.name}</h4><p>${product.price.toLocaleString()} đ x ${quantity}</p>`;
-
-          const remove = document.createElement("button");
-          remove.className = "remove-item";
-          remove.type = "button";
-          remove.setAttribute("aria-label", "Xóa " + product.name);
-          remove.innerHTML = '<i class="fa-solid fa-trash"></i>';
-          remove.addEventListener("click", () => removeFromCart(id));
-
-          item.append(img, details, remove);
-          cartItems.append(item);
-        });
-      }
-
-      cartCount.textContent = totalCount;
-      totalPriceEl.textContent = totalPrice.toLocaleString() + " đ";
+      }, 2600);
     }
 
     function openCart() {
+      lastFocusedElement = document.activeElement;
+
       cartDrawer.classList.add("open");
-      overlay.classList.add("show");
+      cartBackdrop.classList.add("open");
       cartDrawer.setAttribute("aria-hidden", "false");
-      document.body.classList.add("no-scroll");
+      cartTrigger.setAttribute("aria-expanded", "true");
+      document.body.classList.add("cart-open");
+
+      cartClose.focus();
     }
 
     function closeCart() {
       cartDrawer.classList.remove("open");
-      overlay.classList.remove("show");
+      cartBackdrop.classList.remove("open");
       cartDrawer.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("no-scroll");
+      cartTrigger.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("cart-open");
+
+      if (lastFocusedElement) lastFocusedElement.focus();
     }
 
-    document.querySelectorAll(".add-btn").forEach(button => {
-      button.addEventListener("click", () => addToCart(button.dataset.id));
-    });
-
-    document.getElementById("openCart").addEventListener("click", openCart);
-    document.getElementById("closeCart").addEventListener("click", closeCart);
-    overlay.addEventListener("click", closeCart);
+    cartTrigger.addEventListener("click", openCart);
+    cartClose.addEventListener("click", closeCart);
+    cartBackdrop.addEventListener("click", closeCart);
 
     document.addEventListener("keydown", event => {
-      if (event.key === "Escape") closeCart();
+      if (event.key === "Escape" && cartDrawer.classList.contains("open")) {
+        closeCart();
+      }
     });
 
-    document.getElementById("checkoutBtn").addEventListener("click", () => {
-      const quantity = Object.values(cart).reduce((sum, value) => sum + value, 0);
-      if (quantity === 0) {
+    document.querySelectorAll(".add-cart").forEach(button => {
+      button.addEventListener("click", () => {
+        const id = button.dataset.id;
+        const name = button.dataset.name;
+        const price = Number(button.dataset.price);
+
+        if (!id || !name || !Number.isFinite(price) || price < 0) {
+          showToast("Không thể thêm sản phẩm. Vui lòng thử lại.");
+          return;
+        }
+
+        const existing = cart.get(id);
+
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          cart.set(id, { id, name, price, quantity: 1 });
+        }
+
+        renderCart();
+        showToast("Đã thêm " + name + " vào giỏ hàng.");
+      });
+    });
+
+    function renderCart() {
+      const items = [...cart.values()];
+      const quantity = items.reduce((sum, item) => sum + item.quantity, 0);
+      const total = items.reduce(
+        (sum, item) => sum + item.price * item.quantity, 0
+      );
+
+      cartBadge.textContent = quantity > 99 ? "99+" : String(quantity);
+      cartTotal.textContent = formatMoney(total);
+
+      if (items.length === 0) {
+        cartItems.innerHTML = `
+          <div class="cart-empty">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <p>Giỏ hàng của bạn đang trống.</p>
+          </div>
+        `;
+        return;
+      }
+
+      cartItems.replaceChildren();
+
+      items.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "cart-item";
+
+        const info = document.createElement("div");
+
+        const title = document.createElement("h3");
+        title.textContent = item.name;
+
+        const price = document.createElement("p");
+        price.className = "cart-item-price";
+        price.textContent = formatMoney(item.price * item.quantity);
+
+        const actions = document.createElement("div");
+        actions.className = "cart-item-actions";
+
+        const minus = document.createElement("button");
+        minus.type = "button";
+        minus.className = "quantity-btn";
+        minus.textContent = "−";
+        minus.setAttribute("aria-label", "Giảm số lượng " + item.name);
+        minus.addEventListener("click", () => changeQuantity(item.id, -1));
+
+        const qty = document.createElement("span");
+        qty.className = "quantity-value";
+        qty.textContent = item.quantity;
+
+        const plus = document.createElement("button");
+        plus.type = "button";
+        plus.className = "quantity-btn";
+        plus.textContent = "+";
+        plus.setAttribute("aria-label", "Tăng số lượng " + item.name);
+        plus.addEventListener("click", () => changeQuantity(item.id, 1));
+
+        actions.append(minus, qty, plus);
+        info.append(title, price, actions);
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "remove-item";
+        remove.setAttribute("aria-label", "Xóa " + item.name);
+        remove.innerHTML = '<i class="fa-solid fa-trash"></i>';
+        remove.addEventListener("click", () => {
+          cart.delete(item.id);
+          renderCart();
+          showToast("Đã xóa sản phẩm khỏi giỏ.");
+        });
+
+        row.append(info, remove);
+        cartItems.append(row);
+      });
+    }
+
+    function changeQuantity(id, change) {
+      const item = cart.get(id);
+      if (!item) return;
+
+      item.quantity += change;
+
+      if (item.quantity <= 0) cart.delete(id);
+
+      renderCart();
+    }
+
+    checkoutBtn.addEventListener("click", () => {
+      const items = [...cart.values()];
+
+      if (items.length === 0) {
         showToast("Giỏ hàng đang trống.");
         return;
       }
-      showToast("Cảm ơn bạn đã đặt hàng! Đơn hàng mô phỏng đã được ghi nhận.");
-      cart = {};
-      renderCart();
-      closeCart();
+
+      const lines = items.map(item =>
+        "- " + item.name + " x " + item.quantity +
+        " = " + formatMoney(item.price * item.quantity)
+      );
+
+      const total = items.reduce(
+        (sum, item) => sum + item.price * item.quantity, 0
+      );
+
+      const message = [
+        "Xin chào Enjoy Coffee, tôi muốn hỏi về các sản phẩm sau:",
+        "",
+        ...lines,
+        "",
+        "Tổng dự kiến: " + formatMoney(total),
+        "",
+        "Vui lòng xác nhận giá và tình trạng sản phẩm."
+      ].join("\n");
+
+      // Không tự gửi đơn hoặc giả lập thanh toán thành công.
+      // Mở Facebook chính thức để người dùng tự gửi yêu cầu.
+      const facebookUrl = "https://www.facebook.com/enjoycoffee.vn";
+
+      try {
+        const popup = window.open(facebookUrl, "_blank", "noopener,noreferrer");
+
+        if (!popup) {
+          window.location.href = facebookUrl;
+        }
+
+        // Sao chép nội dung nếu trình duyệt cho phép.
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(message)
+            .then(() => {
+              showToast("Đã sao chép nội dung đơn mẫu. Hãy gửi cho cửa hàng.");
+            })
+            .catch(() => {
+              showToast("Facebook đã được mở. Bạn có thể gửi yêu cầu tại đó.");
+            });
+        } else {
+          showToast("Facebook đã được mở. Hãy xác nhận sản phẩm với cửa hàng.");
+        }
+      } catch (error) {
+        window.location.href = facebookUrl;
+      }
     });
 
-    renderCart();
+    // NĂM HIỆN TẠI
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    // ẢNH DỰ PHÒNG: hiện thông báo nếu đường dẫn ảnh bị sai.
+    document.querySelectorAll("img").forEach(img => {
+      img.addEventListener("error", () => {
+        img.style.backgroundColor = "#e9dfd2";
+        img.alt = img.alt + " (chưa tải được ảnh — kiểm tra đường dẫn)";
+      }, { once: true });
+    });
   </script>
 </body>
 </html>
