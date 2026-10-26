@@ -1,360 +1,714 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENJOY COFFEE | Sạch từ nông trại - Redesign</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#12100E',       /* Deep Dark Roast Charcoal */
+                            card: '#1C1917',       /* Dark Warm Card Background */
+                            teal: '#1A2E26',       /* Forest Emerald Accent */
+                            tealDark: '#111F1A',   /* Darker Forest Green */
+                            gold: '#C5A059',       /* Warm Metallic Gold */
+                            goldLight: '#E5C98B',  /* Soft Gold Accent */
+                            cream: '#F7F5F0',      /* Soft Off-White Background */
+                            muted: '#A19D94',      /* Muted Text */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-<style>
-/* =====================================
-   ENJOY COFFEE - NATURAL PREMIUM
-   Xanh rêu - Nâu cà phê - Kem be
-===================================== */
+    <style>
+        /* Custom Smooth Scroll & Selection Styling */
+        html { scroll-behavior: smooth; }
+        ::selection { background-color: #C5A059; color: #12100E; }
+        
+        /* Glassmorphism Classes */
+        .glass-nav {
+            background: rgba(18, 16, 14, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+        }
+        
+        .glass-card {
+            background: rgba(28, 25, 23, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(197, 160, 89, 0.12);
+        }
 
-:root {
-    --coffee-dark: #354638;
-    --coffee-brown: #513729;
-    --coffee-caramel: #A4774F;
-    --coffee-gold: #B58A58;
-    --cream: #F4F0E6;
-    --cream-light: #FCFAF5;
-    --beige: #E5DDCE;
-    --text-main: #393B32;
-    --text-muted: #77766A;
-}
+        /* Gold Gradient Text */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #E5C98B 0%, #C5A059 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* Nền chung */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
-}
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, #E5C98B 0%, #C5A059 100%);
+        }
 
-body {
-    margin: 0;
-    background: var(--cream-light);
-    color: var(--text-main);
-    font-family: "Segoe UI", Arial, sans-serif;
-    line-height: 1.8;
-}
+        /* Custom Hover Zoom Animations */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-container img {
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-gray-200 font-sans antialiased overflow-x-hidden">
 
-/* Tiêu đề */
-h1, h2, h3, h4, h5 {
-    color: var(--coffee-dark);
-    font-family: Georgia, "Times New Roman", serif;
-    line-height: 1.4;
-}
+    <!-- HEADER / NAVIGATION (Glassmorphism Header) -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Left Navigation Menu -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#introduce" class="hover:text-brand-gold transition-colors duration-200">GIỚI THIỆU</a>
+                <a href="#menu" class="hover:text-brand-gold transition-colors duration-200">MENU</a>
+                <a href="#products" class="hover:text-brand-gold transition-colors duration-200">SẢN PHẨM</a>
+            </nav>
 
-h2 {
-    font-weight: 700;
-    letter-spacing: 0.8px;
-    margin-bottom: 26px;
-}
+            <!-- Centered Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-brand-gold/10 border border-brand-gold/40 flex items-center justify-center group-hover:bg-brand-gold transition-all duration-300">
+                    <i class="fa-solid font-bold fa-mug-hot text-brand-gold group-hover:text-brand-dark text-lg"></i>
+                </div>
+                <div class="flex flex-col items-start">
+                    <span class="font-serif text-xl font-bold tracking-wider text-white group-hover:text-brand-gold transition-colors">ENJOY COFFEE</span>
+                    <span class="text-[10px] tracking-widest uppercase text-brand-gold font-light">Sạch từ nông trại</span>
+                </div>
+            </a>
 
-p {
-    color: var(--text-main);
-}
+            <!-- Right Navigation & Action -->
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#blog" class="hover:text-brand-gold transition-colors duration-200">TIN TỨC</a>
+                <a href="#contact" class="hover:text-brand-gold transition-colors duration-200">LIÊN HỆ</a>
+                <a href="#menu" class="px-5 py-2.5 rounded-full bg-brand-gold text-brand-dark font-semibold text-xs tracking-wider uppercase hover:bg-brand-goldLight transition-all duration-300 shadow-md shadow-brand-gold/10">
+                    Đặt Hàng
+                </a>
+            </div>
 
-/* Header và thanh điều hướng */
-header {
-    background: var(--cream-light);
-    border-bottom: 1px solid var(--beige);
-    box-shadow: 0 4px 16px rgba(53, 70, 56, 0.07);
-    position: relative;
-    z-index: 100;
-}
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
 
-header .container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark/95 border-b border-brand-gold/20 px-4 pt-4 pb-6 space-y-3">
+            <a href="#introduce" class="block py-2 text-base font-medium hover:text-brand-gold">Giới thiệu</a>
+            <a href="#menu" class="block py-2 text-base font-medium hover:text-brand-gold">Menu</a>
+            <a href="#products" class="block py-2 text-base font-medium hover:text-brand-gold">Sản phẩm</a>
+            <a href="#blog" class="block py-2 text-base font-medium hover:text-brand-gold">Tin tức</a>
+            <a href="#contact" class="block py-2 text-base font-medium hover:text-brand-gold">Liên hệ</a>
+        </div>
+    </header>
 
-header nav a,
-#d-menu a {
-    color: var(--coffee-dark);
-    font-weight: 600;
-    text-decoration: none;
-    transition: color 0.25s ease;
-}
+    <!-- HERO SECTION (Split Interactive Hero Layout) -->
+    <section class="relative min-h-screen pt-28 pb-16 flex items-center bg-gradient-to-b from-brand-dark via-brand-tealDark to-brand-dark overflow-hidden">
+        
+        <!-- Ambient Background Glows -->
+        <div class="absolute top-1/4 left-10 w-96 h-96 bg-brand-gold/10 rounded-full filter blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-brand-teal/30 rounded-full filter blur-3xl pointer-events-none"></div>
 
-header nav a:hover,
-#d-menu a:hover {
-    color: var(--coffee-caramel);
-}
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Text Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs font-semibold tracking-wider uppercase">
+                        <i class="fa-solid fa-seedling"></i>
+                        <span>Cà phê & Cacao nguyên chất</span>
+                    </div>
 
-/* Menu con */
-#d-menu .sub-menu {
-    background: var(--cream-light);
-    border: 1px solid var(--beige);
-    box-shadow: 0 8px 24px rgba(53, 70, 56, 0.12);
-}
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-tight text-white">
+                        Hương vị nguyên bản <br>
+                        <span class="text-gold-gradient font-italic italic">Từ nông trại Đà Lạt</span>
+                    </h1>
 
-#d-menu .sub-menu a {
-    display: block;
-    padding: 10px 16px;
-}
+                    <p class="text-brand-muted text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Chúng tôi mong muốn tất cả mọi người dân Việt Nam đều được thưởng thức cà phê sạch! Mỗi hạt cà phê, mỗi trái cacao được chọn lựa kỹ lưỡng, rang xay thủ công để giữ trọn hương vị và năng lượng thuần khiết.
+                    </p>
 
-#d-menu .sub-menu a:hover {
-    background: var(--cream);
-}
+                    <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#products" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gold-gradient text-brand-dark font-bold text-sm uppercase tracking-wider hover:opacity-90 transition-all shadow-lg shadow-brand-gold/20 flex items-center justify-center space-x-2">
+                            <span>Khám phá Sản Phẩm</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#introduce" class="w-full sm:w-auto px-8 py-4 rounded-full border border-brand-gold/40 text-gray-200 font-semibold text-sm uppercase tracking-wider hover:bg-brand-gold/10 hover:border-brand-gold transition-all text-center">
+                            Câu Chuyện Enjoy
+                        </a>
+                    </div>
 
-/* Banner trình chiếu */
-#homeslider {
-    background: var(--coffee-dark);
-    margin-bottom: 0;
-}
+                    <!-- Highlight Badges -->
+                    <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <p class="font-serif text-2xl lg:text-3xl font-bold text-brand-gold">100%</p>
+                            <p class="text-xs text-brand-muted uppercase tracking-wider">Hạt Cà Phê Sạch</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl lg:text-3xl font-bold text-brand-gold">Thủ Công</p>
+                            <p class="text-xs text-brand-muted uppercase tracking-wider">Rang Xây Tỉ Mỉ</p>
+                        </div>
+                        <div>
+                            <p class="font-serif text-2xl lg:text-3xl font-bold text-brand-gold">Đà Lạt</p>
+                            <p class="text-xs text-brand-muted uppercase tracking-wider">Nguồn Gốc Cao Nguyên</p>
+                        </div>
+                    </div>
+                </div>
 
-#homeslider img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
+                <!-- Right Hero Image Stack Carousel -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        
+                        <!-- Main Card -->
+                        <div class="relative z-20 rounded-2xl overflow-hidden shadow-2xl border border-brand-gold/20 img-zoom-container">
+                            <img id="hero-main-img" src="https://enjoycoffee.vn/wp-content/themes/enjoy/images/slide1.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80'" 
+                                 alt="Enjoy Coffee Main" class="w-full h-[420px] object-cover">
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute bottom-4 left-4 right-4 glass-card p-4 rounded-xl flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold">
+                                        <i class="fa-solid fa-leaf"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-brand-gold uppercase font-semibold">Tự Nhiên & Tinh Khiết</p>
+                                        <p class="text-sm font-medium text-white">Trải nghiệm vị thật cuộc sống</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-/* Giới thiệu thương hiệu */
-#introduce {
-    background: var(--cream);
-    padding-top: 35px;
-    padding-bottom: 35px;
-}
+                        <!-- Thumbnail Selectors -->
+                        <div class="mt-4 flex justify-center space-x-3">
+                            <button onclick="switchHeroImg('https://enjoycoffee.vn/wp-content/themes/enjoy/images/slide1.jpg')" 
+                                    class="w-16 h-12 rounded-lg overflow-hidden border-2 border-brand-gold focus:outline-none transition-all">
+                                <img src="https://enjoycoffee.vn/wp-content/themes/enjoy/images/slide1.jpg" onerror="this.src='https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=200&q=80'" class="w-full h-full object-cover">
+                            </button>
+                            <button onclick="switchHeroImg('https://enjoycoffee.vn/wp-content/themes/enjoy/images/slide2.jpg')" 
+                                    class="w-16 h-12 rounded-lg overflow-hidden border-2 border-transparent hover:border-brand-gold focus:outline-none transition-all">
+                                <img src="https://enjoycoffee.vn/wp-content/themes/enjoy/images/slide2.jpg" onerror="this.src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=200&q=80'" class="w-full h-full object-cover">
+                            </button>
+                            <button onclick="switchHeroImg('https://enjoycoffee.vn/wp-content/themes/enjoy/images/slide3.jpg')" 
+                                    class="w-16 h-12 rounded-lg overflow-hidden border-2 border-transparent hover:border-brand-gold focus:outline-none transition-all">
+                                <img src="https://enjoycoffee.vn/wp-content/themes/enjoy/images/slide3.jpg" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=200&q=80'" class="w-full h-full object-cover">
+                            </button>
+                        </div>
 
-#introduce .column {
-    box-sizing: border-box;
-}
+                    </div>
+                </div>
 
-#introduce img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
+            </div>
+        </div>
+    </section>
 
-#introduce h2 {
-    color: var(--coffee-dark);
-}
+    <!-- OUR STORY / INTRODUCE SECTION (Reordered: Narrative Left, Visuals Right) -->
+    <section id="introduce" class="py-24 bg-brand-dark relative border-t border-brand-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- LEFT COLUMN: Brand Story & Narrative -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="space-y-2">
+                        <span class="text-xs font-semibold text-brand-gold uppercase tracking-widest">Hành trình bảo tồn giá trị</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-normal text-white">CÂU CHUYỆN CỦA CHÚNG TÔI</h2>
+                        <div class="w-16 h-0.5 bg-brand-gold"></div>
+                    </div>
 
-#introduce li {
-    color: var(--text-muted);
-    margin-bottom: 10px;
-}
+                    <div class="text-gray-300 font-light space-y-4 text-sm sm:text-base leading-relaxed">
+                        <p>
+                            Từ niềm đam mê với hương vị nguyên bản của đất trời cao nguyên, <strong class="text-brand-gold font-medium">Enjoy Coffee</strong> ra đời như một hành trình lưu giữ và lan tỏa giá trị thật của hạt cà phê Đà Lạt. Chúng tôi tin rằng, mỗi tách cà phê ngon không chỉ bắt đầu từ hạt cà phê chín mọng mà còn từ bàn tay và tấm lòng của người trồng, người rang, người pha – những con người sống trọn vẹn với nghề.
+                        </p>
+                        <p>
+                            Từ những nông trại cà phê và cacao ở Lâm Đồng, chúng tôi theo đuổi hành trình <em class="text-white">“từ nông trại đến tách cà phê”</em>, mang đến trải nghiệm trọn vẹn – tự nhiên, tinh khiết và đậm đà bản sắc Đà Lạt.
+                        </p>
+                        <p>
+                            Mỗi hạt cà phê, mỗi trái cacao được chọn lựa kỹ lưỡng, rang xay thủ công để giữ trọn hương vị và năng lượng thuần khiết. Tại Enjoy Coffee, chúng tôi chọn cách làm chậm rãi và chân thật, cân bằng giữa vị đắng, chua thanh và hậu ngọt dịu dàng.
+                        </p>
+                    </div>
 
-/* Menu đồ uống */
-#menu {
-    background: var(--coffee-dark);
-    color: var(--cream-light);
-}
+                    <!-- Interactive Address Accordion / List -->
+                    <div class="pt-4 space-y-3">
+                        <h4 class="text-xs font-bold text-brand-gold uppercase tracking-wider">Hệ thống cơ sở của chúng tôi:</h4>
+                        
+                        <div class="grid grid-cols-1 gap-3">
+                            <div class="p-3.5 rounded-xl bg-brand-card border border-white/5 hover:border-brand-gold/30 transition-all flex items-start space-x-3">
+                                <i class="fa-solid fa-fire-burner text-brand-gold mt-1"></i>
+                                <div>
+                                    <p class="text-xs font-semibold text-white uppercase">Xưởng rang Coffee Roasting Factory</p>
+                                    <p class="text-xs text-brand-muted">Đường 23/3, Gia Nghĩa, Đắk Nông (Nay thuộc tỉnh Lâm Đồng)</p>
+                                </div>
+                            </div>
 
-#menu .menu1 {
-    background: linear-gradient(
-        135deg,
-        #354638 0%,
-        #29382D 55%,
-        #513729 100%
-    );
-}
+                            <div class="p-3.5 rounded-xl bg-brand-card border border-white/5 hover:border-brand-gold/30 transition-all flex items-start space-x-3">
+                                <i class="fa-solid fa-cake-candles text-brand-gold mt-1"></i>
+                                <div>
+                                    <p class="text-xs font-semibold text-white uppercase">Enjoy Cake</p>
+                                    <p class="text-xs text-brand-muted">Đường Tôn Đức Thắng, Gia Nghĩa, Đắk Nông (Nay thuộc tỉnh Lâm Đồng)</p>
+                                </div>
+                            </div>
 
-#menu h2,
-#menu h5,
-#menu .info p {
-    color: var(--cream-light);
-}
+                            <div class="p-3.5 rounded-xl bg-brand-card border border-white/5 hover:border-brand-gold/30 transition-all flex items-start space-x-3">
+                                <i class="fa-solid fa-seedling text-brand-gold mt-1"></i>
+                                <div>
+                                    <p class="text-xs font-semibold text-white uppercase">Xưởng cacao EJ Farm</p>
+                                    <p class="text-xs text-brand-muted">Số 02 Đường Sư Vạn Hạnh, Gia Nghĩa, Đắk Nông (Nay thuộc tỉnh Lâm Đồng)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-#menu .item {
-    border-bottom: 1px solid rgba(244, 240, 230, 0.2);
-    padding: 14px 0;
-    transition: padding-left 0.25s ease;
-}
+                </div>
 
-#menu .item:hover {
-    padding-left: 6px;
-}
+                <!-- RIGHT COLUMN: Modern Image Grid Overlay -->
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4 relative">
+                    <div class="space-y-4">
+                        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 shadow-lg img-zoom-container">
+                            <img src="https://i.imgur.com/rQBw1Ma.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80'" 
+                                 alt="Coffee Roasting" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-4 rounded-2xl bg-brand-teal/40 border border-brand-gold/20 text-center">
+                            <i class="fa-solid fa-heart text-brand-gold text-xl mb-1"></i>
+                            <p class="text-xs font-medium text-gray-200">Thức uống bằng tất cả tâm huyết</p>
+                        </div>
+                    </div>
 
-#menu .price span {
-    color: #D8B681;
-    font-weight: 700;
-}
+                    <div class="space-y-4 pt-8">
+                        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 shadow-lg img-zoom-container">
+                            <img src="https://i.imgur.com/QwPhMps.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=600&q=80'" 
+                                 alt="Coffee Pouring" class="w-full h-80 object-cover">
+                        </div>
+                    </div>
+                </div>
 
-/* Tin tức */
-#bloghome {
-    background: var(--cream-light);
-    padding-top: 35px;
-    padding-bottom: 35px;
-}
+            </div>
 
-#bloghome h2,
-#featuredproducts h2 {
-    color: var(--coffee-dark);
-}
+        </div>
+    </section>
 
-#bloghome .item {
-    background: #FFFFFF;
-    border: 1px solid rgba(53, 70, 56, 0.10);
-    border-radius: 9px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(53, 70, 56, 0.05);
-    transition: transform 0.3s ease,
-                box-shadow 0.3s ease;
-}
+    <!-- FEATURED MENU SECTION (Redesigned Tabbed Cards Layout) -->
+    <section id="menu" class="py-24 bg-brand-tealDark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
+                <span class="text-xs font-semibold text-brand-gold uppercase tracking-widest">Thưởng thức hương vị</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-white">MENU TIÊU BIỂU</h2>
+                <div class="w-12 h-0.5 bg-brand-gold mx-auto"></div>
+            </div>
 
-#bloghome .item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(53, 70, 56, 0.12);
-}
+            <!-- Tab Buttons -->
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex p-1.5 rounded-full bg-brand-card border border-white/10 space-x-2">
+                    <button class="px-6 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-brand-gold text-brand-dark transition-all">Tất Cả</button>
+                    <button class="px-6 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-gray-400 hover:text-white transition-all">Cà Phê Đặc Sản</button>
+                    <button class="px-6 py-2 rounded-full text-xs font-semibold uppercase tracking-wider text-gray-400 hover:text-white transition-all">Desserts & Cake</button>
+                </div>
+            </div>
 
-#bloghome .info {
-    padding: 18px;
-}
+            <!-- Menu Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                
+                <!-- Menu Item 1 -->
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between hover:border-brand-gold/40 transition-all group">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden bg-brand-dark flex-shrink-0 img-zoom-container">
+                            <img src="https://i.imgur.com/Oe0drdA.jpg" onerror="this.src='https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=200&q=80'" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-base font-serif font-semibold text-white group-hover:text-brand-gold transition-colors">Berry Trifle</h3>
+                            <p class="text-xs text-brand-muted mt-1">Rum, pint raspberries, vanilla pudding, orange, almonds.</p>
+                        </div>
+                    </div>
+                    <div class="text-right pl-4">
+                        <span class="font-serif text-base font-bold text-brand-gold">50.000 đ</span>
+                    </div>
+                </div>
 
-#bloghome .info h3 a {
-    color: var(--coffee-dark);
-    text-decoration: none;
-    transition: color 0.25s ease;
-}
+                <!-- Menu Item 2 -->
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between hover:border-brand-gold/40 transition-all group">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden bg-brand-dark flex-shrink-0 img-zoom-container">
+                            <img src="https://i.imgur.com/Oe0drdA.jpg" onerror="this.src='https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=200&q=80'" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-base font-serif font-semibold text-white group-hover:text-brand-gold transition-colors">Espresso Nguyên Bản</h3>
+                            <p class="text-xs text-brand-muted mt-1">Hạt cà phê Arabica rang vừa, hương thơm nhẹ nhàng.</p>
+                        </div>
+                    </div>
+                    <div class="text-right pl-4">
+                        <span class="font-serif text-base font-bold text-brand-gold">50.000 đ</span>
+                    </div>
+                </div>
 
-#bloghome .info h3 a:hover {
-    color: var(--coffee-caramel);
-}
+                <!-- Menu Item 3 -->
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between hover:border-brand-gold/40 transition-all group">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden bg-brand-dark flex-shrink-0 img-zoom-container">
+                            <img src="https://i.imgur.com/Oe0drdA.jpg" onerror="this.src='https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=200&q=80'" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-base font-serif font-semibold text-white group-hover:text-brand-gold transition-colors">Cacao Thủ Công EJ Farm</h3>
+                            <p class="text-xs text-brand-muted mt-1">Cacao nguyên chất từ Lâm Đồng, hậu vị đậm đà.</p>
+                        </div>
+                    </div>
+                    <div class="text-right pl-4">
+                        <span class="font-serif text-base font-bold text-brand-gold">50.000 đ</span>
+                    </div>
+                </div>
 
-#bloghome .info p {
-    color: var(--text-muted);
-}
+                <!-- Menu Item 4 -->
+                <div class="glass-card p-6 rounded-2xl flex items-center justify-between hover:border-brand-gold/40 transition-all group">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden bg-brand-dark flex-shrink-0 img-zoom-container">
+                            <img src="https://i.imgur.com/Oe0drdA.jpg" onerror="this.src='https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=200&q=80'" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h3 class="text-base font-serif font-semibold text-white group-hover:text-brand-gold transition-colors">Cold Brew Trái Cây</h3>
+                            <p class="text-xs text-brand-muted mt-1">Ủ lạnh 18 giờ kết hợp hương mứt trái cây Đà Lạt.</p>
+                        </div>
+                    </div>
+                    <div class="text-right pl-4">
+                        <span class="font-serif text-base font-bold text-brand-gold">50.000 đ</span>
+                    </div>
+                </div>
 
-#bloghome .cate {
-    background: var(--coffee-dark);
-    color: #FFFFFF;
-    padding: 5px 12px;
-    border-radius: 3px;
-}
+            </div>
 
-/* Sản phẩm */
-#featuredproducts {
-    background: var(--cream);
-    padding-top: 35px;
-    padding-bottom: 45px;
-}
+        </div>
+    </section>
 
-#featuredproducts .item {
-    background: #FFFFFF;
-    border: 1px solid var(--beige);
-    border-radius: 9px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(53, 70, 56, 0.05);
-    transition: transform 0.3s ease,
-                box-shadow 0.3s ease;
-}
+    <!-- PRODUCTS SECTION (Staggered Grid Showcase) -->
+    <section id="products" class="py-24 bg-brand-dark relative border-t border-brand-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div class="space-y-2">
+                    <span class="text-xs font-semibold text-brand-gold uppercase tracking-widest">Đặc sản chọn lọc</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-normal text-white">SẢN PHẨM NỔI BẬT</h2>
+                </div>
+                <a href="http://enjoycoffee.vn/san-pham/" class="mt-4 md:mt-0 text-xs font-bold text-brand-gold hover:text-white uppercase tracking-wider flex items-center space-x-2 transition-colors">
+                    <span>Xem Tất Cả Sản Phẩm</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
 
-#featuredproducts .item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 24px rgba(53, 70, 56, 0.12);
-}
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Product 1 -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-white/5 hover:border-brand-gold/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="relative h-60 overflow-hidden bg-neutral-900 img-zoom-container">
+                        <img src="https://enjoycoffee.vn/wp-content/uploads/2026/01/Hong-treo-gio-1.jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1606312619070-d48b4c652a52?auto=format&fit=crop&w=500&q=80'" 
+                             alt="Hồng treo gió" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-brand-teal/90 text-brand-gold text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-brand-gold/20">
+                            Sản phẩm khác
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h4 class="font-serif text-base font-medium text-white group-hover:text-brand-gold transition-colors line-clamp-1">
+                            Hồng treo gió EJ Farm – Đặc sản Đà Lạt
+                        </h4>
+                        <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                            <span class="font-serif text-lg font-bold text-brand-gold">250.000 <sup>đ</sup></span>
+                            <button class="w-8 h-8 rounded-full bg-brand-gold/10 hover:bg-brand-gold text-brand-gold hover:text-brand-dark flex items-center justify-center transition-all">
+                                <i class="fa-solid fa-bag-shopping text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-#featuredproducts .item .img {
-    display: block;
-    background-color: var(--beige);
-    background-position: center;
-    background-size: cover;
-}
+                <!-- Product 2 -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-white/5 hover:border-brand-gold/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="relative h-60 overflow-hidden bg-neutral-900 img-zoom-container">
+                        <img src="https://enjoycoffee.vn/wp-content/uploads/2026/01/z7457053031599_1387c145ece8bdec8bf10c52ec5f9ec3_ea4fab2fa0064c98b1082868dabeefc3_master-1.jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1548907040-4baa42d10919?auto=format&fit=crop&w=500&q=80'" 
+                             alt="Socola dừa" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-brand-teal/90 text-brand-gold text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-brand-gold/20">
+                            Cacao - Socola
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h4 class="font-serif text-base font-medium text-white group-hover:text-brand-gold transition-colors line-clamp-1">
+                            Socola dừa Enjoy Chocolate
+                        </h4>
+                        <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                            <span class="font-serif text-lg font-bold text-brand-gold">105.000 <sup>đ</sup></span>
+                            <button class="w-8 h-8 rounded-full bg-brand-gold/10 hover:bg-brand-gold text-brand-gold hover:text-brand-dark flex items-center justify-center transition-all">
+                                <i class="fa-solid fa-bag-shopping text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-#featuredproducts .item .info {
-    padding: 15px;
-}
+                <!-- Product 3 -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-white/5 hover:border-brand-gold/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="relative h-60 overflow-hidden bg-neutral-900 img-zoom-container">
+                        <img src="https://enjoycoffee.vn/wp-content/uploads/2026/01/Set-1010k-2.jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=500&q=80'" 
+                             alt="Hộp Quà Tết 1010" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-brand-teal/90 text-brand-gold text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-brand-gold/20">
+                            Set Quà tặng
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h4 class="font-serif text-base font-medium text-white group-hover:text-brand-gold transition-colors line-clamp-1">
+                            Hộp Quà Tết Enjoy Coffee – Tết Việt – Mã 1010
+                        </h4>
+                        <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                            <span class="font-serif text-lg font-bold text-brand-gold">1.010.000 <sup>đ</sup></span>
+                            <button class="w-8 h-8 rounded-full bg-brand-gold/10 hover:bg-brand-gold text-brand-gold hover:text-brand-dark flex items-center justify-center transition-all">
+                                <i class="fa-solid fa-bag-shopping text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-#featuredproducts .item h4 a {
-    color: var(--coffee-dark);
-    text-decoration: none;
-}
+                <!-- Product 4 -->
+                <div class="bg-brand-card rounded-2xl overflow-hidden border border-white/5 hover:border-brand-gold/40 transition-all duration-300 flex flex-col justify-between group">
+                    <div class="relative h-60 overflow-hidden bg-neutral-900 img-zoom-container">
+                        <img src="https://enjoycoffee.vn/wp-content/uploads/2026/01/Set-950k-2.jpg" 
+                             onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=500&q=80'" 
+                             alt="Hộp Quà Tết 950" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-brand-teal/90 text-brand-gold text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full border border-brand-gold/20">
+                            Set Quà tặng
+                        </span>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <h4 class="font-serif text-base font-medium text-white group-hover:text-brand-gold transition-colors line-clamp-1">
+                            Hộp Quà Tết Enjoy Coffee – Tết Việt – Mã 950
+                        </h4>
+                        <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                            <span class="font-serif text-lg font-bold text-brand-gold">950.000 <sup>đ</sup></span>
+                            <button class="w-8 h-8 rounded-full bg-brand-gold/10 hover:bg-brand-gold text-brand-gold hover:text-brand-dark flex items-center justify-center transition-all">
+                                <i class="fa-solid fa-bag-shopping text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-#featuredproducts .item h4 a:hover {
-    color: var(--coffee-caramel);
-}
+            </div>
 
-#featuredproducts .item .cate a {
-    color: var(--coffee-caramel);
-}
+        </div>
+    </section>
 
-#featuredproducts .item .info p {
-    color: var(--coffee-brown);
-    font-weight: 700;
-    font-size: 18px;
-}
+    <!-- BLOG & NEWS SECTION (Modern Masonry Grid Layout) -->
+    <section id="blog" class="py-24 bg-brand-tealDark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
+                <span class="text-xs font-semibold text-brand-gold uppercase tracking-widest">Cập nhật mới nhất</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-white">TIN TỨC & BÀI VIẾT</h2>
+                <div class="w-12 h-0.5 bg-brand-gold mx-auto"></div>
+            </div>
 
-/* Nút bấm */
-.button,
-a.button,
-.readmore.button,
-.view-all .button {
-    display: inline-block;
-    background: var(--coffee-dark);
-    color: #FFFFFF !important;
-    border: 1px solid var(--coffee-dark);
-    border-radius: 4px;
-    padding: 11px 22px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: background 0.25s ease,
-                border-color 0.25s ease,
-                transform 0.25s ease;
-}
+            <!-- Blog Items Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Blog Post 1 -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-neutral-900 img-zoom-container">
+                            <img src="http://enjoycoffee.vn/wp-content/uploads/2023/11/z4524010787471_cc828453379c1f5677b7268b5c5d8535.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=600&q=80'" 
+                                 alt="Nguồn gốc cà phê" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-brand-gold text-brand-dark text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                                Tin tức
+                            </span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-serif text-lg font-semibold text-white group-hover:text-brand-gold transition-colors leading-snug">
+                                VÌ SAO HIỂU NGUỒN GỐC GIÚP BẠN UỐNG CÀ PHÊ NGON HƠN?
+                            </h3>
+                            <p class="text-xs text-brand-muted leading-relaxed line-clamp-3">
+                                Khi một tách cà phê không chỉ là thức uống, mà là câu chuyện của vùng đất. Bạn có bao giờ nhận ra rằng có những ly khiến bạn muốn uống chậm lại...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://enjoycoffee.vn/vi-sao-hieu-nguon-goc-giup-ban-uong-ca-phe-ngon-hon-enjoy-coffee/" class="inline-flex items-center space-x-2 text-xs font-bold text-brand-gold hover:underline">
+                            <span>Đọc tiếp</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
 
-.button:hover,
-a.button:hover,
-.readmore.button:hover,
-.view-all .button:hover {
-    background: var(--coffee-caramel);
-    border-color: var(--coffee-caramel);
-    color: #FFFFFF !important;
-    transform: translateY(-2px);
-}
+                <!-- Blog Post 2 -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-neutral-900 img-zoom-container">
+                            <img src="http://enjoycoffee.vn/wp-content/uploads/2026/02/z7514598908483_332e13165ceb474d5d99dcb172b7d232.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=600&q=80'" 
+                                 alt="Quà Tết 2026" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-brand-gold text-brand-dark text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                                Quà Tặng
+                            </span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-serif text-lg font-semibold text-white group-hover:text-brand-gold transition-colors leading-snug">
+                                QUÀ TẾT 2026 CAO CẤP – CHOCOLATE NGÀY TẾT
+                            </h3>
+                            <p class="text-xs text-brand-muted leading-relaxed line-clamp-3">
+                                Tết Bính Ngọ 2026 đang đến gần. Xu hướng quà tặng đang thay đổi – tinh tế hơn, gọn gàng hơn và có câu chuyện rõ ràng hơn...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://enjoycoffee.vn/qua-tet-2026-cao-cap-chocolate-ngay-tet-enjoy-coffee-chocolate/" class="inline-flex items-center space-x-2 text-xs font-bold text-brand-gold hover:underline">
+                            <span>Đọc tiếp</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
 
-/* Chân trang */
-footer {
-    background: var(--coffee-dark);
-    color: var(--cream);
-    border-top: 4px solid var(--coffee-gold);
-}
+                <!-- Blog Post 3 -->
+                <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-neutral-900 img-zoom-container">
+                            <img src="http://enjoycoffee.vn/wp-content/uploads/2026/02/Hop-EJ-Chocolate_2-1.jpg" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=600&q=80'" 
+                                 alt="Socola Bonbon" class="w-full h-full object-cover">
+                            <span class="absolute top-3 left-3 bg-brand-gold text-brand-dark text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full">
+                                Ca Cao
+                            </span>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <h3 class="font-serif text-lg font-semibold text-white group-hover:text-brand-gold transition-colors leading-snug">
+                                SOCOLA VALENTINE CAO CẤP – BONBON THỦ CÔNG
+                            </h3>
+                            <p class="text-xs text-brand-muted leading-relaxed line-clamp-3">
+                                Valentine chưa bao giờ chỉ là một ngày lễ. Tại Enjoy Chocolate, chúng tôi tin rằng Socola Bonbon không chỉ là món quà ngọt ngào...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <a href="https://enjoycoffee.vn/socola-valentine-cao-cap-bonbon-thu-cong-enjoy-chocolate/" class="inline-flex items-center space-x-2 text-xs font-bold text-brand-gold hover:underline">
+                            <span>Đọc tiếp</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </a>
+                    </div>
+                </article>
 
-footer h4,
-footer p {
-    color: var(--cream-light);
-}
+            </div>
 
-footer a {
-    color: #E5DDCE;
-    text-decoration: none;
-    transition: color 0.25s ease;
-}
+        </div>
+    </section>
 
-footer a:hover {
-    color: #D8B681;
-}
+    <!-- FOOTER (Refined Multi-Column Sleek Layout) -->
+    <footer id="contact" class="bg-brand-dark pt-16 pb-12 border-t border-brand-gold/15">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+                
+                <!-- Brand Info Column -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-brand-gold/10 border border-brand-gold/40 flex items-center justify-center">
+                            <i class="fa-solid fa-mug-hot text-brand-gold text-lg"></i>
+                        </div>
+                        <span class="font-serif text-2xl font-bold tracking-wider text-white">ENJOY COFFEE</span>
+                    </div>
+                    <p class="text-xs text-brand-muted leading-relaxed max-w-sm">
+                        Hương vị nguyên bản từ nông trại cao nguyên Đà Lạt & Lâm Đồng. Tự nhiên, tinh khiết và chan chứa tâm huyết người làm nghề.
+                    </p>
+                    
+                    <!-- Social Links -->
+                    <div class="flex items-center space-x-3 pt-2">
+                        <a href="https://www.facebook.com/enjoycf.vn/" target="_blank" rel="nofollow" class="w-9 h-9 rounded-full bg-brand-card border border-white/10 hover:border-brand-gold text-gray-300 hover:text-brand-gold flex items-center justify-center transition-all">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="https://www.instagram.com/enjoycoffee.vn/" target="_blank" rel="nofollow" class="w-9 h-9 rounded-full bg-brand-card border border-white/10 hover:border-brand-gold text-gray-300 hover:text-brand-gold flex items-center justify-center transition-all">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                    </div>
+                </div>
 
-footer .bottom {
-    border-top: 1px solid rgba(244, 240, 230, 0.2);
-}
+                <!-- Quick Navigation Links -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-xs font-bold text-brand-gold uppercase tracking-widest">Danh Mục Navigation</h4>
+                    <ul class="space-y-2 text-xs text-brand-muted">
+                        <li><a href="#introduce" class="hover:text-white transition-colors">Giới thiệu</a></li>
+                        <li><a href="#menu" class="hover:text-white transition-colors">Menu tiêu biểu</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Sản phẩm đặc sản</a></li>
+                        <li><a href="#blog" class="hover:text-white transition-colors">Tin tức & Sự kiện</a></li>
+                    </ul>
+                </div>
 
-/* Ảnh và hiển thị trên điện thoại */
-img {
-    max-width: 100%;
-}
+                <!-- Newsletter Subscribe Form -->
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="text-xs font-bold text-brand-gold uppercase tracking-widest">Đăng Ký Nhận Bản Tin</h4>
+                    <p class="text-xs text-brand-muted">Nhận ưu đãi sản phẩm mới và câu chuyện cà phê hàng tháng từ chúng tôi.</p>
+                    
+                    <form onsubmit="event.preventDefault();" class="flex items-center space-x-2 pt-1">
+                        <input type="email" placeholder="Địa chỉ email của bạn..." class="w-full px-4 py-2.5 rounded-full bg-brand-card border border-white/10 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-gold">
+                        <button type="submit" class="px-5 py-2.5 rounded-full bg-brand-gold text-brand-dark font-bold text-xs uppercase hover:bg-brand-goldLight transition-all">
+                            Gửi
+                        </button>
+                    </form>
+                </div>
 
-@media (max-width: 768px) {
-    body {
-        font-size: 15px;
-    }
+            </div>
 
-    #introduce,
-    #bloghome,
-    #featuredproducts {
-        padding-top: 25px;
-        padding-bottom: 25px;
-    }
+            <!-- Bottom Copyright Bar -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-brand-muted">
+                <p>© 2026 Enjoy Coffee. Tất cả quyền được bảo lưu.</p>
+                <p class="mt-2 sm:mt-0">Sạch từ nông trại - Trọn vị cao nguyên</p>
+            </div>
 
-    #introduce h2,
-    #menu h2,
-    #bloghome h2,
-    #featuredproducts h2 {
-        font-size: 24px;
-    }
+        </div>
+    </footer>
 
-    #bloghome .item,
-    #featuredproducts .item {
-        margin-bottom: 18px;
-    }
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Hero Image Switcher Function
+        function switchHeroImg(imgSrc) {
+            const mainImg = document.getElementById('hero-main-img');
+            if (mainImg) {
+                mainImg.src = imgSrc;
+            }
+        }
 
-    .button,
-    a.button {
-        padding: 10px 16px;
-    }
-}
-</style>
+        // Mobile Menu Toggle logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+</html>
