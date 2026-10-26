@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>ENJOY COFFEE | Sạch từ nông trại - Đà Lạt & Đắk Nông</title>
   
-  <!-- SEO & Canonical cho tên miền mới enjoycoffee.id.vn -->
+  <!-- SEO & Canonical chuẩn cho tên miền enjoycoffee.id.vn -->
   <link rel="canonical" href="https://enjoycoffee.id.vn/" />
   <meta name="description" content="Chúng tôi mong muốn tất cả mọi người dân Việt Nam đều được thưởng thức cà phê sạch! Cà phê đặc sản, cacao thủ công từ nông trại.">
   <meta property="og:locale" content="vi_VN" />
@@ -19,19 +19,21 @@
   <!-- Fonts Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
-    /* CSS CSS Reset & Base Vars */
+    /* CSS Base & Variables - Tông màu tươi sáng */
     :root {
-      --bg-main: #0d0b0a;
-      --bg-card: #181512;
-      --bg-card-hover: #221e19;
-      --accent: #c89551;
-      --accent-hover: #daaa68;
-      --text-main: #f5eedc;
-      --text-muted: #a3998e;
-      --border: rgba(200, 149, 81, 0.18);
+      --bg-main: #FAFAFA;
+      --bg-card: #FFFFFF;
+      --accent: #E65100; /* Cam cà phê chín tươi sáng */
+      --accent-hover: #BF360C;
+      --accent-light: #FFF3E0;
+      --primary-dark: #2C1810; /* Nâu hạt cà phê đậm */
+      --text-main: #332722;
+      --text-muted: #665851;
+      --border: #FFE0B2;
+      --shadow: 0 10px 30px rgba(230, 81, 0, 0.08);
       --font-heading: 'Playfair Display', serif;
       --font-body: 'Plus Jakarta Sans', sans-serif;
     }
@@ -40,6 +42,10 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -75,9 +81,10 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(13, 11, 10, 0.85);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid rgba(230, 81, 0, 0.12);
+      box-shadow: 0 2px 15px rgba(0,0,0,0.04);
       transition: all 0.3s ease;
     }
 
@@ -90,22 +97,24 @@
 
     .logo-text {
       font-family: var(--font-heading);
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 2px;
+      color: var(--primary-dark);
+      letter-spacing: 1px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .logo-text span {
-      color: #fff;
+      color: var(--accent);
       font-size: 0.8rem;
       font-family: var(--font-body);
-      border: 1px solid var(--accent);
-      padding: 2px 6px;
-      border-radius: 4px;
+      background: var(--accent-light);
+      border: 1px solid var(--border);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-weight: 700;
       letter-spacing: 1px;
     }
 
@@ -117,9 +126,8 @@
 
     nav a {
       font-size: 0.95rem;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text-main);
-      letter-spacing: 0.5px;
       position: relative;
       padding: 8px 0;
     }
@@ -130,14 +138,19 @@
       bottom: 0;
       left: 0;
       width: 0;
-      height: 2px;
+      height: 2.5px;
       background-color: var(--accent);
+      border-radius: 2px;
       transition: width 0.3s ease;
     }
 
     nav a:hover::after,
     nav a.active::after {
       width: 100%;
+    }
+
+    nav a:hover {
+      color: var(--accent);
     }
 
     /* Submenu */
@@ -151,14 +164,14 @@
       left: 0;
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 12px 0;
-      min-width: 180px;
+      min-width: 200px;
       opacity: 0;
       visibility: hidden;
       transform: translateY(10px);
       transition: all 0.3s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: var(--shadow);
     }
 
     .has-dropdown:hover .dropdown-menu {
@@ -169,14 +182,14 @@
 
     .dropdown-menu a {
       display: block;
-      padding: 8px 20px;
+      padding: 10px 20px;
       font-size: 0.9rem;
       color: var(--text-muted);
     }
 
     .dropdown-menu a:hover {
       color: var(--accent);
-      background: rgba(200, 149, 81, 0.05);
+      background: var(--accent-light);
     }
 
     /* Hero Slider */
@@ -185,7 +198,7 @@
       position: relative;
       height: calc(100vh - 80px);
       min-height: 550px;
-      max-height: 750px;
+      max-height: 720px;
       overflow: hidden;
     }
 
@@ -210,7 +223,7 @@
     .slide-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(13, 11, 10, 0.9) 0%, rgba(13, 11, 10, 0.4) 60%, rgba(13, 11, 10, 0.2) 100%);
+      background: linear-gradient(90deg, rgba(44, 24, 16, 0.85) 0%, rgba(44, 24, 16, 0.4) 60%, rgba(255, 255, 255, 0) 100%);
     }
 
     .hero-content {
@@ -221,12 +234,15 @@
 
     .hero-tag {
       display: inline-block;
-      color: var(--accent);
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 3px;
+      background: var(--accent);
+      color: #FFF;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
     }
 
     .hero-title {
@@ -234,28 +250,30 @@
       font-size: 3.5rem;
       line-height: 1.15;
       margin-bottom: 20px;
-      color: #fff;
+      color: #FFFFFF;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
     .hero-desc {
-      font-size: 1.1rem;
-      color: var(--text-muted);
+      font-size: 1.15rem;
+      color: #FFE0B2;
       margin-bottom: 32px;
     }
 
     .btn {
       display: inline-block;
       background: var(--accent);
-      color: #0d0b0a;
-      padding: 14px 32px;
-      border-radius: 4px;
+      color: #FFFFFF;
+      padding: 14px 36px;
+      border-radius: 30px;
       font-weight: 700;
       letter-spacing: 0.5px;
-      border: 1px solid var(--accent);
+      box-shadow: 0 6px 20px rgba(230, 81, 0, 0.3);
+      border: 2px solid var(--accent);
     }
 
     .btn:hover {
-      background: transparent;
+      background: #FFFFFF;
       color: var(--accent);
     }
 
@@ -268,16 +286,17 @@
     .section-title h2 {
       font-family: var(--font-heading);
       font-size: 2.5rem;
-      color: #fff;
-      letter-spacing: 1px;
+      color: var(--primary-dark);
+      letter-spacing: 0.5px;
     }
 
     .section-title p {
       color: var(--accent);
       font-size: 0.9rem;
+      font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-top: 8px;
+      margin-top: 6px;
     }
 
     /* About Section */
@@ -301,38 +320,45 @@
     }
 
     .about-images img {
-      border-radius: 8px;
+      border-radius: 16px;
       object-fit: cover;
       height: 100%;
-      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border: 2px solid #FFF;
     }
 
     .about-text h2 {
       font-family: var(--font-heading);
-      font-size: 2.2rem;
-      color: var(--accent);
+      font-size: 2.3rem;
+      color: var(--primary-dark);
       margin-bottom: 20px;
     }
 
     .about-text p {
       color: var(--text-muted);
       margin-bottom: 16px;
-      font-size: 1rem;
+      font-size: 1.02rem;
     }
 
     .locations-list {
       margin-top: 30px;
       list-style: none;
-      border-top: 1px solid var(--border);
-      padding-top: 20px;
+      background: var(--accent-light);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
 
     .locations-list li {
       margin-bottom: 12px;
       position: relative;
-      padding-left: 24px;
+      padding-left: 28px;
       color: var(--text-main);
       font-size: 0.95rem;
+    }
+
+    .locations-list li:last-child {
+      margin-bottom: 0;
     }
 
     .locations-list li::before {
@@ -350,37 +376,47 @@
     .menu-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      gap: 32px;
     }
 
     .menu-item {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      padding-bottom: 16px;
-      border-bottom: 1px dashed rgba(200, 149, 81, 0.2);
-      margin-bottom: 20px;
+      align-items: center;
+      padding: 20px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-4px);
     }
 
     .menu-item-info h5 {
       font-size: 1.1rem;
-      color: var(--text-main);
-      font-weight: 600;
+      color: var(--primary-dark);
+      font-weight: 700;
     }
 
     .menu-item-info p {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--text-muted);
       margin-top: 4px;
     }
 
     .menu-item-price {
       font-family: var(--font-heading);
-      font-size: 1.1rem;
+      font-size: 1.25rem;
       color: var(--accent);
       font-weight: 700;
       white-space: nowrap;
       margin-left: 16px;
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 20px;
     }
 
     /* Products Section */
@@ -400,8 +436,9 @@
     .product-card {
       background: var(--bg-main);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 16px;
       overflow: hidden;
+      box-shadow: var(--shadow);
       transition: transform 0.3s ease, border-color 0.3s ease;
     }
 
@@ -423,6 +460,7 @@
     .product-cate {
       font-size: 0.75rem;
       color: var(--accent);
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
       margin-bottom: 8px;
@@ -430,15 +468,15 @@
 
     .product-title {
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 12px;
-      color: var(--text-main);
+      color: var(--primary-dark);
     }
 
     .product-price {
       font-family: var(--font-heading);
-      font-size: 1.2rem;
-      color: #fff;
+      font-size: 1.3rem;
+      color: var(--accent);
       font-weight: 700;
     }
 
@@ -456,8 +494,9 @@
     .blog-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: 8px;
+      border-radius: 16px;
       overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
     .blog-img {
@@ -472,13 +511,14 @@
 
     .blog-title {
       font-size: 1.1rem;
+      font-weight: 700;
       line-height: 1.4;
       margin-bottom: 12px;
-      color: var(--text-main);
+      color: var(--primary-dark);
     }
 
     .blog-desc {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
       margin-bottom: 20px;
       display: -webkit-box;
@@ -488,18 +528,16 @@
     }
 
     .blog-link {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--accent);
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      font-weight: 700;
     }
 
     /* Footer */
     footer {
-      background: #080706;
-      border-top: 1px solid var(--border);
+      background: var(--primary-dark);
       padding: 60px 0 30px;
-      color: var(--text-muted);
+      color: #FFE0B2;
       font-size: 0.9rem;
     }
 
@@ -511,10 +549,10 @@
     }
 
     .footer-col h4 {
-      color: var(--accent);
+      color: #FFFFFF;
       margin-bottom: 20px;
       font-family: var(--font-heading);
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     .footer-col ul {
@@ -525,8 +563,12 @@
       margin-bottom: 10px;
     }
 
+    .footer-col a:hover {
+      color: var(--accent);
+    }
+
     .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 30px;
       display: flex;
       justify-content: space-between;
@@ -540,7 +582,7 @@
       }
 
       nav {
-        display: none; /* Sẽ hiện menu dạng burger trên di động */
+        display: none;
       }
 
       .hero-title {
@@ -554,27 +596,26 @@
   <!-- HEADER -->
   <header>
     <div class="container header-inner">
-      <!-- Logo trỏ về tên miền mới .id.vn -->
-      <a href="/" class="logo-text">
+      <a href="#" class="logo-text">
         ENJOY COFFEE <span>.ID.VN</span>
       </a>
 
-      <!-- Menu sử dụng Đường dẫn tương đối (Relative path) -->
+      <!-- Menu dùng Anchor Link (#) tránh lỗi 404 trên GitHub Pages -->
       <nav>
         <ul>
           <li class="has-dropdown">
-            <a href="/san-pham/">Sản phẩm</a>
+            <a href="#products">Sản phẩm</a>
             <div class="dropdown-menu">
-              <a href="/muc/ca-phe/">Cà phê</a>
-              <a href="/muc/macca/">Macca</a>
-              <a href="/muc/cacao-socola/">Cacao - Socola</a>
-              <a href="/muc/san-pham-khac/">Sản phẩm khác</a>
+              <a href="#products">Cà phê</a>
+              <a href="#products">Macca</a>
+              <a href="#products">Cacao - Socola</a>
+              <a href="#products">Sản phẩm khác</a>
             </div>
           </li>
-          <li><a href="/gioi-thieu/">Giới thiệu</a></li>
-          <li><a href="/menu/">Menu</a></li>
-          <li><a href="/cate/tin-tuc/">Tin tức</a></li>
-          <li><a href="/lien-he/">Liên hệ</a></li>
+          <li><a href="#about">Giới thiệu</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#blog">Tin tức</a></li>
+          <li><a href="#footer">Liên hệ</a></li>
         </ul>
       </nav>
     </div>
@@ -589,7 +630,7 @@
           <span class="hero-tag">Sạch Từ Nông Trại</span>
           <h1 class="hero-title">Thưởng Thức Cà Phê Nguyên Bản Đà Lạt</h1>
           <p class="hero-desc">Hành trình từ nông trại Lâm Đồng đến tách cà phê thơm nồng đậm đà bản sắc cao nguyên.</p>
-          <a href="/san-pham/" class="btn">Khám phá sản phẩm</a>
+          <a href="#products" class="btn">Khám phá sản phẩm</a>
         </div>
       </div>
     </div>
@@ -600,14 +641,14 @@
           <span class="hero-tag">Thủ Công & Tinh Tế</span>
           <h1 class="hero-title">Hương Vị Cacao & Socola Cao Cấp</h1>
           <p class="hero-desc">Từng mẻ cacao, socola được chọn lựa kỹ lưỡng và rang xay thủ công tại EJ Farm.</p>
-          <a href="/muc/cacao-socola/" class="btn">Xem danh mục Socola</a>
+          <a href="#products" class="btn">Xem danh mục Socola</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ABOUT SECTION -->
-  <section class="about">
+  <section class="about" id="about">
     <div class="container">
       <div class="about-grid">
         <div class="about-images">
@@ -630,7 +671,7 @@
   </section>
 
   <!-- MENU SECTION -->
-  <section class="menu-section">
+  <section class="menu-section" id="menu">
     <div class="container">
       <div class="section-title">
         <p>Thức Uống Nổi Bật</p>
@@ -671,7 +712,7 @@
   </section>
 
   <!-- PRODUCTS SECTION -->
-  <section class="products">
+  <section class="products" id="products">
     <div class="container">
       <div class="section-title">
         <p>Đặc Sản Cao Nguyên</p>
@@ -683,7 +724,7 @@
           <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/Hong-treo-gio-1.jpg');"></div>
           <div class="product-info">
             <div class="product-cate">Sản phẩm khác</div>
-            <a href="/san-pham/hong-treo-gio-ej-farm-dac-san-da-lat/" class="product-title">Hồng treo gió EJ Farm – Đặc sản Đà Lạt</a>
+            <div class="product-title">Hồng treo gió EJ Farm – Đặc sản Đà Lạt</div>
             <div class="product-price">250.000 đ</div>
           </div>
         </div>
@@ -692,7 +733,7 @@
           <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/z7457053031599_1387c145ece8bdec8bf10c52ec5f9ec3_ea4fab2fa0064c98b1082868dabeefc3_master-1.jpg');"></div>
           <div class="product-info">
             <div class="product-cate">Cacao - Socola</div>
-            <a href="/san-pham/socola-dua-enjoy-chocolate/" class="product-title">Socola dừa Enjoy Chocolate</a>
+            <div class="product-title">Socola dừa Enjoy Chocolate</div>
             <div class="product-price">105.000 đ</div>
           </div>
         </div>
@@ -701,7 +742,7 @@
           <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/Set-1010k-2.jpg');"></div>
           <div class="product-info">
             <div class="product-cate">Set Quà Tặng</div>
-            <a href="/san-pham/hop-qua-tet-enjoy-coffee-tet-viet-ma-1010/" class="product-title">Hộp Quà Tết Enjoy Coffee – Mã 1010</a>
+            <div class="product-title">Hộp Quà Tết Enjoy Coffee – Mã 1010</div>
             <div class="product-price">1.010.000 đ</div>
           </div>
         </div>
@@ -710,7 +751,7 @@
           <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/Set-950k-2.jpg');"></div>
           <div class="product-info">
             <div class="product-cate">Set Quà Tặng</div>
-            <a href="/san-pham/hop-qua-tet-enjoy-coffee-tet-viet-ma-950/" class="product-title">Hộp Quà Tết Enjoy Coffee – Mã 950</a>
+            <div class="product-title">Hộp Quà Tết Enjoy Coffee – Mã 950</div>
             <div class="product-price">950.000 đ</div>
           </div>
         </div>
@@ -719,7 +760,7 @@
   </section>
 
   <!-- BLOG SECTION -->
-  <section class="blog">
+  <section class="blog" id="blog">
     <div class="container">
       <div class="section-title">
         <p>Tin Tức & Chia Sẻ</p>
@@ -730,33 +771,27 @@
         <div class="blog-card">
           <div class="blog-img" style="background-image: url('http://enjoycoffee.vn/wp-content/uploads/2023/11/z4524010787471_cc828453379c1f5677b7268b5c5d8535.jpg');"></div>
           <div class="blog-info">
-            <a href="/vi-sao-hieu-nguon-goc-giup-ban-uong-ca-phe-ngon-hon-enjoy-coffee/" class="blog-title">
-              VÌ SAO HIỂU NGUỒN GỐC GIÚP BẠN UỐNG CÀ PHÊ NGON HƠN?
-            </a>
+            <div class="blog-title">VÌ SAO HIỂU NGUỒN GỐC GIÚP BẠN UỐNG CÀ PHÊ NGON HƠN?</div>
             <p class="blog-desc">Khi một tách cà phê không chỉ là thức uống, mà là câu chuyện của vùng đất. Sự khác biệt nằm ở triết lý làm cà phê từ nông trại...</p>
-            <a href="/vi-sao-hieu-nguon-goc-giup-ban-uong-ca-phe-ngon-hon-enjoy-coffee/" class="blog-link">Xem chi tiết →</a>
+            <a href="#about" class="blog-link">Tìm hiểu thêm →</a>
           </div>
         </div>
 
         <div class="blog-card">
           <div class="blog-img" style="background-image: url('http://enjoycoffee.vn/wp-content/uploads/2026/02/z7514598908483_332e13165ceb474d5d99dcb172b7d232.jpg');"></div>
           <div class="blog-info">
-            <a href="/qua-tet-2026-cao-cap-chocolate-ngay-tet-enjoy-coffee-chocolate/" class="blog-title">
-              QUÀ TẾT CAO CẤP – CHOCOLATE NGÀY TẾT | ENJOY COFFEE
-            </a>
+            <div class="blog-title">QUÀ TẾT CAO CẤP – CHOCOLATE NGÀY TẾT | ENJOY COFFEE</div>
             <p class="blog-desc">Xu hướng quà tặng đang thay đổi – tinh tế hơn, gọn gàng hơn và có câu chuyện rõ ràng hơn với socola thủ công từ cacao nguyên chất...</p>
-            <a href="/qua-tet-2026-cao-cap-chocolate-ngay-tet-enjoy-coffee-chocolate/" class="blog-link">Xem chi tiết →</a>
+            <a href="#products" class="blog-link">Xem set quà →</a>
           </div>
         </div>
 
         <div class="blog-card">
           <div class="blog-img" style="background-image: url('http://enjoycoffee.vn/wp-content/uploads/2026/02/Hop-EJ-Chocolate_2-1.jpg');"></div>
           <div class="blog-info">
-            <a href="/socola-valentine-cao-cap-bonbon-thu-cong-enjoy-chocolate/" class="blog-title">
-              SOCOLA VALENTINE CAO CẤP – BONBON THỦ CÔNG
-            </a>
+            <div class="blog-title">SOCOLA VALENTINE CAO CẤP – BONBON THỦ CÔNG</div>
             <p class="blog-desc">Tại Enjoy Chocolate, chúng tôi tin rằng Socola Bonbon không chỉ là món ăn mà là nghệ thuật truyền tải cảm xúc trọn vẹn...</p>
-            <a href="/socola-valentine-cao-cap-bonbon-thu-cong-enjoy-chocolate/" class="blog-link">Xem chi tiết →</a>
+            <a href="#products" class="blog-link">Xem sản phẩm →</a>
           </div>
         </div>
       </div>
@@ -764,7 +799,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer>
+  <footer id="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-col">
@@ -772,12 +807,12 @@
           <p>Chúng tôi mong muốn tất cả mọi người dân Việt Nam đều được thưởng thức cà phê sạch và giữ nguyên bản chất thuần khiết của nông sản cao nguyên.</p>
         </div>
         <div class="footer-col">
-          <h4>LIÊN KẾT</h4>
+          <h4>LIÊN KẾT NHANH</h4>
           <ul>
-            <li><a href="/gioi-thieu/">Giới thiệu</a></li>
-            <li><a href="/san-pham/">Sản phẩm</a></li>
-            <li><a href="/cate/tin-tuc/">Tin tức</a></li>
-            <li><a href="/lien-he/">Liên hệ</a></li>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#products">Sản phẩm</a></li>
+            <li><a href="#blog">Tin tức</a></li>
+            <li><a href="#footer">Liên hệ</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -791,12 +826,12 @@
 
       <div class="footer-bottom">
         <p>© Enjoy Coffee. All rights reserved.</p>
-        <p>Domain: <strong>enjoycoffee.id.vn</strong></p>
+        <p>Website: <strong>enjoycoffee.id.vn</strong></p>
       </div>
     </div>
   </footer>
 
-  <!-- JAVASCRIPT SLIDER -->
+  <!-- JAVASCRIPT -->
   <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
