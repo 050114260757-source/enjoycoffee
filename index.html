@@ -1,1217 +1,1307 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#2c1b14">
-<meta name="description" content="Enjoy Coffee - Sạch từ nông trại. Cà phê nguyên chất, hương vị cao nguyên Việt Nam.">
-<title>ENJOY COFFEE | Sạch từ nông trại</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root {
-    --dark: #2c1b14;
-    --brown: #563727;
-    --caramel: #b87945;
-    --gold: #d7b17b;
-    --cream: #f7f1e8;
-    --white: #fffdf9;
-    --gray: #786c62;
-    --border: #e8ded2;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    color: var(--dark);
-    background: var(--white);
-    line-height: 1.6;
-}
-a { text-decoration: none; color: inherit; }
-button, input { font: inherit; }
-button { cursor: pointer; }
-img { max-width: 100%; display: block; }
+  <title>ENJOY COFFEE | Sạch từ nông trại</title>
+  <meta name="description" content="Enjoy Coffee - Cà phê sạch từ nông trại, hương vị nguyên bản và trải nghiệm cà phê đặc sản Việt Nam.">
+  <meta name="theme-color" content="#38251d">
+  <link rel="canonical" href="https://enjoycoffee.id.vn/">
 
-/* THANH THÔNG BÁO */
-.announcement {
-    background: var(--dark);
-    color: #f9ead7;
-    text-align: center;
-    padding: 9px 12px;
-    font-size: 11px;
-    letter-spacing: 2px;
-}
+  <style>
+    :root {
+      --dark: #38251d;
+      --brown: #65432f;
+      --caramel: #a66a3f;
+      --gold: #c49a6c;
+      --cream: #f7f1e8;
+      --white: #fff;
+      --text: #332821;
+      --muted: #76685f;
+      --shadow: 0 12px 35px rgba(45, 27, 18, .12);
+    }
 
-/* HEADER VÀ THANH ĐIỀU HƯỚNG */
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(255,253,249,.97);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-}
-.nav-wrap {
-    max-width: 1300px;
-    height: 82px;
-    margin: auto;
-    padding: 0 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 22px;
-}
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-shrink: 0;
-}
-.brand-mark {
-    width: 43px;
-    height: 43px;
-    border: 2px solid var(--gold);
-    outline: 1px solid var(--dark);
-    outline-offset: 3px;
-    border-radius: 50%;
-    background: var(--dark);
-    color: var(--gold);
-    display: grid;
-    place-items: center;
-    font-family: Georgia, serif;
-    font-size: 25px;
-}
-.brand-name {
-    font-family: Georgia, serif;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    line-height: 1.2;
-}
-.brand-tag {
-    display: block;
-    font-size: 9px;
-    color: var(--gray);
-    letter-spacing: 2px;
-    margin-top: 4px;
-}
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 23px;
-}
-.nav-links a {
-    position: relative;
-    padding: 28px 0;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .7px;
-    text-transform: uppercase;
-}
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    bottom: 20px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--caramel);
-    transition: .3s;
-}
-.nav-links a:hover::after { width: 100%; }
-.nav-actions { display: flex; gap: 10px; align-items: center; }
-.icon-btn {
-    background: none;
-    border: 0;
-    color: var(--dark);
-    font-size: 23px;
-    padding: 7px;
-    position: relative;
-}
-.cart-count {
-    position: absolute;
-    top: 0;
-    right: -2px;
-    background: var(--caramel);
-    color: white;
-    border-radius: 50%;
-    min-width: 18px;
-    height: 18px;
-    font-size: 10px;
-    display: grid;
-    place-items: center;
-}
-.menu-toggle { display: none; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* THANH TÌM KIẾM */
-.search-panel {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    padding: 20px 5%;
-    box-shadow: 0 12px 25px #0001;
-}
-.search-panel.open { display: block; }
-.search-panel form {
-    display: flex;
-    max-width: 800px;
-    margin: auto;
-}
-.search-panel input {
-    flex: 1;
-    min-width: 0;
-    border: 1px solid var(--border);
-    padding: 13px;
-    outline-color: var(--caramel);
-}
-.search-panel button {
-    background: var(--dark);
-    color: white;
-    border: 0;
-    padding: 0 20px;
-}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
 
-/* ẢNH BÌA TRANG CHỦ */
-.hero {
-    min-height: 650px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    color: white;
-    background:
-      linear-gradient(90deg,rgba(26,16,11,.86),rgba(26,16,11,.48) 58%,rgba(26,16,11,.05)),
-      url("https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=2200&q=90")
-      center/cover;
-}
-.hero-inner {
-    max-width: 1300px;
-    width: 100%;
-    padding: 90px 7%;
-    margin: auto;
-}
-.eyebrow, .kicker {
-    color: var(--caramel);
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-.hero .eyebrow { color: var(--gold); }
-.hero h1 {
-    font-family: Georgia, serif;
-    font-weight: 400;
-    font-size: clamp(46px, 6vw, 82px);
-    line-height: 1.08;
-    max-width: 720px;
-    margin: 20px 0;
-}
-.hero h1 em { color: var(--gold); }
-.hero p {
-    color: #f0e5d9;
-    font-size: 16px;
-    max-width: 510px;
-    margin-bottom: 30px;
-}
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    padding: 14px 22px;
-    background: var(--gold);
-    border: 1px solid var(--gold);
-    color: var(--dark);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: .3s;
-}
-.btn:hover { background: transparent; color: var(--gold); }
-.btn-light {
-    background: transparent;
-    color: white;
-    border-color: white;
-    margin-left: 10px;
-}
-.btn-light:hover { background: white; color: var(--dark); }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #fffdf9;
+      line-height: 1.7;
+    }
 
-/* CAM KẾT THƯƠNG HIỆU */
-.trust-strip {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    background: var(--cream);
-    padding: 25px 5%;
-    gap: 20px;
-}
-.trust-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    border-right: 1px solid #dfd2c4;
-}
-.trust-item:last-child { border: 0; }
-.trust-icon { font-size: 25px; color: var(--caramel); }
-.trust-item strong {
-    display: block;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-}
-.trust-item span {
-    display: block;
-    font-size: 11px;
-    color: var(--gray);
-}
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
-/* BỐ CỤC CÁC KHU VỰC */
-.section {
-    padding: 90px 5%;
-    max-width: 1400px;
-    margin: auto;
-}
-.section-head {
-    text-align: center;
-    max-width: 720px;
-    margin: 0 auto 45px;
-}
-.section h2 {
-    font-family: Georgia, serif;
-    font-weight: 400;
-    font-size: clamp(34px,4vw,52px);
-    line-height: 1.2;
-    margin: 12px 0;
-}
-.section-head p { color: var(--gray); }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* SẢN PHẨM */
-.products {
-    display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 22px;
-}
-.product-card {
-    background: white;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: .3s;
-}
-.product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px #3a241414;
-}
-.product-image {
-    height: 280px;
-    position: relative;
-    overflow: hidden;
-    background: var(--cream);
-}
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform .5s;
-}
-.product-card:hover .product-image img { transform: scale(1.06); }
-.tag {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    background: var(--dark);
-    color: white;
-    font-size: 9px;
-    letter-spacing: 1px;
-    padding: 6px 9px;
-    z-index: 1;
-}
-.product-info { padding: 18px; }
-.product-category {
-    font-size: 10px;
-    color: var(--caramel);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: bold;
-}
-.product-info h3 {
-    font-family: Georgia, serif;
-    font-size: 19px;
-    font-weight: 400;
-    margin: 7px 0;
-}
-.product-info p {
-    font-size: 12px;
-    color: var(--gray);
-    margin-bottom: 15px;
-    min-height: 38px;
-}
-.product-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-.price { font-weight: 800; font-size: 15px; }
-.add-cart {
-    border: 1px solid var(--dark);
-    background: var(--dark);
-    color: white;
-    padding: 9px 10px;
-    font-size: 10px;
-}
-.add-cart:hover { background: var(--caramel); border-color: var(--caramel); }
-.center-action { text-align: center; margin-top: 35px; }
-.outline-btn { background: transparent; border-color: var(--dark); }
-.outline-btn:hover { background: var(--dark); color: white; }
+    button {
+      font: inherit;
+    }
 
-/* GIỚI THIỆU THƯƠNG HIỆU */
-.story {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: var(--cream);
-}
-.story-image {
-    min-height: 550px;
-    background: url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1300&q=85") center/cover;
-}
-.story-copy {
-    padding: 75px clamp(30px,7vw,100px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-.story-copy h2 {
-    font-family: Georgia, serif;
-    font-weight: 400;
-    font-size: clamp(36px,4vw,54px);
-    line-height: 1.15;
-    margin: 15px 0 20px;
-}
-.story-copy p { color: var(--gray); margin-bottom: 17px; }
-.signature {
-    font-family: Georgia, serif;
-    font-style: italic;
-    font-size: 22px;
-    color: var(--caramel);
-    margin: 10px 0 25px;
-}
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
 
-/* QUY TRÌNH */
-.features {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 25px;
-    margin-top: 40px;
-}
-.feature { padding: 25px; border-top: 2px solid var(--gold); }
-.feature .num { font: 32px Georgia,serif; color: var(--caramel); }
-.feature h3 { font: 22px Georgia,serif; margin: 10px 0; }
-.feature p { color: var(--gray); font-size: 13px; }
+    /* Thanh thông báo */
+    .topbar {
+      background: var(--dark);
+      color: #f6e9d7;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 12px;
+      letter-spacing: 1.2px;
+    }
 
-/* BANNER */
-.banner {
-    margin: 0 5%;
-    padding: 70px 7%;
-    background:
-      linear-gradient(90deg,rgba(37,22,15,.86),rgba(37,22,15,.35)),
-      url("https://images.unsplash.com/photo-1511537190424-bbbab87ac5eb?auto=format&fit=crop&w=2000&q=85")
-      center/cover;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-}
-.banner h2 {
-    font: 400 clamp(30px,4vw,48px) Georgia,serif;
-    line-height: 1.2;
-    max-width: 600px;
-    margin: 12px 0;
-}
-.banner p { color: #eee0d0; }
+    /* Header và điều hướng */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 253, 249, .97);
+      border-bottom: 1px solid #eadfd2;
+      backdrop-filter: blur(12px);
+    }
 
-/* TIN TỨC */
-.journal-grid {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 24px;
-}
-.journal-card { border: 1px solid var(--border); background: white; }
-.journal-card img { width: 100%; height: 230px; object-fit: cover; }
-.journal-body { padding: 22px; }
-.journal-body .date {
-    font-size: 10px;
-    color: var(--caramel);
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-.journal-body h3 {
-    font: 400 22px/1.3 Georgia,serif;
-    margin: 10px 0;
-}
-.journal-body p { font-size: 13px; color: var(--gray); margin-bottom: 18px; }
-.read-more {
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    border-bottom: 1px solid var(--gold);
-}
+    .nav-wrap {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
 
-/* ĐĂNG KÝ EMAIL */
-.newsletter {
-    background: var(--cream);
-    padding: 65px 5%;
-    text-align: center;
-}
-.newsletter h2 { font: 400 38px Georgia,serif; margin: 10px 0; }
-.newsletter p { color: var(--gray); margin: 0 auto 22px; max-width: 550px; }
-.newsletter-form {
-    display: flex;
-    max-width: 500px;
-    margin: auto;
-}
-.newsletter-form input {
-    flex: 1;
-    min-width: 0;
-    padding: 14px;
-    border: 1px solid #d9c9b8;
-    outline-color: var(--caramel);
-}
-.newsletter-form button {
-    border: 0;
-    padding: 0 20px;
-    background: var(--dark);
-    color: white;
-    font-size: 10px;
-    font-weight: bold;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
 
-/* CHÂN TRANG */
-.footer { background: var(--dark); color: #f4eadd; padding: 65px 5% 25px; }
-.footer-grid {
-    max-width: 1300px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-    gap: 35px;
-}
-.footer .brand-mark { background: var(--gold); color: var(--dark); }
-.footer .brand-tag { color: #cbb9a6; }
-.footer p, .footer a { font-size: 13px; color: #cbb9a6; }
-.footer p { margin-top: 15px; }
-.footer h4 {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 18px;
-}
-.footer-links { display: grid; gap: 10px; }
-.footer a:hover { color: white; }
-.footer-bottom {
-    max-width: 1300px;
-    margin: 40px auto 0;
-    padding-top: 20px;
-    border-top: 1px solid #ffffff24;
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    font-size: 11px;
-    color: #b7a494;
-}
+    .logo-mark {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      color: var(--caramel);
+      font-size: 25px;
+    }
 
-/* NÚT LIÊN HỆ NỔI */
-.floating-contact {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 40;
-    display: grid;
-    gap: 10px;
-}
-.float-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    background: var(--caramel);
-    color: white;
-    box-shadow: 0 5px 18px #0002;
-    font-size: 20px;
-}
-.toast {
-    position: fixed;
-    left: 50%;
-    bottom: 25px;
-    transform: translate(-50%,150px);
-    background: var(--dark);
-    color: white;
-    padding: 13px 20px;
-    z-index: 100;
-    transition: .3s;
-    font-size: 13px;
-    max-width: 90%;
-    text-align: center;
-}
-.toast.show { transform: translate(-50%,0); }
+    .logo-name {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--dark);
+      letter-spacing: 1.3px;
+      line-height: 1.2;
+    }
 
-/* GIỎ HÀNG */
-.cart-panel {
-    position: fixed;
-    right: -420px;
-    top: 0;
-    width: min(400px,100%);
-    height: 100vh;
-    background: white;
-    z-index: 100;
-    box-shadow: -10px 0 40px #0002;
-    padding: 25px;
-    transition: right .3s;
-    display: flex;
-    flex-direction: column;
-}
-.cart-panel.open { right: 0; }
-.cart-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 15px;
-}
-.cart-head h3 { font: 25px Georgia,serif; }
-.cart-items { overflow: auto; flex: 1; padding: 15px 0; }
-.cart-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 13px;
-}
-.cart-row button { border: 0; background: none; color: #9c6b50; }
-.cart-total {
-    border-top: 1px solid var(--border);
-    padding-top: 18px;
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-}
-.cart-note { font-size: 12px; color: var(--gray); margin: 12px 0; }
-.empty { color: var(--gray); text-align: center; padding: 50px 0; }
+    .logo-tagline {
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      margin-top: 4px;
+    }
 
-/* TABLET */
-@media (max-width: 1050px) {
-    .nav-links { gap: 13px; }
-    .nav-links a { font-size: 10px; }
-    .brand-name { font-size: 17px; }
-    .products { grid-template-columns: repeat(2,minmax(0,1fr)); }
-    .footer-grid { grid-template-columns: repeat(2,1fr); }
-}
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+    }
 
-/* ĐIỆN THOẠI */
-@media (max-width: 760px) {
-    .announcement { font-size: 9px; letter-spacing: 1px; }
-    .nav-wrap { height: 70px; gap: 8px; }
-    .menu-toggle { display: block; }
-    .brand-mark { width: 36px; height: 36px; font-size: 21px; }
-    .brand-name { font-size: 15px; }
-    .brand-tag { font-size: 8px; letter-spacing: 1px; }
-    .nav-links {
-        display: none;
+    .nav a {
+      position: relative;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: .3px;
+      padding: 12px 0;
+      transition: color .2s;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 5px;
+      width: 0;
+      height: 2px;
+      background: var(--caramel);
+      transition: width .25s;
+    }
+
+    .nav a:hover {
+      color: var(--caramel);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      background: var(--dark);
+      color: white !important;
+      border-radius: 30px;
+      padding: 12px 18px !important;
+    }
+
+    .nav-cta::after {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      color: var(--dark);
+      border: 1px solid #d9c7b4;
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 22px;
+    }
+
+    /* Banner chính */
+    .hero {
+      position: relative;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(27, 17, 12, .83), rgba(27, 17, 12, .35)),
+        url("https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=2000&q=85")
+        center 52% / cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      padding: 100px 0;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.12;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    .hero h1 span {
+      color: #e6c49d;
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 570px;
+      color: #f2e9e0;
+      font-size: 17px;
+      margin-bottom: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--caramel);
+      color: white;
+      border: 1px solid var(--caramel);
+      border-radius: 3px;
+      padding: 14px 24px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .button:hover {
+      background: var(--dark);
+      border-color: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    .button-outline {
+      background: transparent;
+      border-color: rgba(255,255,255,.7);
+      margin-left: 10px;
+    }
+
+    .button-outline:hover {
+      background: white;
+      color: var(--dark);
+      border-color: white;
+    }
+
+    /* Thanh giá trị */
+    .features {
+      background: var(--cream);
+      border-bottom: 1px solid #eadfd2;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .feature {
+      padding: 25px 15px;
+      text-align: center;
+      border-right: 1px solid #e5d8c9;
+    }
+
+    .feature:last-child {
+      border-right: 0;
+    }
+
+    .feature-icon {
+      font-size: 25px;
+      margin-bottom: 6px;
+    }
+
+    .feature h3 {
+      color: var(--dark);
+      font-size: 13px;
+      letter-spacing: .5px;
+    }
+
+    .feature p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Tiêu đề các phần */
+    section {
+      scroll-margin-top: 90px;
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 45px;
+      text-align: center;
+    }
+
+    .section-heading .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .section-heading h2 {
+      color: var(--dark);
+      font-family: Georgia, serif;
+      font-size: clamp(30px, 4vw, 45px);
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* Giới thiệu */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 65px;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+      min-height: 500px;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
+    .about-badge {
+      position: absolute;
+      right: -20px;
+      bottom: 28px;
+      background: var(--dark);
+      color: white;
+      padding: 22px 25px;
+      max-width: 220px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-badge strong {
+      display: block;
+      color: #e6c49d;
+      font-family: Georgia, serif;
+      font-size: 28px;
+    }
+
+    .about-content .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .about-content h2 {
+      color: var(--dark);
+      font-family: Georgia, serif;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.2;
+      font-weight: 500;
+      margin-bottom: 22px;
+    }
+
+    .about-content p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .check-list {
+      list-style: none;
+      margin: 22px 0 30px;
+    }
+
+    .check-list li {
+      margin: 10px 0;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      display: inline-grid;
+      place-items: center;
+      width: 23px;
+      height: 23px;
+      background: #eee1d1;
+      color: var(--brown);
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    /* Sản phẩm */
+    .products-section {
+      background: var(--cream);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid #eee3d8;
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-image {
+      height: 270px;
+      overflow: hidden;
+      background: #e8ded1;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.06);
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-category {
+      color: var(--caramel);
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      font-weight: bold;
+    }
+
+    .product-info h3 {
+      color: var(--dark);
+      font-family: Georgia, serif;
+      font-size: 19px;
+      line-height: 1.4;
+      margin: 8px 0;
+    }
+
+    .product-info p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .product-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-top: 1px solid #eee3d8;
+      padding-top: 13px;
+    }
+
+    .price {
+      color: var(--brown);
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .small-link {
+      color: var(--caramel);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .center-button {
+      text-align: center;
+      margin-top: 38px;
+    }
+
+    /* Câu chuyện */
+    .story {
+      position: relative;
+      color: white;
+      background:
+        linear-gradient(rgba(45, 27, 18, .85), rgba(45, 27, 18, .85)),
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1800&q=85")
+        center / cover fixed;
+    }
+
+    .story .section-heading h2 {
+      color: white;
+    }
+
+    .story .section-heading p {
+      color: #e4d8cc;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .story-card {
+      padding: 30px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.2);
+      text-align: center;
+    }
+
+    .story-card .symbol {
+      color: #e6c49d;
+      font-size: 35px;
+      margin-bottom: 12px;
+    }
+
+    .story-card h3 {
+      font-family: Georgia, serif;
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .story-card p {
+      color: #e4d8cc;
+      font-size: 14px;
+    }
+
+    /* Tin tức */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .news-card {
+      border: 1px solid #eee3d8;
+      background: white;
+      transition: box-shadow .25s, transform .25s;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .news-image {
+      height: 230px;
+      overflow: hidden;
+    }
+
+    .news-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s;
+    }
+
+    .news-card:hover .news-image img {
+      transform: scale(1.05);
+    }
+
+    .news-info {
+      padding: 22px;
+    }
+
+    .news-info small {
+      color: var(--caramel);
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .news-info h3 {
+      color: var(--dark);
+      font-family: Georgia, serif;
+      font-size: 21px;
+      line-height: 1.4;
+      margin: 10px 0;
+    }
+
+    .news-info p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    /* Kêu gọi hành động */
+    .contact-banner {
+      background: #eadbc9;
+      padding: 55px 0;
+    }
+
+    .contact-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .contact-inner h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(27px, 3.5vw, 40px);
+      color: var(--dark);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .contact-inner p {
+      color: var(--muted);
+    }
+
+    /* Chân trang */
+    .footer {
+      background: var(--dark);
+      color: #e7d9ca;
+      padding: 65px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 35px;
+      padding-bottom: 45px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      color: white;
+      margin-bottom: 17px;
+    }
+
+    .footer h3 {
+      font-family: Georgia, serif;
+      font-size: 24px;
+    }
+
+    .footer p,
+    .footer li {
+      color: #cbb9a8;
+      font-size: 13px;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer li {
+      margin: 10px 0;
+    }
+
+    .footer a:hover {
+      color: #e6c49d;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 0;
+      font-size: 12px;
+      color: #cbb9a8;
+    }
+
+    /* Nút quay lên đầu trang */
+    .back-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 900;
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      border: none;
+      border-radius: 50%;
+      background: var(--caramel);
+      color: white;
+      font-size: 21px;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    /* Responsive cho điện thoại */
+    @media (max-width: 1000px) {
+      .nav {
+        gap: 13px;
+      }
+
+      .nav a {
+        font-size: 11px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .topbar {
+        font-size: 10px;
+      }
+
+      .nav-wrap {
+        min-height: 72px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav {
         position: absolute;
-        top: 70px;
+        display: none;
+        top: 100%;
         left: 0;
-        right: 0;
-        background: var(--white);
-        padding: 10px 6% 25px;
-        box-shadow: 0 15px 25px #0001;
+        width: 100%;
+        background: #fffdf9;
+        border-top: 1px solid #eadfd2;
+        box-shadow: var(--shadow);
+        padding: 12px 5% 22px;
         align-items: stretch;
         flex-direction: column;
         gap: 0;
+      }
+
+      .nav.open {
+        display: flex;
+      }
+
+      .nav a {
+        font-size: 13px;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0e6dc;
+      }
+
+      .nav a::after {
+        display: none;
+      }
+
+      .nav-cta {
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      .hero {
+        min-height: 540px;
+        background-position: 60% center;
+      }
+
+      .hero-content {
+        padding: 75px 0;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .button {
+        padding: 13px 16px;
+        font-size: 10px;
+      }
+
+      .button-outline {
+        margin-left: 5px;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .feature:nth-child(2) {
+        border-right: 0;
+      }
+
+      .feature:nth-child(-n+2) {
+        border-bottom: 1px solid #e5d8c9;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 38px;
+      }
+
+      .about-image,
+      .about-image img {
+        min-height: 340px;
+        height: 340px;
+      }
+
+      .about-badge {
+        right: 10px;
+      }
+
+      .story-grid,
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 230px;
+      }
+
+      .contact-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+      }
+
+      .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
-    .nav-links.open { display: flex; }
-    .nav-links a { padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
-    .nav-links a::after { display: none; }
-    .nav-actions { gap: 2px; }
-    .hero { min-height: 580px; background-position: 58% center; }
-    .hero-inner { padding: 65px 7%; }
-    .hero h1 { font-size: 48px; }
-    .hero p { font-size: 14px; }
-    .hero .btn { margin: 5px 5px 5px 0; }
-    .trust-strip { grid-template-columns: repeat(2,1fr); padding: 22px 5%; gap: 20px; }
-    .trust-item { justify-content: flex-start; border: 0; }
-    .trust-item strong { font-size: 10px; }
-    .trust-item span { font-size: 10px; }
-    .section { padding: 65px 5%; }
-    .products { gap: 12px; }
-    .product-image { height: 210px; }
-    .product-info { padding: 12px; }
-    .product-info h3 { font-size: 16px; }
-    .product-info p { font-size: 11px; min-height: 48px; }
-    .product-bottom { align-items: flex-start; flex-direction: column; }
-    .add-cart { width: 100%; }
-    .story { grid-template-columns: 1fr; }
-    .story-image { min-height: 320px; }
-    .story-copy { padding: 50px 7%; }
-    .features { grid-template-columns: 1fr; gap: 15px; }
-    .banner { padding: 42px 7%; flex-direction: column; align-items: flex-start; }
-    .journal-grid { grid-template-columns: 1fr; }
-    .journal-card img { height: 240px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
-    .footer-bottom { flex-direction: column; }
-    .newsletter-form button { padding: 0 12px; }
-    .btn-light { margin-left: 0; }
-}
-@media (max-width: 390px) {
-    .brand-name { font-size: 13px; }
-    .nav-wrap { padding: 0 3%; }
-    .product-image { height: 170px; }
-    .product-info h3 { font-size: 14px; }
-}
-</style>
+
+    @media (max-width: 430px) {
+      .logo-name {
+        font-size: 18px;
+      }
+
+      .logo-mark {
+        width: 42px;
+        height: 42px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 300px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="topbar">
+    ENJOY COFFEE — SẠCH TỪ NÔNG TRẠI · HƯƠNG VỊ TỪ THIÊN NHIÊN
+  </div>
 
-<!-- THANH THÔNG BÁO -->
-<div class="announcement">
-    TỪ NÔNG TRẠI ĐẾN TÁCH CÀ PHÊ · HƯƠNG VỊ CAO NGUYÊN VIỆT NAM
-</div>
-
-<!-- HEADER -->
-<header class="header">
-    <div class="nav-wrap">
-
-        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Mở menu">☰</button>
-
-        <a class="brand" href="#home">
-            <span class="brand-mark">E</span>
-            <span>
-                <span class="brand-name">ENJOY COFFEE</span>
-                <span class="brand-tag">SẠCH TỪ NÔNG TRẠI</span>
-            </span>
-        </a>
-
-        <nav class="nav-links" id="navLinks">
-            <a href="#home">Trang chủ</a>
-            <a href="#story">Giới thiệu</a>
-            <a href="#products">Sản phẩm</a>
-            <a href="#farm">Vùng nguyên liệu</a>
-            <a href="#journal">Tin tức</a>
-            <a href="#contact">Liên hệ</a>
-        </nav>
-
-        <div class="nav-actions">
-            <button class="icon-btn" id="searchToggle" aria-label="Tìm kiếm">⌕</button>
-            <button class="icon-btn" id="cartToggle" aria-label="Giỏ hàng">
-                ♧<span class="cart-count" id="cartCount">0</span>
-            </button>
-        </div>
-    </div>
-
-    <div class="search-panel" id="searchPanel">
-        <form id="searchForm">
-            <input id="searchInput" placeholder="Tìm cà phê, cacao, quà tặng..." aria-label="Tìm sản phẩm">
-            <button type="submit">TÌM KIẾM</button>
-        </form>
-    </div>
-</header>
-
-<main>
-
-<!-- TRANG CHỦ -->
-<section class="hero" id="home">
-    <div class="hero-inner">
-        <div class="eyebrow">Từ cao nguyên — bằng cả tâm huyết</div>
-        <h1>Mỗi tách cà phê<br>là một <em>câu chuyện.</em></h1>
-        <p>
-            Chọn lọc từ những hạt cà phê Việt Nam, gìn giữ hương vị tự nhiên
-            và lan tỏa giá trị thật từ nông trại đến từng khoảnh khắc của bạn.
-        </p>
-        <a class="btn" href="#products">Khám phá sản phẩm ↗</a>
-        <a class="btn btn-light" href="#story">Câu chuyện Enjoy</a>
-    </div>
-</section>
-
-<!-- CAM KẾT -->
-<div class="trust-strip">
-    <div class="trust-item">
-        <span class="trust-icon">✳</span>
-        <div><strong>Nguyên liệu chọn lọc</strong><span>Vùng nguyên liệu Việt Nam</span></div>
-    </div>
-    <div class="trust-item">
-        <span class="trust-icon">♨</span>
-        <div><strong>Rang xay tâm huyết</strong><span>Gìn giữ hương vị nguyên bản</span></div>
-    </div>
-    <div class="trust-item">
-        <span class="trust-icon">♧</span>
-        <div><strong>Gắn kết nông trại</strong><span>Đồng hành cùng người trồng</span></div>
-    </div>
-    <div class="trust-item">
-        <span class="trust-icon">♡</span>
-        <div><strong>Trao trọn trải nghiệm</strong><span>Từng sản phẩm có câu chuyện</span></div>
-    </div>
-</div>
-
-<!-- SẢN PHẨM -->
-<section class="section" id="products">
-    <div class="section-head">
-        <div class="kicker">Hương vị được tuyển chọn</div>
-        <h2>Sản phẩm nổi bật</h2>
-        <p>
-            Từ cà phê rang mộc đến cacao và những món quà mang hương vị cao nguyên.
-            Tìm thấy điều bạn yêu thích.
-        </p>
-    </div>
-
-    <div class="products" id="productGrid">
-
-        <article class="product-card" data-name="Cà phê Arabica">
-            <div class="product-image">
-                <span class="tag">Được yêu thích</span>
-                <img loading="lazy"
-                     src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=85"
-                     alt="Hạt cà phê rang Arabica">
-            </div>
-            <div class="product-info">
-                <div class="product-category">Cà phê · Arabica</div>
-                <h3>Cà phê Arabica 200g</h3>
-                <p>Hương thơm thanh tao, vị chua dịu và hậu vị tinh tế.</p>
-                <div class="product-bottom">
-                    <span class="price">110.000đ</span>
-                    <button class="add-cart" data-product="Cà phê Arabica 200g" data-price="110000">THÊM VÀO GIỎ +</button>
-                </div>
-            </div>
-        </article>
-
-        <article class="product-card" data-name="Cà phê Blend">
-            <div class="product-image">
-                <span class="tag">Cân bằng</span>
-                <img loading="lazy"
-                     src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=800&q=85"
-                     alt="Cà phê rang xay">
-            </div>
-            <div class="product-info">
-                <div class="product-category">Cà phê · Blend</div>
-                <h3>Cà phê Blend 250g</h3>
-                <p>Phối trộn hài hòa, phù hợp cho những ngày cần cảm hứng.</p>
-                <div class="product-bottom">
-                    <span class="price">90.000đ</span>
-                    <button class="add-cart" data-product="Cà phê Blend 250g" data-price="90000">THÊM VÀO GIỎ +</button>
-                </div>
-            </div>
-        </article>
-
-        <article class="product-card" data-name="Cà phê Classic">
-            <div class="product-image">
-                <span class="tag">Đậm đà</span>
-                <img loading="lazy"
-                     src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=85"
-                     alt="Cà phê đen và hạt cà phê">
-            </div>
-            <div class="product-info">
-                <div class="product-category">Cà phê · Classic</div>
-                <h3>Cà phê Classic 500g</h3>
-                <p>Vị đậm thân quen, dành cho người yêu ly cà phê truyền thống.</p>
-                <div class="product-bottom">
-                    <span class="price">175.000đ</span>
-                    <button class="add-cart" data-product="Cà phê Classic 500g" data-price="175000">THÊM VÀO GIỎ +</button>
-                </div>
-            </div>
-        </article>
-
-        <article class="product-card" data-name="Bột cacao nguyên chất">
-            <div class="product-image">
-                <span class="tag">Tự nhiên</span>
-                <img loading="lazy"
-                     src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=85"
-                     alt="Chocolate và cacao">
-            </div>
-            <div class="product-info">
-                <div class="product-category">Cacao · EJ Farm</div>
-                <h3>Bột cacao nguyên chất 500g</h3>
-                <p>Vị cacao sâu lắng, dùng pha uống hoặc sáng tạo món bánh.</p>
-                <div class="product-bottom">
-                    <span class="price">160.000đ</span>
-                    <button class="add-cart" data-product="Bột cacao nguyên chất 500g" data-price="160000">THÊM VÀO GIỎ +</button>
-                </div>
-            </div>
-        </article>
-
-    </div>
-
-    <div class="center-action">
-        <a class="btn outline-btn" href="https://ejfarm.vn/collections/ca-phe" target="_blank" rel="noopener">
-            Xem thêm sản phẩm ↗
-        </a>
-    </div>
-</section>
-
-<!-- CÂU CHUYỆN THƯƠNG HIỆU -->
-<section class="story" id="story">
-    <div class="story-image" role="img" aria-label="Không gian thưởng thức cà phê"></div>
-    <div class="story-copy">
-        <div class="kicker">Our story · Câu chuyện của chúng tôi</div>
-        <h2>Chân thật từ hạt cà phê đầu tiên.</h2>
-        <p>
-            Enjoy Coffee bắt đầu từ tình yêu dành cho hương vị nguyên bản của
-            đất trời cao nguyên. Một tách cà phê ngon không chỉ đến từ hạt chín
-            mọng, mà còn từ bàn tay và tâm huyết của người trồng, người rang và người pha.
-        </p>
-        <p>
-            Hành trình “từ nông trại đến tách cà phê” là lời cam kết kết nối với
-            người nông dân, chọn lọc nguyên liệu và gìn giữ những giá trị tự nhiên.
-        </p>
-        <div class="signature">Sạch từ nông trại — Enjoy Coffee</div>
-        <a class="btn" href="https://enjoycoffee.vn/" target="_blank" rel="noopener">Tìm hiểu thêm ↗</a>
-    </div>
-</section>
-
-<!-- VÙNG NGUYÊN LIỆU -->
-<section class="section" id="farm">
-    <div class="section-head">
-        <div class="kicker">Từ đất lành đến tách cà phê</div>
-        <h2>Giá trị bắt đầu từ nguồn gốc</h2>
-        <p>
-            Một hành trình được vun đắp qua từng công đoạn, với sự trân trọng
-            dành cho thiên nhiên và những người làm ra sản phẩm.
-        </p>
-    </div>
-
-    <div class="features">
-        <div class="feature">
-            <div class="num">01</div>
-            <h3>Chọn lọc nguyên liệu</h3>
-            <p>Ưu tiên nguyên liệu chất lượng từ Việt Nam, gắn với vùng trồng và những người nông dân tâm huyết.</p>
-        </div>
-        <div class="feature">
-            <div class="num">02</div>
-            <h3>Gìn giữ hương vị</h3>
-            <p>Chú trọng quy trình chế biến và rang xay để tôn lên nét riêng của từng dòng cà phê, cacao.</p>
-        </div>
-        <div class="feature">
-            <div class="num">03</div>
-            <h3>Kết nối bền vững</h3>
-            <p>Đồng hành cùng người trồng, góp phần lan tỏa giá trị nông sản Việt đến nhiều khách hàng hơn.</p>
-        </div>
-    </div>
-</section>
-
-<!-- BANNER QUẢNG BÁ -->
-<section class="banner">
-    <div>
-        <div class="kicker">Your daily ritual</div>
-        <h2>Dành một khoảng lặng cho hương vị thật.</h2>
-        <p>Chọn sản phẩm phù hợp với cách thưởng thức cà phê của riêng bạn.</p>
-    </div>
-    <a class="btn" href="#products">Chọn cà phê của bạn ↗</a>
-</section>
-
-<!-- TIN TỨC -->
-<section class="section" id="journal">
-    <div class="section-head">
-        <div class="kicker">Góc thưởng thức</div>
-        <h2>Câu chuyện cà phê</h2>
-        <p>Khám phá nguồn gốc, cách thưởng thức và văn hóa cà phê Việt.</p>
-    </div>
-
-    <div class="journal-grid">
-        <article class="journal-card">
-            <img loading="lazy"
-                 src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=85"
-                 alt="Cà phê vừa pha">
-            <div class="journal-body">
-                <div class="date">Kiến thức cà phê</div>
-                <h3>Vì sao hiểu nguồn gốc giúp bạn uống cà phê ngon hơn?</h3>
-                <p>Mỗi vùng nguyên liệu mang một sắc thái riêng. Hiểu câu chuyện phía sau hạt cà phê giúp bạn khám phá hương vị sâu sắc hơn.</p>
-                <a class="read-more" href="https://enjoycoffee.vn/" target="_blank" rel="noopener">Đọc câu chuyện ↗</a>
-            </div>
-        </article>
-
-        <article class="journal-card">
-            <img loading="lazy"
-                 src="https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=900&q=85"
-                 alt="Pha cà phê thủ công">
-            <div class="journal-body">
-                <div class="date">Bí quyết pha chế</div>
-                <h3>Một buổi sáng chậm rãi cùng cà phê phin</h3>
-                <p>Từ lượng cà phê, nhiệt độ nước đến thời gian chờ — những chi tiết nhỏ có thể làm nên một tách cà phê đáng nhớ.</p>
-                <a class="read-more" href="#products">Khám phá cà phê ↗</a>
-            </div>
-        </article>
-
-        <article class="journal-card">
-            <img loading="lazy"
-                 src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=900&q=85"
-                 alt="Chocolate thủ công">
-            <div class="journal-body">
-                <div class="date">Cacao & chocolate</div>
-                <h3>Vị cacao trong món quà tinh tế</h3>
-                <p>Cacao và chocolate là cách gửi trao hương vị, sự chăm chút và một chút ngọt ngào trong những dịp đặc biệt.</p>
-                <a class="read-more" href="https://ejfarm.vn/" target="_blank" rel="noopener">Khám phá EJ Farm ↗</a>
-            </div>
-        </article>
-    </div>
-</section>
-
-<!-- ĐĂNG KÝ NHẬN TIN -->
-<section class="newsletter">
-    <div class="kicker">Stay in the loop</div>
-    <h2>Thư từ Enjoy Coffee</h2>
-    <p>Đăng ký nhận tin để cập nhật câu chuyện, sản phẩm mới và cảm hứng thưởng thức cà phê.</p>
-    <form class="newsletter-form" id="newsletterForm">
-        <input type="email" id="newsletterEmail" placeholder="Địa chỉ email của bạn" aria-label="Địa chỉ email" required>
-        <button type="submit">ĐĂNG KÝ ↗</button>
-    </form>
-    <small id="newsletterMessage" style="display:block;margin-top:12px;color:#786c62"></small>
-</section>
-
-</main>
-
-<!-- CHÂN TRANG -->
-<footer class="footer" id="contact">
-    <div class="footer-grid">
+  <header class="header">
+    <div class="container nav-wrap">
+      <a class="logo" href="#home" aria-label="Enjoy Coffee - Trang chủ">
+        <div class="logo-mark">☕</div>
         <div>
-            <a class="brand" href="#home">
-                <span class="brand-mark">E</span>
-                <span>
-                    <span class="brand-name">ENJOY COFFEE</span>
-                    <span class="brand-tag">SẠCH TỪ NÔNG TRẠI</span>
-                </span>
+          <div class="logo-name">ENJOY COFFEE</div>
+          <div class="logo-tagline">SẠCH TỪ NÔNG TRẠI</div>
+        </div>
+      </a>
+
+      <button class="menu-toggle" id="menuToggle"
+              aria-label="Mở menu" aria-expanded="false">
+        ☰
+      </button>
+
+      <nav class="nav" id="mainNav">
+        <a href="#home">TRANG CHỦ</a>
+        <a href="#about">GIỚI THIỆU</a>
+        <a href="#products">SẢN PHẨM</a>
+        <a href="#story">GIÁ TRỊ</a>
+        <a href="#news">TIN TỨC</a>
+        <a href="#contact" class="nav-cta">LIÊN HỆ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Từ nông trại đến tách cà phê</div>
+          <h1>Đánh thức giác quan<br>với <span>cà phê sạch</span></h1>
+          <p>
+            Chúng tôi mong muốn mọi người Việt Nam đều có cơ hội
+            thưởng thức cà phê chất lượng, trọn vẹn hương vị và
+            an tâm về nguồn gốc.
+          </p>
+          <a class="button" href="#products">Khám phá sản phẩm <span>→</span></a>
+          <a class="button button-outline" href="#about">Về chúng tôi</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" aria-label="Giá trị Enjoy Coffee">
+      <div class="container feature-grid">
+        <div class="feature">
+          <div class="feature-icon">🌱</div>
+          <h3>NGUỒN GỐC RÕ RÀNG</h3>
+          <p>Quan tâm đến từng hạt cà phê</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">☕</div>
+          <h3>HƯƠNG VỊ NGUYÊN BẢN</h3>
+          <p>Trân trọng chất riêng của cà phê</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🤎</div>
+          <h3>CHẤT LƯỢNG TẬN TÂM</h3>
+          <p>Chú trọng trải nghiệm khách hàng</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🌏</div>
+          <h3>GIÁ TRỊ BỀN VỮNG</h3>
+          <p>Gắn kết nông trại và người thưởng thức</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-image">
+          <img
+            src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1100&q=85"
+            alt="Không gian thưởng thức cà phê"
+            loading="lazy">
+          <div class="about-badge">
+            <strong>Enjoy</strong>
+            Một hành trình thưởng thức cà phê đầy cảm hứng
+          </div>
+        </div>
+
+        <div class="about-content">
+          <div class="eyebrow">Câu chuyện thương hiệu</div>
+          <h2>Không chỉ là cà phê, đó là một hành trình</h2>
+          <p>
+            Với Enjoy Coffee, mỗi tách cà phê là sự kết nối giữa
+            đất đai, người trồng, quá trình chế biến và khoảnh khắc
+            thưởng thức của mỗi khách hàng.
+          </p>
+          <p>
+            Chúng tôi hướng đến việc mang lại trải nghiệm cà phê
+            chất lượng, gần gũi và dễ tiếp cận hơn với người Việt.
+          </p>
+
+          <ul class="check-list">
+            <li>Quan tâm đến chất lượng nguyên liệu</li>
+            <li>Đề cao sự minh bạch về nguồn gốc</li>
+            <li>Không ngừng cải thiện trải nghiệm khách hàng</li>
+          </ul>
+
+          <a href="#story" class="button">Khám phá câu chuyện</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section products-section" id="products">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Bộ sưu tập Enjoy Coffee</div>
+          <h2>Sản phẩm nổi bật</h2>
+          <p>
+            Khám phá các lựa chọn cà phê, chocolate và quà tặng
+            dành cho những người yêu thích hương vị tinh tế.
+          </p>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <a class="product-image" href="#contact">
+              <img
+                src="https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&w=700&q=85"
+                alt="Hạt cà phê rang"
+                loading="lazy">
             </a>
-            <p>Lan tỏa hương vị cà phê Việt Nam bằng sự chân thật, tâm huyết và kết nối bền vững từ nông trại đến người thưởng thức.</p>
+            <div class="product-info">
+              <div class="product-category">Cà phê</div>
+              <h3>Cà phê rang nguyên hạt</h3>
+              <p>Hương thơm nổi bật, phù hợp cho nhiều cách pha.</p>
+              <div class="product-bottom">
+                <span class="price">Liên hệ</span>
+                <a class="small-link" href="#contact">Tìm hiểu →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <a class="product-image" href="#contact">
+              <img
+                src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=700&q=85"
+                alt="Cà phê pha thủ công"
+                loading="lazy">
+            </a>
+            <div class="product-info">
+              <div class="product-category">Cà phê đặc sản</div>
+              <h3>Cà phê thưởng thức mỗi ngày</h3>
+              <p>Lựa chọn dành cho những khoảnh khắc chậm rãi.</p>
+              <div class="product-bottom">
+                <span class="price">Liên hệ</span>
+                <a class="small-link" href="#contact">Tìm hiểu →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <a class="product-image" href="#contact">
+              <img
+                src="https://images.unsplash.com/photo-1548907040-4d42bfc2c8d7?auto=format&fit=crop&w=700&q=85"
+                alt="Chocolate thủ công"
+                loading="lazy">
+            </a>
+            <div class="product-info">
+              <div class="product-category">Chocolate</div>
+              <h3>Chocolate tinh tế</h3>
+              <p>Món quà ngọt ngào cho những dịp đặc biệt.</p>
+              <div class="product-bottom">
+                <span class="price">Liên hệ</span>
+                <a class="small-link" href="#contact">Tìm hiểu →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <a class="product-image" href="#contact">
+              <img
+                src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=700&q=85"
+                alt="Hộp quà tặng"
+                loading="lazy">
+            </a>
+            <div class="product-info">
+              <div class="product-category">Quà tặng</div>
+              <h3>Set quà tặng cao cấp</h3>
+              <p>Trao gửi sự trân trọng qua những món quà chỉn chu.</p>
+              <div class="product-bottom">
+                <span class="price">Liên hệ</span>
+                <a class="small-link" href="#contact">Tìm hiểu →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="center-button">
+          <a href="#contact" class="button">Hỏi về sản phẩm</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section story" id="story">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Điều chúng tôi theo đuổi</div>
+          <h2>Giá trị trong từng tách cà phê</h2>
+          <p>
+            Chất lượng không chỉ nằm ở hương vị, mà còn ở sự
+            quan tâm đến toàn bộ hành trình tạo nên sản phẩm.
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <article class="story-card">
+            <div class="symbol">🌿</div>
+            <h3>Từ nông trại</h3>
+            <p>
+              Chú trọng nguyên liệu và nguồn gốc để mỗi sản phẩm
+              có câu chuyện rõ ràng.
+            </p>
+          </article>
+
+          <article class="story-card">
+            <div class="symbol">♨</div>
+            <h3>Đến chế biến</h3>
+            <p>
+              Tôn trọng đặc tính nguyên liệu và hướng đến trải
+              nghiệm hương vị hài hòa.
+            </p>
+          </article>
+
+          <article class="story-card">
+            <div class="symbol">♡</div>
+            <h3>Trao đến bạn</h3>
+            <p>
+              Mong mỗi lần thưởng thức đều trở thành một khoảnh
+              khắc đáng nhớ trong ngày.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="news">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Góc Enjoy Coffee</div>
+          <h2>Tin tức & cảm hứng</h2>
+          <p>
+            Những câu chuyện về cà phê, chocolate và nghệ thuật
+            thưởng thức hương vị.
+          </p>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card">
+            <a href="#contact" class="news-image">
+              <img
+                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=85"
+                alt="Pha chế cà phê"
+                loading="lazy">
+            </a>
+            <div class="news-info">
+              <small>Kiến thức cà phê</small>
+              <h3>Điều gì tạo nên một tách cà phê ngon?</h3>
+              <p>
+                Tìm hiểu về nguyên liệu, cách pha và những yếu tố
+                ảnh hưởng đến hương vị.
+              </p>
+              <a class="small-link" href="#contact">Đọc thêm →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <a href="#contact" class="news-image">
+              <img
+                src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&w=900&q=85"
+                alt="Chocolate làm quà tặng"
+                loading="lazy">
+            </a>
+            <div class="news-info">
+              <small>Chocolate</small>
+              <h3>Chocolate – món quà của những cảm xúc</h3>
+              <p>
+                Một lựa chọn tinh tế để gửi gắm lời chúc và sự
+                quan tâm đến người thân.
+              </p>
+              <a class="small-link" href="#contact">Đọc thêm →</a>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <a href="#contact" class="news-image">
+              <img
+                src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=85"
+                alt="Hạt cà phê và nông trại"
+                loading="lazy">
+            </a>
+            <div class="news-info">
+              <small>Hành trình cà phê</small>
+              <h3>Hiểu nguồn gốc để thưởng thức trọn vẹn hơn</h3>
+              <p>
+                Khám phá mối liên hệ giữa vùng trồng, hạt cà phê
+                và trải nghiệm trong tách.
+              </p>
+              <a class="small-link" href="#contact">Đọc thêm →</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-banner" id="contact">
+      <div class="container contact-inner">
+        <div>
+          <h2>Cùng tìm hương vị dành riêng cho bạn</h2>
+          <p>Liên hệ Enjoy Coffee để tìm hiểu sản phẩm và các lựa chọn quà tặng.</p>
+        </div>
+        <a class="button" href="mailto:hello@enjoycoffee.id.vn">
+          Gửi email liên hệ →
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3>ENJOY COFFEE</h3>
+          <p>
+            Sạch từ nông trại. Hướng đến những trải nghiệm cà phê
+            chất lượng, gần gũi và giàu cảm hứng.
+          </p>
         </div>
 
         <div>
-            <h4>Khám phá</h4>
-            <div class="footer-links">
-                <a href="#story">Câu chuyện thương hiệu</a>
-                <a href="#products">Sản phẩm</a>
-                <a href="#farm">Vùng nguyên liệu</a>
-                <a href="#journal">Tin tức & kiến thức</a>
-            </div>
+          <h4>ĐIỀU HƯỚNG</h4>
+          <ul>
+            <li><a href="#home">Trang chủ</a></li>
+            <li><a href="#about">Giới thiệu</a></li>
+            <li><a href="#products">Sản phẩm</a></li>
+            <li><a href="#news">Tin tức</a></li>
+          </ul>
         </div>
 
         <div>
-            <h4>Hỗ trợ khách hàng</h4>
-            <div class="footer-links">
-                <a href="https://ejfarm.vn/" target="_blank" rel="noopener">Mua sắm trực tuyến</a>
-                <a href="https://enjoycoffee.vn/" target="_blank" rel="noopener">Website chính thức</a>
-                <a href="#contact">Thông tin liên hệ</a>
-            </div>
+          <h4>KHÁM PHÁ</h4>
+          <ul>
+            <li><a href="#story">Giá trị thương hiệu</a></li>
+            <li><a href="#products">Cà phê</a></li>
+            <li><a href="#products">Chocolate</a></li>
+            <li><a href="#contact">Quà tặng</a></li>
+          </ul>
         </div>
 
         <div>
-            <h4>Liên hệ</h4>
-            <p>Gia Nghĩa, Việt Nam</p>
-            <p>Hotline: <a href="tel:026165444567">0261 654 4567</a></p>
-            <p>Email: <a href="mailto:bazandaknong@gmail.com">bazandaknong@gmail.com</a></p>
-            <p><a href="https://www.facebook.com/enjoycoffee.vn/" target="_blank" rel="noopener">Facebook Enjoy Coffee ↗</a></p>
+          <h4>LIÊN HỆ</h4>
+          <ul>
+            <li>Website: enjoycoffee.id.vn</li>
+            <li>Email: hello@enjoycoffee.id.vn</li>
+            <li><a href="https://www.facebook.com/enjoycf.vn/"
+                   target="_blank" rel="noopener noreferrer">Facebook Enjoy Coffee ↗</a></li>
+            <li><a href="https://www.instagram.com/enjoycoffee.vn/"
+                   target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
+          </ul>
         </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> Enjoy Coffee. All rights reserved.</span>
+        <span>Sạch từ nông trại · Hương vị từ thiên nhiên</span>
+      </div>
     </div>
+  </footer>
 
-    <div class="footer-bottom">
-        <span>© <span id="year"></span> ENJOY COFFEE. Giao diện website mới.</span>
-        <span>Hương vị thật · Giá trị bền vững · Từ cao nguyên Việt Nam</span>
-    </div>
-</footer>
+  <button class="back-top" id="backTop" aria-label="Quay lên đầu trang">
+    ↑
+  </button>
 
-<!-- NÚT LIÊN HỆ NỔI -->
-<div class="floating-contact">
-    <a class="float-btn" href="tel:026165444567" aria-label="Gọi điện">☎</a>
-    <a class="float-btn" href="https://www.facebook.com/enjoycoffee.vn/" target="_blank" rel="noopener" aria-label="Facebook">f</a>
-</div>
+  <script>
+    // Mở/đóng menu trên điện thoại
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
 
-<!-- THÔNG BÁO -->
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<!-- GIỎ HÀNG -->
-<aside class="cart-panel" id="cartPanel" aria-label="Giỏ hàng">
-    <div class="cart-head">
-        <h3>Giỏ hàng của bạn</h3>
-        <button class="icon-btn" id="closeCart" aria-label="Đóng giỏ hàng">×</button>
-    </div>
-
-    <div class="cart-items" id="cartItems">
-        <div class="empty">Giỏ hàng đang trống.<br>Hãy chọn một hương vị bạn yêu thích.</div>
-    </div>
-
-    <div class="cart-total">
-        <span>Tạm tính</span>
-        <span id="cartTotal">0đ</span>
-    </div>
-
-    <p class="cart-note">
-        Giỏ hàng này là bản minh họa giao diện. Cần kết nối hệ thống bán hàng
-        để xử lý đơn đặt hàng và thanh toán thực tế.
-    </p>
-
-    <a class="btn" href="https://ejfarm.vn/" target="_blank" rel="noopener" style="width:100%;margin-top:8px">
-        Tiếp tục mua hàng ↗
-    </a>
-</aside>
-
-<script>
-const $ = selector => document.querySelector(selector);
-const $$ = selector => [...document.querySelectorAll(selector)];
-
-const navLinks = $("#navLinks");
-const searchPanel = $("#searchPanel");
-const cartPanel = $("#cartPanel");
-const toast = $("#toast");
-
-let cart = [];
-
-function showToast(message) {
-    toast.textContent = message;
-    toast.classList.add("show");
-    clearTimeout(showToast.timer);
-    showToast.timer = setTimeout(() => {
-        toast.classList.remove("show");
-    }, 2600);
-}
-
-/* MENU ĐIỆN THOẠI */
-$("#menuToggle").addEventListener("click", () => {
-    navLinks.classList.toggle("open");
-});
-
-$$("#navLinks a").forEach(link => {
-    link.addEventListener("click", () => navLinks.classList.remove("open"));
-});
-
-/* TÌM KIẾM SẢN PHẨM */
-$("#searchToggle").addEventListener("click", () => {
-    searchPanel.classList.toggle("open");
-    if (searchPanel.classList.contains("open")) {
-        $("#searchInput").focus();
-    }
-});
-
-$("#searchForm").addEventListener("submit", event => {
-    event.preventDefault();
-
-    const query = $("#searchInput").value.trim().toLocaleLowerCase("vi");
-    let found = 0;
-
-    $$(".product-card").forEach(card => {
-        const content = (
-            card.dataset.name + " " + card.innerText
-        ).toLocaleLowerCase("vi");
-
-        const visible = !query || content.includes(query);
-        card.style.display = visible ? "" : "none";
-
-        if (visible) found++;
+    menuToggle.addEventListener("click", function () {
+      const isOpen = mainNav.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕" : "☰";
     });
 
-    $("#products").scrollIntoView({ behavior: "smooth" });
-
-    if (!query) {
-        showToast("Đang hiển thị sản phẩm nổi bật.");
-    } else if (found) {
-        showToast("Tìm thấy " + found + " sản phẩm phù hợp.");
-    } else {
-        showToast("Chưa tìm thấy sản phẩm phù hợp.");
-    }
-
-    searchPanel.classList.remove("open");
-});
-
-/* GIỎ HÀNG */
-function money(amount) {
-    return amount.toLocaleString("vi-VN") + "đ";
-}
-
-function renderCart() {
-    const quantity = cart.reduce((sum, item) => sum + item.qty, 0);
-    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-
-    $("#cartCount").textContent = quantity;
-    $("#cartTotal").textContent = money(total);
-
-    if (!cart.length) {
-        $("#cartItems").innerHTML =
-            '<div class="empty">Giỏ hàng đang trống.<br>Hãy chọn một hương vị bạn yêu thích.</div>';
-        return;
-    }
-
-    $("#cartItems").innerHTML = cart.map((item, index) => `
-        <div class="cart-row">
-            <div>
-                <strong>${item.name}</strong><br>
-                <span>${money(item.price)} × ${item.qty}</span>
-            </div>
-            <div>
-                <strong>${money(item.price * item.qty)}</strong><br>
-                <button type="button" data-remove="${index}">Xóa</button>
-            </div>
-        </div>
-    `).join("");
-
-    $$("[data-remove]").forEach(button => {
-        button.addEventListener("click", () => {
-            cart.splice(Number(button.dataset.remove), 1);
-            renderCart();
-        });
+    // Đóng menu sau khi chọn một mục
+    mainNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        mainNav.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
     });
-}
 
-/* THÊM SẢN PHẨM */
-$$(".add-cart").forEach(button => {
-    button.addEventListener("click", () => {
-        const name = button.dataset.product;
-        const price = Number(button.dataset.price);
-        const existing = cart.find(item => item.name === name);
+    // Năm hiện tại ở chân trang
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
 
-        if (existing) {
-            existing.qty++;
-        } else {
-            cart.push({ name, price, qty: 1 });
-        }
+    // Nút quay lên đầu trang
+    const backTop = document.getElementById("backTop");
 
-        renderCart();
-        showToast("Đã thêm " + name + " vào giỏ hàng.");
+    backTop.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     });
-});
 
-$("#cartToggle").addEventListener("click", () => {
-    cartPanel.classList.add("open");
-});
-
-$("#closeCart").addEventListener("click", () => {
-    cartPanel.classList.remove("open");
-});
-
-/* ĐÓNG CÁC MENU BẰNG PHÍM ESCAPE */
-document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-        cartPanel.classList.remove("open");
-        searchPanel.classList.remove("open");
-        navLinks.classList.remove("open");
+    // Ẩn nút khi đang ở gần đầu trang
+    function updateBackTop() {
+      backTop.style.display = window.scrollY > 350 ? "grid" : "none";
     }
-});
 
-/* FORM ĐĂNG KÝ NHẬN TIN DEMO */
-$("#newsletterForm").addEventListener("submit", event => {
-    event.preventDefault();
-
-    $("#newsletterMessage").textContent =
-        "Cảm ơn bạn! Đây là giao diện mẫu, chưa kết nối hệ thống lưu email.";
-
-    $("#newsletterEmail").value = "";
-});
-
-/* NĂM HIỆN TẠI */
-$("#year").textContent = new Date().getFullYear();
-</script>
-
+    window.addEventListener("scroll", updateBackTop);
+    updateBackTop();
+  </script>
 </body>
 </html>
