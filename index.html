@@ -142,7 +142,7 @@
       color: var(--accent);
     }
 
-    /* Submenu */
+    /* Submenu Dropdown */
     .has-dropdown {
       position: relative;
     }
@@ -154,7 +154,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 12px 0;
+      padding: 8px 0;
       min-width: 200px;
       opacity: 0;
       visibility: hidden;
@@ -174,6 +174,7 @@
       padding: 10px 20px;
       font-size: 0.9rem;
       color: var(--text-muted);
+      width: 100%;
     }
 
     .dropdown-menu a:hover {
@@ -269,7 +270,7 @@
     /* Section Titles */
     .section-title {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 36px;
     }
 
     .section-title h2 {
@@ -419,6 +420,34 @@
       scroll-margin-top: 80px;
     }
 
+    /* Category Filter Tabs */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 10px 24px;
+      border-radius: 25px;
+      border: 1px solid var(--border);
+      background: var(--bg-main);
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--accent);
+      color: #FFFFFF;
+      border-color: var(--accent);
+      box-shadow: 0 4px 15px rgba(230, 81, 0, 0.25);
+    }
+
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -431,7 +460,11 @@
       border-radius: 16px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: transform 0.3s ease, border-color 0.3s ease;
+      transition: all 0.4s ease;
+    }
+
+    .product-card.hidden {
+      display: none;
     }
 
     .product-card:hover {
@@ -590,21 +623,20 @@
   <!-- HEADER -->
   <header>
     <div class="container header-inner">
-      <!-- Đã bỏ badge .ID.VN -->
       <a href="#" class="logo-text">
         ENJOY COFFEE
       </a>
 
-      <!-- Menu cuộn trang mượt -->
+      <!-- Menu xử lý cuộn và lọc sản phẩm chính xác -->
       <nav>
         <ul>
           <li class="has-dropdown">
-            <a href="#products" class="nav-link">Sản phẩm</a>
+            <a href="#products" class="nav-link" data-filter="all">Sản phẩm</a>
             <div class="dropdown-menu">
-              <a href="#products" class="nav-link">Cà phê</a>
-              <a href="#products" class="nav-link">Macca</a>
-              <a href="#products" class="nav-link">Cacao - Socola</a>
-              <a href="#products" class="nav-link">Sản phẩm khác</a>
+              <a href="#products" class="nav-link filter-trigger" data-filter="ca-phe">Cà phê</a>
+              <a href="#products" class="nav-link filter-trigger" data-filter="macca">Macca</a>
+              <a href="#products" class="nav-link filter-trigger" data-filter="cacao">Cacao - Socola</a>
+              <a href="#products" class="nav-link filter-trigger" data-filter="khac">Sản phẩm khác</a>
             </div>
           </li>
           <li><a href="#about" class="nav-link">Giới thiệu</a></li>
@@ -625,7 +657,7 @@
           <span class="hero-tag">Sạch Từ Nông Trại</span>
           <h1 class="hero-title">Thưởng Thức Cà Phê Nguyên Bản Đà Lạt</h1>
           <p class="hero-desc">Hành trình từ nông trại Lâm Đồng đến tách cà phê thơm nồng đậm đà bản sắc cao nguyên.</p>
-          <a href="#products" class="btn nav-link">Khám phá sản phẩm</a>
+          <a href="#products" class="btn nav-link" data-filter="all">Khám phá sản phẩm</a>
         </div>
       </div>
     </div>
@@ -636,7 +668,7 @@
           <span class="hero-tag">Thủ Công & Tinh Tế</span>
           <h1 class="hero-title">Hương Vị Cacao & Socola Cao Cấp</h1>
           <p class="hero-desc">Từng mẻ cacao, socola được chọn lựa kỹ lưỡng và rang xay thủ công tại EJ Farm.</p>
-          <a href="#products" class="btn nav-link">Xem danh mục Socola</a>
+          <a href="#products" class="btn nav-link" data-filter="cacao">Xem danh mục Socola</a>
         </div>
       </div>
     </div>
@@ -706,7 +738,7 @@
     </div>
   </section>
 
-  <!-- PRODUCTS SECTION -->
+  <!-- PRODUCTS SECTION & FILTER -->
   <section class="products" id="products">
     <div class="container">
       <div class="section-title">
@@ -714,17 +746,38 @@
         <h2>SẢN PHẨM NỔI BẬT</h2>
       </div>
 
+      <!-- Thanh Nút Bấm Lọc Danh Mục -->
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">Tất cả</button>
+        <button class="filter-btn" data-filter="ca-phe">Cà phê</button>
+        <button class="filter-btn" data-filter="macca">Macca</button>
+        <button class="filter-btn" data-filter="cacao">Cacao - Socola</button>
+        <button class="filter-btn" data-filter="khac">Sản phẩm khác</button>
+      </div>
+
       <div class="product-grid">
-        <div class="product-card">
-          <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/Hong-treo-gio-1.jpg');"></div>
+        <!-- Sản phẩm 1: Cà phê -->
+        <div class="product-card" data-category="ca-phe">
+          <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2023/11/z4524010787471_cc828453379c1f5677b7268b5c5d8535.jpg');"></div>
           <div class="product-info">
-            <div class="product-cate">Sản phẩm khác</div>
-            <div class="product-title">Hồng treo gió EJ Farm – Đặc sản Đà Lạt</div>
-            <div class="product-price">250.000 đ</div>
+            <div class="product-cate">Cà phê</div>
+            <div class="product-title">Cà Phê Moka Cầu Đất Nguyên Hạt (500g)</div>
+            <div class="product-price">180.000 đ</div>
           </div>
         </div>
 
-        <div class="product-card">
+        <!-- Sản phẩm 2: Macca -->
+        <div class="product-card" data-category="macca">
+          <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/Hong-treo-gio-1.jpg');"></div>
+          <div class="product-info">
+            <div class="product-cate">Macca</div>
+            <div class="product-title">Hạt Macca Sấy Nứt Vỏ Lâm Đồng (500g)</div>
+            <div class="product-price">160.000 đ</div>
+          </div>
+        </div>
+
+        <!-- Sản phẩm 3: Cacao - Socola -->
+        <div class="product-card" data-category="cacao">
           <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/z7457053031599_1387c145ece8bdec8bf10c52ec5f9ec3_ea4fab2fa0064c98b1082868dabeefc3_master-1.jpg');"></div>
           <div class="product-info">
             <div class="product-cate">Cacao - Socola</div>
@@ -733,7 +786,18 @@
           </div>
         </div>
 
-        <div class="product-card">
+        <!-- Sản phẩm 4: Khác -->
+        <div class="product-card" data-category="khac">
+          <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/Hong-treo-gio-1.jpg');"></div>
+          <div class="product-info">
+            <div class="product-cate">Sản phẩm khác</div>
+            <div class="product-title">Hồng treo gió EJ Farm – Đặc sản Đà Lạt</div>
+            <div class="product-price">250.000 đ</div>
+          </div>
+        </div>
+
+        <!-- Sản phẩm 5: Set quà -->
+        <div class="product-card" data-category="khac">
           <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/Set-1010k-2.jpg');"></div>
           <div class="product-info">
             <div class="product-cate">Set Quà Tặng</div>
@@ -742,7 +806,8 @@
           </div>
         </div>
 
-        <div class="product-card">
+        <!-- Sản phẩm 6: Set quà -->
+        <div class="product-card" data-category="khac">
           <div class="product-img" style="background-image: url('https://enjoycoffee.vn/wp-content/uploads/2026/01/Set-950k-2.jpg');"></div>
           <div class="product-info">
             <div class="product-cate">Set Quà Tặng</div>
@@ -777,7 +842,7 @@
           <div class="blog-info">
             <div class="blog-title">QUÀ TẾT CAO CẤP – CHOCOLATE NGÀY TẾT | ENJOY COFFEE</div>
             <p class="blog-desc">Xu hướng quà tặng đang thay đổi – tinh tế hơn, gọn gàng hơn và có câu chuyện rõ ràng hơn với socola thủ công từ cacao nguyên chất...</p>
-            <a href="#products" class="blog-link nav-link">Xem set quà →</a>
+            <a href="#products" class="blog-link filter-trigger" data-filter="cacao">Xem set quà →</a>
           </div>
         </div>
 
@@ -786,7 +851,7 @@
           <div class="blog-info">
             <div class="blog-title">SOCOLA VALENTINE CAO CẤP – BONBON THỦ CÔNG</div>
             <p class="blog-desc">Tại Enjoy Chocolate, chúng tôi tin rằng Socola Bonbon không chỉ là món ăn mà là nghệ thuật truyền tải cảm xúc trọn vẹn...</p>
-            <a href="#products" class="blog-link nav-link">Xem sản phẩm →</a>
+            <a href="#products" class="blog-link filter-trigger" data-filter="cacao">Xem sản phẩm →</a>
           </div>
         </div>
       </div>
@@ -805,7 +870,7 @@
           <h4>LIÊN KẾT NHANH</h4>
           <ul>
             <li><a href="#about" class="nav-link">Giới thiệu</a></li>
-            <li><a href="#products" class="nav-link">Sản phẩm</a></li>
+            <li><a href="#products" class="nav-link" data-filter="all">Sản phẩm</a></li>
             <li><a href="#blog" class="nav-link">Tin tức</a></li>
             <li><a href="#footer" class="nav-link">Liên hệ</a></li>
           </ul>
@@ -826,9 +891,9 @@
     </div>
   </footer>
 
-  <!-- JAVASCRIPT XỬ LÝ NÚT BẤM VÀ SLIDER -->
+  <!-- JAVASCRIPT XỬ LÝ LỌC SẢN PHẨM & CUỘN MƯỢT -->
   <script>
-    // 1. Slider Banner
+    // 1. Slider
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
 
@@ -839,11 +904,52 @@
     }
     setInterval(nextSlide, 5000);
 
-    // 2. Xử lý click thanh công cụ / menu cuộn trang
+    // 2. Hàm Lọc Sản Phẩm (Filter)
+    function filterProducts(category) {
+      const cards = document.querySelectorAll('.product-card');
+      const filterBtns = document.querySelectorAll('.filter-btn');
+
+      // Đổi trạng thái active cho nút tab
+      filterBtns.forEach(btn => {
+        if (btn.getAttribute('data-filter') === category) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Lọc danh sách sản phẩm
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-category');
+        if (category === 'all' || cardCat === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Gắn sự kiện click cho các nút lọc tại danh mục sản phẩm
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const cat = this.getAttribute('data-filter');
+        filterProducts(cat);
+      });
+    });
+
+    // 3. Xử lý Cuộn Trang + Lọc Sản Phẩm từ Menu Header
     document.querySelectorAll('.nav-link').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
+        const filterCat = this.getAttribute('data-filter');
+
+        // Nếu có chọn danh mục, tiến hành lọc
+        if (filterCat) {
+          filterProducts(filterCat);
+        }
+
+        // Cuộn mượt đến phần tương ứng
         if (targetId && targetId !== '#') {
           const targetElement = document.querySelector(targetId);
           if (targetElement) {
