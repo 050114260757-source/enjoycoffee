@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>ENJOY COFFEE | Sạch từ nông trại - Đà Lạt & Đắk Nông</title>
   
-  <!-- SEO & Canonical chuẩn cho tên miền enjoycoffee.id.vn -->
+  <!-- SEO & Canonical chuẩn -->
   <link rel="canonical" href="https://enjoycoffee.id.vn/" />
   <meta name="description" content="Chúng tôi mong muốn tất cả mọi người dân Việt Nam đều được thưởng thức cà phê sạch! Cà phê đặc sản, cacao thủ công từ nông trại.">
   <meta property="og:locale" content="vi_VN" />
@@ -26,10 +26,10 @@
     :root {
       --bg-main: #FAFAFA;
       --bg-card: #FFFFFF;
-      --accent: #E65100; /* Cam cà phê chín tươi sáng */
+      --accent: #E65100;
       --accent-hover: #BF360C;
       --accent-light: #FFF3E0;
-      --primary-dark: #2C1810; /* Nâu hạt cà phê đậm */
+      --primary-dark: #2C1810;
       --text-main: #332722;
       --text-muted: #665851;
       --border: #FFE0B2;
@@ -60,6 +60,7 @@
       color: inherit;
       text-decoration: none;
       transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     img {
@@ -81,7 +82,7 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(230, 81, 0, 0.12);
       box-shadow: 0 2px 15px rgba(0,0,0,0.04);
@@ -97,25 +98,12 @@
 
     .logo-text {
       font-family: var(--font-heading);
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: var(--primary-dark);
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    .logo-text span {
-      color: var(--accent);
-      font-size: 0.8rem;
-      font-family: var(--font-body);
-      background: var(--accent-light);
-      border: 1px solid var(--border);
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-weight: 700;
-      letter-spacing: 1px;
     }
 
     nav ul {
@@ -130,6 +118,7 @@
       color: var(--text-main);
       position: relative;
       padding: 8px 0;
+      display: inline-block;
     }
 
     nav a::after {
@@ -304,6 +293,7 @@
       padding: 100px 0;
       background: var(--bg-card);
       border-bottom: 1px solid var(--border);
+      scroll-margin-top: 80px;
     }
 
     .about-grid {
@@ -371,6 +361,7 @@
     /* Menu Section */
     .menu-section {
       padding: 100px 0;
+      scroll-margin-top: 80px;
     }
 
     .menu-grid {
@@ -425,6 +416,7 @@
       background: var(--bg-card);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
+      scroll-margin-top: 80px;
     }
 
     .product-grid {
@@ -483,6 +475,7 @@
     /* Blog Section */
     .blog {
       padding: 100px 0;
+      scroll-margin-top: 80px;
     }
 
     .blog-grid {
@@ -539,6 +532,7 @@
       padding: 60px 0 30px;
       color: #FFE0B2;
       font-size: 0.9rem;
+      scroll-margin-top: 80px;
     }
 
     .footer-grid {
@@ -596,26 +590,27 @@
   <!-- HEADER -->
   <header>
     <div class="container header-inner">
+      <!-- Đã bỏ badge .ID.VN -->
       <a href="#" class="logo-text">
-        ENJOY COFFEE <span>.ID.VN</span>
+        ENJOY COFFEE
       </a>
 
-      <!-- Menu dùng Anchor Link (#) tránh lỗi 404 trên GitHub Pages -->
+      <!-- Menu cuộn trang mượt -->
       <nav>
         <ul>
           <li class="has-dropdown">
-            <a href="#products">Sản phẩm</a>
+            <a href="#products" class="nav-link">Sản phẩm</a>
             <div class="dropdown-menu">
-              <a href="#products">Cà phê</a>
-              <a href="#products">Macca</a>
-              <a href="#products">Cacao - Socola</a>
-              <a href="#products">Sản phẩm khác</a>
+              <a href="#products" class="nav-link">Cà phê</a>
+              <a href="#products" class="nav-link">Macca</a>
+              <a href="#products" class="nav-link">Cacao - Socola</a>
+              <a href="#products" class="nav-link">Sản phẩm khác</a>
             </div>
           </li>
-          <li><a href="#about">Giới thiệu</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#blog">Tin tức</a></li>
-          <li><a href="#footer">Liên hệ</a></li>
+          <li><a href="#about" class="nav-link">Giới thiệu</a></li>
+          <li><a href="#menu" class="nav-link">Menu</a></li>
+          <li><a href="#blog" class="nav-link">Tin tức</a></li>
+          <li><a href="#footer" class="nav-link">Liên hệ</a></li>
         </ul>
       </nav>
     </div>
@@ -630,7 +625,7 @@
           <span class="hero-tag">Sạch Từ Nông Trại</span>
           <h1 class="hero-title">Thưởng Thức Cà Phê Nguyên Bản Đà Lạt</h1>
           <p class="hero-desc">Hành trình từ nông trại Lâm Đồng đến tách cà phê thơm nồng đậm đà bản sắc cao nguyên.</p>
-          <a href="#products" class="btn">Khám phá sản phẩm</a>
+          <a href="#products" class="btn nav-link">Khám phá sản phẩm</a>
         </div>
       </div>
     </div>
@@ -641,7 +636,7 @@
           <span class="hero-tag">Thủ Công & Tinh Tế</span>
           <h1 class="hero-title">Hương Vị Cacao & Socola Cao Cấp</h1>
           <p class="hero-desc">Từng mẻ cacao, socola được chọn lựa kỹ lưỡng và rang xay thủ công tại EJ Farm.</p>
-          <a href="#products" class="btn">Xem danh mục Socola</a>
+          <a href="#products" class="btn nav-link">Xem danh mục Socola</a>
         </div>
       </div>
     </div>
@@ -773,7 +768,7 @@
           <div class="blog-info">
             <div class="blog-title">VÌ SAO HIỂU NGUỒN GỐC GIÚP BẠN UỐNG CÀ PHÊ NGON HƠN?</div>
             <p class="blog-desc">Khi một tách cà phê không chỉ là thức uống, mà là câu chuyện của vùng đất. Sự khác biệt nằm ở triết lý làm cà phê từ nông trại...</p>
-            <a href="#about" class="blog-link">Tìm hiểu thêm →</a>
+            <a href="#about" class="blog-link nav-link">Tìm hiểu thêm →</a>
           </div>
         </div>
 
@@ -782,7 +777,7 @@
           <div class="blog-info">
             <div class="blog-title">QUÀ TẾT CAO CẤP – CHOCOLATE NGÀY TẾT | ENJOY COFFEE</div>
             <p class="blog-desc">Xu hướng quà tặng đang thay đổi – tinh tế hơn, gọn gàng hơn và có câu chuyện rõ ràng hơn với socola thủ công từ cacao nguyên chất...</p>
-            <a href="#products" class="blog-link">Xem set quà →</a>
+            <a href="#products" class="blog-link nav-link">Xem set quà →</a>
           </div>
         </div>
 
@@ -791,7 +786,7 @@
           <div class="blog-info">
             <div class="blog-title">SOCOLA VALENTINE CAO CẤP – BONBON THỦ CÔNG</div>
             <p class="blog-desc">Tại Enjoy Chocolate, chúng tôi tin rằng Socola Bonbon không chỉ là món ăn mà là nghệ thuật truyền tải cảm xúc trọn vẹn...</p>
-            <a href="#products" class="blog-link">Xem sản phẩm →</a>
+            <a href="#products" class="blog-link nav-link">Xem sản phẩm →</a>
           </div>
         </div>
       </div>
@@ -809,10 +804,10 @@
         <div class="footer-col">
           <h4>LIÊN KẾT NHANH</h4>
           <ul>
-            <li><a href="#about">Giới thiệu</a></li>
-            <li><a href="#products">Sản phẩm</a></li>
-            <li><a href="#blog">Tin tức</a></li>
-            <li><a href="#footer">Liên hệ</a></li>
+            <li><a href="#about" class="nav-link">Giới thiệu</a></li>
+            <li><a href="#products" class="nav-link">Sản phẩm</a></li>
+            <li><a href="#blog" class="nav-link">Tin tức</a></li>
+            <li><a href="#footer" class="nav-link">Liên hệ</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -831,8 +826,9 @@
     </div>
   </footer>
 
-  <!-- JAVASCRIPT -->
+  <!-- JAVASCRIPT XỬ LÝ NÚT BẤM VÀ SLIDER -->
   <script>
+    // 1. Slider Banner
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
 
@@ -841,8 +837,24 @@
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
     }
-
     setInterval(nextSlide, 5000);
+
+    // 2. Xử lý click thanh công cụ / menu cuộn trang
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
   </script>
 </body>
 </html>
