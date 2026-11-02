@@ -89,7 +89,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <!-- Logo -->
-                <a href="#" onclick="navigateTo('home'); return false;" class="flex items-center gap-3 group">
+                <a href="#home" onclick="navigateTo('home'); return false;" class="flex items-center gap-3 group">
                     <div class="w-10 h-10 rounded-full bg-amber-gold flex items-center justify-center text-coffee-dark font-serif font-bold text-xl group-hover:scale-105 transition-transform">
                         E
                     </div>
@@ -101,7 +101,7 @@
 
                 <!-- Desktop Navigation Links -->
                 <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
-                    <a href="#" onclick="navigateTo('home'); return false;" class="hover:text-amber-gold transition-colors py-2">Trang Chủ</a>
+                    <a href="#home" onclick="navigateTo('home'); return false;" class="hover:text-amber-gold transition-colors py-2">Trang Chủ</a>
                     
                     <!-- Dropdown Sản Phẩm -->
                     <div class="relative group py-2">
@@ -1331,18 +1331,25 @@
     <script>
         // Single Page Router Logic
         function navigateTo(sectionId) {
-            document.querySelectorAll('.page-section').forEach(sec => {
-                sec.classList.remove('active');
-            });
+            // Handle home alias
+            if (sectionId === 'home') {
+                sectionId = 'page-home';
+            }
             // Map generic 'menu' to 'page-menu-quan'
             if (sectionId === 'menu') {
                 sectionId = 'page-menu-quan';
             }
+
+            document.querySelectorAll('.page-section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            
             const target = document.getElementById(sectionId);
             if (target) {
                 target.classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
+            
             // Close mobile drawer menu
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
