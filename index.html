@@ -87,7 +87,7 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none p-2" aria-label="Toggle Menu">
+                    <button id="mobile-menu-button" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none p-2" aria-label="Toggle Menu">
                         <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
                     </button>
                 </div>
@@ -217,7 +217,7 @@
     <section id="menu" class="py-24 bg-coffee-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-coffee-600 font-semibold tracking-wider text-sm uppercase">Thực Đơn Đặc Bác</span>
+                <span class="text-coffee-600 font-semibold tracking-wider text-sm uppercase">Thực Đơn Đặc Biệt</span>
                 <h2 class="font-serif text-3xl sm:text-4xl font-bold text-coffee-950 mt-2">Đồ Uống Nổi Bật Tại EnjoyCoffee</h2>
                 <p class="text-gray-600 mt-4">Tất cả món uống đều được chuẩn bị cẩn thận từ nguyên liệu tươi sạch hàng ngày.</p>
             </div>
@@ -259,7 +259,7 @@
                     <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mb-6">
                         <i class="fa-solid fa-wifi"></i>
                     </div>
-                    <h3 class="font-serif text-xl font-bold mb-3">Không Gian Làm Việc Lí Tưởng</h3>
+                    <h3 class="font-serif text-xl font-bold mb-3">Không Gian Làm Việc Lý Tưởng</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Trang bị Wifi tốc độ cao, vô số ổ cắm điện cùng ánh sáng dịu nhẹ giúp bạn tối đa hóa hiệu suất làm việc.</p>
                 </div>
 
@@ -495,60 +495,42 @@
                 price: '29.000đ',
                 desc: 'Cà phê Robusta Đắk Lắk pha phin nguyên chất kết hợp với sữa đặc thơm ngọt.',
                 image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=500&auto=format&fit=crop',
-                popular: false
-            },
-            {
-                id: 3,
-                name: 'Cappuccino Thượng Hạng',
-                category: 'espresso',
-                price: '49.000đ',
-                desc: 'Espresso chuẩn Ý kết hợp cùng bọt sữa mềm mịn vẽ hình nghệ thuật.',
-                image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=500&auto=format&fit=crop',
                 popular: true
             },
             {
-                id: 4,
-                name: 'Caramel Macchiato',
+                id: 3,
+                name: 'Espresso Latte Art',
                 category: 'espresso',
-                price: '55.000đ',
-                desc: 'Vị sữa thơm béo ngậy quyện cùng Espresso và vệt sốt Caramel ngọt ngào.',
-                image: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=500&auto=format&fit=crop',
+                price: '45.000đ',
+                desc: 'Cà phê Espresso chuẩn Ý kết hợp cùng sữa tươi đánh nóng tạo hình nghệ thuật.',
+                image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=500&auto=format&fit=crop',
                 popular: false
             },
             {
-                id: 5,
+                id: 4,
                 name: 'Trà Đào Cam Sả',
                 category: 'tea',
-                price: '45.000đ',
-                desc: 'Trà đậm vị kết hợp thơm dịu từ sả, vị chua nhẹ của cam và miếng đào giòn ngọt.',
+                price: '42.000đ',
+                desc: 'Trà đen thơm thanh hòa quyện vị ngọt mát của đào tươi và hương sả dịu nhẹ.',
                 image: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?q=80&w=500&auto=format&fit=crop',
                 popular: true
             },
             {
-                id: 6,
-                name: 'Trà Mãng Cầu Tươi',
-                category: 'tea',
-                price: '42.000đ',
-                desc: 'Thức uống giải nhiệt đỉnh cao từ thịt mãng cầu tươi mọng kết hợp trà lài thanh mát.',
-                image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=500&auto=format&fit=crop',
+                id: 5,
+                name: 'Cappuccino Kem Béo',
+                category: 'espresso',
+                price: '48.000đ',
+                desc: 'Lớp bọt sữa sánh mịn dày dặn phủ trên nền Espresso đắng thanh rắc chút bột ca cao.',
+                image: 'https://images.unsplash.com/photo-1572442388796-11668ba67e53?q=80&w=500&auto=format&fit=crop',
                 popular: false
             },
             {
-                id: 7,
-                name: 'Bánh Croissant Bơ Tươi',
+                id: 6,
+                name: 'Bánh Croissant Bơ Tỏi',
                 category: 'bakery',
                 price: '35.000đ',
-                desc: 'Bánh sừng bò nướng nóng giòn xốp nhiều lớp thơm lừng hương bơ cao cấp.',
+                desc: 'Bánh sừng bò nướng giòn rụm với lớp bơ tỏi thơm lừng ngậy béo.',
                 image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=500&auto=format&fit=crop',
-                popular: true
-            },
-            {
-                id: 8,
-                name: 'Bánh Tiramisu Ý',
-                category: 'bakery',
-                price: '48.000đ',
-                desc: 'Bánh mềm mại mang hương thơm ngất ngây của cà phê và vị béo của phô mai Mascarpone.',
-                image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?q=80&w=500&auto=format&fit=crop',
                 popular: false
             }
         ];
@@ -557,43 +539,39 @@
         function renderMenu(items) {
             const grid = document.getElementById('menu-grid');
             grid.innerHTML = items.map(item => `
-                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-coffee-100 flex flex-col">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105" onerror="this.src='https://placehold.co/500x300/47271e/ffffff?text=${encodeURIComponent(item.name)}'">
-                        ${item.popular ? `<span class="absolute top-3 right-3 bg-amber-500 text-coffee-950 font-bold text-xs px-3 py-1 rounded-full shadow">Bán Chạy</span>` : ''}
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                    <div class="relative overflow-hidden h-52">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/500x350/47271e/ffffff?text=${encodeURIComponent(item.name)}'">
+                        ${item.popular ? `<span class="absolute top-4 left-4 bg-amber-500 text-coffee-950 font-bold text-xs px-3 py-1 rounded-full shadow-md">Nổi bật</span>` : ''}
                     </div>
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="font-serif text-lg font-bold text-coffee-950">${item.name}</h3>
-                                <span class="font-bold text-coffee-600 text-lg">${item.price}</span>
+                                <h3 class="font-serif font-bold text-lg text-coffee-950 group-hover:text-coffee-600 transition-colors">${item.name}</h3>
+                                <span class="font-bold text-coffee-600 text-base shrink-0 ml-2">${item.price}</span>
                             </div>
-                            <p class="text-gray-600 text-sm leading-relaxed mb-4">${item.desc}</p>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-4">${item.desc}</p>
                         </div>
-                        <button onclick="scrollToSection('contact')" class="w-full py-2.5 rounded-xl border border-coffee-700 text-coffee-800 hover:bg-coffee-900 hover:text-white font-medium text-sm transition-colors text-center">
-                            Đặt Thức Uống
+                        <button onclick="scrollToSection('contact')" class="w-full py-2.5 rounded-xl border border-coffee-200 text-coffee-900 font-medium text-sm hover:bg-coffee-900 hover:text-white transition-all text-center">
+                            Đặt Thử Ngay
                         </button>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Filter Menu Handler
+        // Filter Menu Logic
         function filterMenu(category) {
-            // Update active tab styles
             const tabs = document.querySelectorAll('.menu-tab');
             tabs.forEach(tab => {
-                if(tab.getAttribute('data-category') === category) {
-                    tab.classList.remove('bg-white', 'text-gray-700', 'hover:bg-coffee-100');
-                    tab.classList.add('bg-coffee-900', 'text-white');
+                if (tab.getAttribute('data-category') === category) {
+                    tab.className = 'menu-tab px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-coffee-900 text-white shadow-md';
                 } else {
-                    tab.classList.remove('bg-coffee-900', 'text-white');
-                    tab.classList.add('bg-white', 'text-gray-700', 'hover:bg-coffee-100');
+                    tab.className = 'menu-tab px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-gray-700 hover:bg-coffee-100 shadow-sm';
                 }
             });
 
-            // Filter data
-            if(category === 'all') {
+            if (category === 'all') {
                 renderMenu(menuItems);
             } else {
                 const filtered = menuItems.filter(item => item.category === category);
@@ -601,47 +579,35 @@
             }
         }
 
-        // Handle Mobile Menu Toggle
-        const menuBtn = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-
-        menuBtn.addEventListener('click', toggleMobileMenu);
-
+        // Mobile Menu Toggle
         function toggleMobileMenu() {
-            mobileMenu.classList.toggle('hidden');
-            if(mobileMenu.classList.contains('hidden')) {
-                menuIcon.classList.remove('fa-xmark');
-                menuIcon.classList.add('fa-bars');
-            } else {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-xmark');
-            }
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
         }
 
-        // Scroll helper
+        // Smooth Scroll To Section
         function scrollToSection(id) {
             const element = document.getElementById(id);
-            if(element) {
+            if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        // Booking form submission handler
-        function handleBooking(e) {
-            e.preventDefault();
+        // Handle Booking Form Submit
+        function handleBooking(event) {
+            event.preventDefault();
             const msg = document.getElementById('booking-msg');
             msg.classList.remove('hidden');
-            document.getElementById('booking-form').reset();
+            event.target.reset();
             setTimeout(() => {
                 msg.classList.add('hidden');
             }, 6000);
         }
 
-        // Initialize display on load
-        window.onload = function() {
+        // Initial Render
+        document.addEventListener('DOMContentLoaded', () => {
             renderMenu(menuItems);
-        };
+        });
     </script>
 </body>
 </html>
